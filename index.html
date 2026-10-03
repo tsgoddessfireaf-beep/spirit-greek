@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Intuitive Shuffle</title>
+<meta name="description" content="Hold to shuffle a 78-card tarot deck. Let go on the ding.">
+<style>
+  :root {
+    --bg: #12101c;
+    --panel: #1c1930;
+    --panel-2: #26223f;
+    --ink: #efe9dc;
+    --muted: #a49cb8;
+    --gold: #d9b45a;
+    --gold-soft: rgba(217, 180, 90, 0.18);
+    --line: #3a3458;
+    --back-1: #2d2350;
+    --back-2: #4a3a7a;
+    --wands: #e08a4f;
+    --cups: #6aa6e0;
+    --swords: #c9cfdb;
+    --pentacles: #79c08a;
+    --major: #d9b45a;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: radial-gradient(ellipse at top, #1d1833 0%, var(--bg) 60%) fixed, var(--bg);
+    color: var(--ink);
+    font: 16px/1.45 Georgia, "Times New Roman", serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 20px 16px 48px; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; color: var(--gold); letter-spacing: 0.03em; font-weight: normal; }
+  .sub { margin: 0 0 18px; color: var(--muted); font-size: 0.95rem; }
+  label.q { display: block; font-size: 0.9rem; color: var(--muted); margin-bottom: 6px; }
+  textarea {
+    width: 100%; min-height: 64px; resize: vertical; padding: 10px 12px;
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: var(--radius); font: inherit;
+  }
+  textarea:focus, button:focus-visible, select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; align-items: center; }
+  .seg button, .btn {
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 0.92rem; cursor: pointer;
+  }
+  .seg button[aria-pressed="true"] { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+  .btn.primary { border-color: var(--gold); color: var(--gold); }
+  .btn:disabled { opacity: 0.5; cursor: default; }
+  details { margin-top: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; }
+  summary { cursor: pointer; color: var(--muted); font-size: 0.92rem; }
+  .setting { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; font-size: 0.92rem; }
+  select { background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font: inherit; }
+  .hint { color: var(--muted); font-size: 0.82rem; margin: 6px 0 0; }
+
+  /* Table and deck */
+  .table {
+    position: relative; margin-top: 18px; padding: 22px 16px 18px; text-align: center;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  .deck {
+    position: relative; width: 120px; height: 200px; margin: 0 auto; cursor: grab;
+    border-radius: var(--radius); transition: box-shadow 0.3s;
+  }
+  .deck.disabled { cursor: not-allowed; opacity: 0.5; }
+  .deck .back { position: absolute; inset: 0; will-change: transform; }
+  .back {
+    border-radius: var(--radius); border: 2px solid var(--gold);
+    background:
+      radial-gradient(circle at 50% 50%, transparent 28%, rgba(217, 180, 90, 0.35) 29%, transparent 31%),
+      repeating-linear-gradient(45deg, var(--back-1) 0 8px, var(--back-2) 8px 16px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  }
+  .status { margin: 16px 0 0; min-height: 1.5em; color: var(--gold); }
+  .status.quiet { color: var(--muted); }
+
+  /* Spread */
+  .spread { margin-top: 20px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .spread.one { grid-template-columns: minmax(120px, 160px); justify-content: center; }
+  .spread.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .slot { text-align: center; }
+  .slot .label { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; min-height: 2.9em; display: flex; align-items: flex-end; justify-content: center; }
+  .slot .holder { position: relative; aspect-ratio: 7 / 12; border: 1px dashed var(--line); border-radius: var(--radius); perspective: 600px; }
+  .card { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.6s; }
+  .card.face-down { transform: rotateY(180deg); }
+  .card .front, .card .back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); }
+  .card .back { transform: rotateY(180deg); }
+  .front {
+    background: linear-gradient(160deg, #f6efdf, #e6dac0); color: #2a2238; border: 2px solid var(--accent, var(--gold));
+    display: flex; flex-direction: column; justify-content: space-between; padding: 8px 6px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+  }
+  .front .top { font-size: 0.75rem; color: var(--accent-ink, #6b5520); letter-spacing: 0.05em; }
+  .front .name { font-size: 0.92rem; line-height: 1.2; }
+  .front .foot { font-size: 0.7rem; color: #6d6480; min-height: 1em; }
+  .card.reversed .front .name, .card.reversed .front .top { transform: rotate(180deg); }
+  .tag { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-top: 6px; }
+
+  .flyer { position: fixed; z-index: 10; pointer-events: none; border-radius: var(--radius); }
+  .receipt { margin-top: 18px; font-size: 0.8rem; color: var(--muted); word-break: break-all; }
+  .after { display: none; margin-top: 14px; gap: 8px; flex-wrap: wrap; }
+  .after.show { display: flex; }
+  .banner { background: #4a1f2a; border: 1px solid #a14a5c; color: #ffd9df; padding: 10px 12px; border-radius: var(--radius); margin-bottom: 14px; display: none; }
+  .banner.show { display: block; }
+  footer { margin-top: 28px; color: var(--muted); font-size: 0.8rem; }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="banner" id="banner" role="alert"></div>
+  <h1>Intuitive Shuffle</h1>
+  <p class="sub">Hold the deck while you hold your question. Let go when you feel the <em>ding</em>.</p>
+
+  <label class="q" for="question">Your question (optional, never leaves this phone)</label>
+  <textarea id="question" maxlength="500" placeholder="What do I most need to understand about…"></textarea>
+
+  <div class="row seg" id="spreadPicker" role="group" aria-label="Spread">
+    <button type="button" data-spread="one" aria-pressed="false">One card</button>
+    <button type="button" data-spread="three" aria-pressed="true">Three cards</button>
+    <button type="button" data-spread="celtic" aria-pressed="false">Celtic Cross</button>
+  </div>
+
+  <details>
+    <summary>Settings</summary>
+    <div class="setting"><span>Reversed cards</span>
+      <select id="reversals"><option value="off">Off</option><option value="on">On</option></select></div>
+    <div class="setting"><span>Shuffle speed</span>
+      <select id="speed"><option value="slow">Slow</option><option value="normal" selected>Normal</option><option value="fast">Fast</option></select></div>
+    <div class="setting"><span>How to shuffle</span>
+      <select id="mode"><option value="hold">Hold, let go on the ding</option><option value="tap">Tap to start, tap on the ding</option></select></div>
+    <div class="setting" id="motionRow"><span id="motionText">Let the deck feel your hand (motion)</span>
+      <button type="button" class="btn" id="motionBtn">Allow</button></div>
+    <p class="hint">Cards jump out rarely and at random. Movement, uneven taps on the table, a faster shuffle and a longer wait make a jumper more likely, but never certain. Every card always has the same chance.</p>
+  </details>
+
+  <section class="table" id="table" aria-label="Shuffling table">
+    <div class="deck" id="deck" role="button" tabindex="0" aria-label="Deck. Hold to shuffle, let go on the ding.">
+      <div class="back"></div><div class="back"></div><div class="back"></div><div class="back"></div><div class="back"></div>
+    </div>
+    <p class="status quiet" id="status" aria-live="polite"></p>
+  </section>
+
+  <section class="spread three" id="spread" aria-label="Spread"></section>
+
+  <div class="after" id="after">
+    <button type="button" class="btn primary" id="again">New reading</button>
+    <button type="button" class="btn" id="copy">Copy full receipt</button>
+  </div>
+  <p class="receipt" id="receipt"></p>
+
+  <footer>Prototype. Nothing is stored or sent anywhere: no account, no cookies, no tracking.</footer>
+</main>
+
+<script src="deck.js"></script>
+<script src="engine.js"></script>
+<script>
+(function () {
+  'use strict';
+  const E = window.SpiritEngine;
+  const { CARDS, SPREADS } = window.SpiritDeck;
+  const $ = (id) => document.getElementById(id);
+
+  const els = {
+    deck: $('deck'), table: $('table'), status: $('status'), spread: $('spread'),
+    receipt: $('receipt'), after: $('after'), question: $('question'),
+    reversals: $('reversals'), speed: $('speed'), mode: $('mode'), banner: $('banner'),
+  };
+  const backs = Array.from(els.deck.querySelectorAll('.back'));
+  const SUIT_COLOR = { Wands: '--wands', Cups: '--cups', Swords: '--swords', Pentacles: '--pentacles' };
+
+  let spreadKey = 'three';
+  let state = 'idle'; // idle | starting | shuffling | finishing | done
+  let s = null;       // the current session
+  let releaseQueued = false; // let go before the session finished starting
+
+  const secureOk = !!(window.crypto && window.crypto.subtle && window.crypto.getRandomValues);
+  if (!secureOk) {
+    els.banner.textContent = 'This page needs a secure (https) connection to shuffle fairly. Open it from its https address.';
+    els.banner.classList.add('show');
+    els.deck.classList.add('disabled');
+  }
+
+  // ---- Status text --------------------------------------------------------
+  function idleText() {
+    return els.mode.value === 'hold'
+      ? 'Hold the deck. Let go when you feel the ding.'
+      : 'Tap the deck to begin. Tap again when you feel the ding.';
+  }
+  function setStatus(text, quiet) {
+    els.status.textContent = text;
+    els.status.classList.toggle('quiet', !!quiet);
+  }
+
+  // ---- Spread slots -------------------------------------------------------
+  function renderEmptySpread() {
+    const positions = SPREADS[spreadKey].positions;
+    els.spread.className = 'spread ' + spreadKey;
+    els.spread.innerHTML = '';
+    positions.forEach((name, i) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.innerHTML = `<div class="label">${i + 1}. ${name}</div><div class="holder" data-slot="${i}"></div>`;
+      els.spread.appendChild(slot);
+    });
+  }
+  function holder(i) {
+    return els.spread.querySelector(`[data-slot="${i}"]`);
+  }
+
+  function cardElement(placed, startFaceDown) {
+    const c = CARDS[placed.card];
+    const accent = c.suit ? `var(${SUIT_COLOR[c.suit]})` : 'var(--major)';
+    const el = document.createElement('div');
+    el.className = 'card' + (placed.reversed ? ' reversed' : '') + (startFaceDown ? ' face-down' : '');
+    el.style.setProperty('--accent', accent);
+    const top = c.arcana === 'major' ? c.numeral : c.suit;
+    const foot = [placed.reversed ? 'Reversed' : '', placed.source === 'jumper' ? 'Jumped' : ''].filter(Boolean).join(' · ');
+    el.innerHTML = `<div class="front"><div class="top">${top}</div><div class="name">${c.name}</div><div class="foot">${foot}</div></div><div class="back"></div>`;
+    el.setAttribute('aria-label', `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`);
+    return el;
+  }
+
+  function place(placed, faceDownFirst) {
+    const h = holder(placed.position);
+    if (!h) return;
+    h.innerHTML = '';
+    const el = cardElement(placed, faceDownFirst);
+    h.appendChild(el);
+    if (faceDownFirst) setTimeout(() => el.classList.remove('face-down'), 550);
+  }
+
+  // A jumper flies from the deck to its slot. Landing face up or down is animation only.
+  function animateJumper(placed) {
+    const from = els.deck.getBoundingClientRect();
+    const to = holder(placed.position).getBoundingClientRect();
+    const flyer = document.createElement('div');
+    flyer.className = 'flyer back';
+    Object.assign(flyer.style, { left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px' });
+    flyer.style.transformOrigin = 'top left';
+    document.body.appendChild(flyer);
+    const dx = to.left - from.left, dy = to.top - from.top;
+    const sx = to.width / from.width, sy = to.height / from.height;
+    const side = (Math.random() < 0.5 ? -1 : 1) * 60; // cosmetic wobble only
+    const anim = flyer.animate([
+      { transform: 'translate(0,0) rotate(0deg) scale(1)' },
+      { transform: `translate(${dx * 0.4 + side}px, ${dy * 0.4 - 90}px) rotate(${side * 3}deg) scale(1.05)`, offset: 0.45 },
+      { transform: `translate(${dx}px, ${dy}px) rotate(0deg) scale(${sx}, ${sy})` },
+    ], { duration: 900, easing: 'cubic-bezier(.3,.7,.3,1)' });
+    anim.onfinish = () => { flyer.remove(); place(placed, !placed.landedFaceUp); };
+  }
+
+  // ---- Motion and taps (inputs to the seed and the jumper chance) ----------
+  let peakShake = 0;
+  function onMotion(e) {
+    let m = null;
+    const a = e.acceleration;
+    if (a && a.x != null) m = Math.hypot(a.x, a.y, a.z);
+    else if (e.accelerationIncludingGravity && e.accelerationIncludingGravity.x != null) {
+      const g = e.accelerationIncludingGravity;
+      m = Math.abs(Math.hypot(g.x, g.y, g.z) - 9.81);
+    }
+    if (m != null && m > peakShake) peakShake = m;
+  }
+  const motionBtn = $('motionBtn');
+  const motionText = $('motionText');
+  if (typeof DeviceMotionEvent === 'undefined') {
+    $('motionRow').style.display = 'none';
+  } else if (typeof DeviceMotionEvent.requestPermission === 'function') {
+    motionBtn.addEventListener('click', async () => {
+      try {
+        const res = await DeviceMotionEvent.requestPermission();
+        if (res === 'granted') {
+          window.addEventListener('devicemotion', onMotion);
+          motionText.textContent = 'Motion is on';
+          motionBtn.remove();
+        } else motionText.textContent = 'Motion was not allowed';
+      } catch (err) { motionText.textContent = 'Motion unavailable here'; }
+    });
+  } else {
+    window.addEventListener('devicemotion', onMotion);
+    motionText.textContent = 'Motion is on (if this device has a sensor)';
+    motionBtn.remove();
+  }
+
+  // ---- Shuffle lifecycle ---------------------------------------------------
+  async function start() {
+    if (state !== 'idle' && state !== 'done') return;
+    if (!secureOk) return;
+    state = 'starting';
+    releaseQueued = false;
+    renderEmptySpread();
+    els.after.classList.remove('show');
+    els.receipt.textContent = '';
+    const secure = E.secureRandomBytes(32);
+    const question = els.question.value.trim();
+    const sessionSeed = await E.makeSessionSeed(secure, question);
+    s = {
+      secure, question, sessionSeed, spreadKey,
+      reversals: els.reversals.value === 'on',
+      speed: els.speed.value,
+      startPerf: performance.now(),
+      taps: [], motion: [], shakeEma: 0,
+    };
+    s.reading = E.createReading({
+      spreadSize: SPREADS[spreadKey].positions.length,
+      sessionRng: E.createRng(sessionSeed), reversals: s.reversals,
+    });
+    state = 'shuffling';
+    els.deck.style.cursor = 'grabbing';
+    setStatus(els.mode.value === 'hold' ? 'Shuffling… let go on the ding.' : 'Shuffling… tap the deck on the ding.');
+    s.timer = setInterval(tick, E.DIALS.tickSec * 1000);
+    requestAnimationFrame(wobble);
+    if (releaseQueued) finish('ding');
+  }
+
+  function elapsedSec() {
+    return (performance.now() - s.startPerf) / 1000;
+  }
+
+  function tick() {
+    if (state !== 'shuffling') return;
+    const now = elapsedSec();
+    s.shakeEma = 0.7 * s.shakeEma + 0.3 * peakShake;
+    peakShake = 0;
+    if (s.motion.length < 600) s.motion.push(Math.round(s.shakeEma * 10) / 10);
+    s.activity = E.computeActivity({ shake: s.shakeEma, tapTimesSec: s.taps, nowSec: now, speed: s.speed, holdSec: now });
+    els.deck.style.boxShadow = `0 0 ${8 + s.activity * 28}px rgba(217,180,90,${0.15 + s.activity * 0.45})`;
+    if (E.shouldJump(s.activity, E.DIALS.tickSec, E.secureUnitFloat())) {
+      const placed = s.reading.addJumper(Math.round(now * 1000));
+      if (placed) {
+        animateJumper(placed);
+        setStatus('A card jumped!');
+        setTimeout(() => { if (state === 'shuffling') setStatus(els.mode.value === 'hold' ? 'Shuffling… let go on the ding.' : 'Shuffling… tap the deck on the ding.'); }, 1400);
+        if (s.reading.isFull()) finish('full');
+      }
+    }
+  }
+
+  // Cosmetic only: the on-screen riffle never decides a card.
+  function wobble() {
+    if (state !== 'shuffling') {
+      backs.forEach((b) => { b.style.transform = ''; });
+      return;
+    }
+    const amp = 3 + (s.activity || 0) * 10 + (s.speed === 'fast' ? 4 : s.speed === 'slow' ? -1 : 0);
+    backs.forEach((b, i) => {
+      if (i === 0) return;
+      const x = (Math.random() - 0.5) * amp, y = (Math.random() - 0.5) * amp * 0.6, r = (Math.random() - 0.5) * amp * 0.8;
+      b.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+    });
+    setTimeout(() => requestAnimationFrame(wobble), s.speed === 'fast' ? 40 : s.speed === 'slow' ? 140 : 80);
+  }
+
+  async function finish(reason) {
+    if (state === 'starting') { releaseQueued = true; return; }
+    if (state !== 'shuffling') return;
+    state = 'finishing';
+    clearInterval(s.timer);
+    els.deck.style.cursor = '';
+    els.deck.style.boxShadow = '';
+    const holdMs = Math.round(performance.now() - s.startPerf);
+
+    if (reason === 'ding' && holdMs < 400 && s.reading.jumpers.length === 0) {
+      state = 'idle';
+      renderEmptySpread();
+      setStatus('Hold a little longer, then let go when you feel the ding.', true);
+      return;
+    }
+
+    const ding = {
+      dingAt: Date.now(), holdMs,
+      trace: { taps: s.taps.map((t) => Math.round(t * 1000)), motion: s.motion },
+    };
+    const dealSeed = await E.makeDealSeed(s.sessionSeed, ding);
+    const spread = s.reading.deal(E.createRng(dealSeed));
+    spread.forEach((p, i) => {
+      if (p.source === 'dealt') setTimeout(() => place(p, true), 150 + i * 180);
+    });
+    if (navigator.vibrate) navigator.vibrate(25);
+    setStatus(reason === 'full' ? 'The cards placed themselves.' : 'Ding.');
+
+    const jumped = s.reading.jumpers.length;
+    els.receipt.textContent = `Receipt ${E.toHex(dealSeed).slice(0, 12)} · held ${(holdMs / 1000).toFixed(1)} s · ` +
+      `${jumped} jumper${jumped === 1 ? '' : 's'}`;
+    s.fullReceipt = {
+      version: 1, spread: s.spreadKey, reversals: s.reversals, question: s.question,
+      secureBytes: E.toHex(s.secure), jumperCount: jumped, ding,
+      cards: spread.map((p) => ({ position: p.position + 1, card: CARDS[p.card].name, reversed: p.reversed, source: p.source })),
+      dealSeed: E.toHex(dealSeed),
+    };
+    els.after.classList.add('show');
+    state = 'done';
+  }
+
+  // ---- Input wiring --------------------------------------------------------
+  let holdPointer = null;
+  els.deck.addEventListener('pointerdown', (e) => {
+    if (state === 'shuffling' && e.pointerId !== holdPointer) { recordTap(); }
+    if (els.mode.value !== 'hold' || (state !== 'idle' && state !== 'done')) return;
+    holdPointer = e.pointerId;
+    els.deck.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    start();
+  });
+  const release = (e) => {
+    if (els.mode.value !== 'hold' || e.pointerId !== holdPointer) return;
+    holdPointer = null;
+    finish('ding');
+  };
+  els.deck.addEventListener('pointerup', release);
+  els.deck.addEventListener('pointercancel', release);
+  els.deck.addEventListener('click', () => {
+    if (els.mode.value !== 'tap') return;
+    if (state === 'idle' || state === 'done') start();
+    else finish('ding');
+  });
+  els.deck.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    if (state === 'idle' || state === 'done') start(); else finish('ding');
+  });
+  // Taps on the table (outside the deck) while shuffling count toward the jumper chance.
+  els.table.addEventListener('pointerdown', (e) => {
+    if (state === 'shuffling' && !els.deck.contains(e.target)) recordTap();
+  });
+  function recordTap() {
+    s.taps.push(elapsedSec());
+    if (s.taps.length > 50) s.taps.shift();
+  }
+  els.table.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  $('spreadPicker').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-spread]');
+    if (!b || state === 'shuffling' || state === 'starting' || state === 'finishing') return;
+    spreadKey = b.dataset.spread;
+    document.querySelectorAll('#spreadPicker button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    state = 'idle';
+    renderEmptySpread();
+    els.after.classList.remove('show');
+    els.receipt.textContent = '';
+    setStatus(idleText(), true);
+  });
+  els.mode.addEventListener('change', () => { if (state === 'idle' || state === 'done') setStatus(idleText(), true); });
+  $('again').addEventListener('click', () => {
+    state = 'idle';
+    renderEmptySpread();
+    els.after.classList.remove('show');
+    els.receipt.textContent = '';
+    setStatus(idleText(), true);
+  });
+  $('copy').addEventListener('click', async () => {
+    if (!s || !s.fullReceipt) return;
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(s.fullReceipt, null, 2));
+      $('copy').textContent = 'Copied';
+      setTimeout(() => { $('copy').textContent = 'Copy full receipt'; }, 1500);
+    } catch (err) { $('copy').textContent = 'Copy not allowed here'; }
+  });
+
+  renderEmptySpread();
+  setStatus(secureOk ? idleText() : '', true);
+})();
+</script>
+</body>
+</html>
