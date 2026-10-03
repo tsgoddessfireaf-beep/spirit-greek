@@ -25,6 +25,11 @@
     longWaitSec: 90,          // holding this long adds the full waiting bonus
     weights: { motion: 0.55, taps: 0.3, wait: 0.15 },
     speedBonus: { slow: 0, normal: 0.1, fast: 0.25 },
+    // Swipe mode
+    secondsPerSwipe: 1.5,     // one swipe counts like this much hand shuffling
+    swipeMinPx: 24,           // shorter than this is a tap, not a swipe
+    circleTurnDeg: 270,       // total turning that makes a swipe a circle
+    swipeFastPxPerSec: 2500,  // swipe speed that counts as "full"
   };
 
   // ---- ChaCha20 block function (RFC 8439) ----------------------------------
@@ -216,6 +221,67 @@
     return u01 < 1 - Math.exp(-jumperRatePerSec(activity) * dtSec);
   }
 
+  // ---- Swipe mode ----------------------------------------------------------
+  // points: [{ x, y, t }] in screen pixels (y grows downward) and milliseconds.
+  // Returns { kind: 'tap' | 'horizontal' | 'vertical' | 'circular', dir, lengthPx, durationMs, speed }.
+  function classifyStroke(points) {
+    const first = points[0];
+    const last = points[points.length - 1];
+    let length = 0, sumAbsDx = 0, sumAbsDy = 0, turn = 0, prevAngle = null;
+    let lastDx = 0, lastDy = 0;
+    for (let i = 1; i < points.length; i++) {
+      const dx = points[i].x - points[i - 1].x;
+      const dy = points[i].y - points[i - 1].y;
+      const d = Math.hypot(dx, dy);
+      if (d < 2) continue; // ignore jitter
+      length += d; sumAbsDx += Math.abs(dx); sumAbsDy += Math.abs(dy);
+      lastDx = dx; lastDy = dy;
+      const angle = Math.atan2(dy, dx);
+      if (prevAngle !== null) {
+        let delta = angle - prevAngle;
+        while (delta > Math.PI) delta -= 2 * Math.PI;
+        while (delta <= -Math.PI) delta += 2 * Math.PI;
+        // A sharp reversal (back-and-forth) is not part of a smooth circle.
+        if (Math.abs(delta) < (150 * Math.PI) / 180) turn += delta;
+      }
+      prevAngle = angle;
+    }
+    const durationMs = Math.max(1, (last ? last.t : 0) - (first ? first.t : 0));
+    const base = { lengthPx: Math.round(length), durationMs: Math.round(durationMs), speed: Math.round((length / durationMs) * 1000) };
+    if (!first || length < DIALS.swipeMinPx) return { kind: 'tap', dir: null, ...base };
+    const turnDeg = (turn * 180) / Math.PI;
+    // Screen y grows downward, so a positive turn looks clockwise.
+    if (Math.abs(turnDeg) >= DIALS.circleTurnDeg) return { kind: 'circular', dir: turnDeg > 0 ? 'cw' : 'ccw', ...base };
+    const netDx = last.x - first.x;
+    const netDy = last.y - first.y;
+    if (sumAbsDx >= sumAbsDy) {
+      const sign = Math.abs(netDx) >= DIALS.swipeMinPx / 2 ? netDx : lastDx;
+      return { kind: 'horizontal', dir: sign >= 0 ? 'right' : 'left', ...base };
+    }
+    const sign = Math.abs(netDy) >= DIALS.swipeMinPx / 2 ? netDy : lastDy;
+    return { kind: 'vertical', dir: sign >= 0 ? 'down' : 'up', ...base };
+  }
+
+  // speeds: px/s of recent swipes (newest last). shake: smoothed motion (m/s^2).
+  function swipeActivity({ speeds = [], shake = 0 }) {
+    const latest = speeds.length ? speeds[speeds.length - 1] : 0;
+    const speed = clamp01(latest / DIALS.swipeFastPxPerSec);
+    let uneven = 0;
+    if (speeds.length >= 3) {
+      const recent = speeds.slice(-6);
+      const mean = recent.reduce((a, b) => a + b, 0) / recent.length;
+      const sd = Math.sqrt(recent.reduce((a, v) => a + (v - mean) ** 2, 0) / recent.length);
+      uneven = clamp01(mean > 0 ? sd / mean : 0);
+    }
+    const motion = clamp01(shake / DIALS.motionFull);
+    return clamp01(0.6 * speed + 0.25 * uneven + 0.15 * motion);
+  }
+
+  // Chance that one swipe makes a card jump. A swipe counts as secondsPerSwipe of shuffling.
+  function swipeJumpChance(activity) {
+    return 1 - Math.exp(-jumperRatePerSec(activity) * DIALS.secondsPerSwipe);
+  }
+
   function secureUnitFloat() {
     return root.crypto.getRandomValues(new Uint32Array(1))[0] / 0x100000000;
   }
@@ -236,6 +302,9 @@
     computeActivity,
     jumperRatePerSec,
     shouldJump,
+    classifyStroke,
+    swipeActivity,
+    swipeJumpChance,
   };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.SpiritEngine = api;

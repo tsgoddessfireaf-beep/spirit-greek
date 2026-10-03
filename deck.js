@@ -29,15 +29,17 @@
     });
   });
 
-  // Spread positions. Celtic Cross order and names follow Waite (1910).
+  // Spread positions. Celtic Cross uses Dolores's laying order:
+  // 1 center, 2 across 1, 3 below, 4 left, 5 above, 6 right, staff 7-10 bottom to top.
+  // Each spot keeps its traditional (Waite 1910) name.
   const SPREADS = {
     one: { label: 'One card', positions: ['The card'] },
     three: { label: 'Three cards', positions: ['Past', 'Present', 'Future'] },
     celtic: {
       label: 'Celtic Cross',
       positions: [
-        'Covers (the present)', 'Crosses (the obstacle)', 'Crowns (the aim)',
-        'Beneath (the foundation)', 'Behind (the recent past)', 'Before (the near future)',
+        'Covers (the present)', 'Crosses (the obstacle)', 'Beneath (the foundation)',
+        'Behind (the recent past)', 'Crowns (the aim)', 'Before (the near future)',
         'Self', 'House (surroundings)', 'Hopes and fears', 'What will come',
       ],
     },
