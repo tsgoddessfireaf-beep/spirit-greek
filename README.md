@@ -32,7 +32,12 @@ you hold your question, and you let go when you feel the "ding" (Dusty White,
 Spreads: one card, three cards (Past / Present / Future), and the Celtic Cross,
 laid out like the table: 1 center, 2 across 1, 3 below, 4 left, 5 above, 6 right,
 then the staff 7–10 on the right from bottom to top. Each position keeps its
-traditional name. Tap any dealt card to see it large with its position.
+traditional name.
+
+Cards stay **face down** for the reading. After the ding, tap a card to turn it
+over. It flips sideways, the way you'd turn a card on the table, so a reversed card
+stays reversed. Tap a face-up card to see it large with its position. In the Celtic
+Cross, card 1 is turned by tapping its top or bottom end, since card 2 lies across it.
 Reversed cards are optional (Settings).
 
 ## Try it on your phone

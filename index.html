@@ -129,6 +129,7 @@
     background: var(--gold); color: #1c1930; font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
   }
   .holder .card { cursor: zoom-in; }
+  .holder .card.face-down { cursor: pointer; }
 
   /* Tap a card to see it large */
   .zoom {
@@ -287,17 +288,25 @@
     const top = c.arcana === 'major' ? c.numeral : c.suit;
     const foot = [placed.reversed ? 'Reversed' : '', placed.source === 'jumper' ? 'Jumped' : ''].filter(Boolean).join(' · ');
     el.innerHTML = `<div class="front"><div class="top">${top}</div><div class="name">${c.name}</div><div class="foot">${foot}</div></div><div class="back"></div>`;
-    el.setAttribute('aria-label', `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`);
+    el.dataset.label = `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`;
+    el.setAttribute('role', 'button');
+    el.tabIndex = 0;
+    el.setAttribute('aria-label', startFaceDown ? `Face-down card, position ${placed.position + 1}. Tap to turn it over.` : el.dataset.label);
     return el;
   }
 
-  function place(placed, faceDownFirst) {
+  // Cards stay face down for the reading until the reader taps them.
+  function place(placed) {
     const h = holder(placed.position);
     if (!h) return;
     h.innerHTML = '';
-    const el = cardElement(placed, faceDownFirst);
-    h.appendChild(el);
-    if (faceDownFirst) setTimeout(() => el.classList.remove('face-down'), 550);
+    h.appendChild(cardElement(placed, true));
+  }
+
+  // Turn a card over sideways (around its upright axis), so a reversed card stays reversed.
+  function turnOver(card) {
+    card.classList.remove('face-down');
+    card.setAttribute('aria-label', card.dataset.label);
   }
 
   // A jumper flies from the deck to its slot. Landing face up or down is animation only.
@@ -317,7 +326,7 @@
       { transform: `translate(${dx * 0.4 + side}px, ${dy * 0.4 - 90}px) rotate(${side * 3}deg) scale(1.05)`, offset: 0.45 },
       { transform: `translate(${dx}px, ${dy}px) rotate(0deg) scale(${sx}, ${sy})` },
     ], { duration: 900, easing: 'cubic-bezier(.3,.7,.3,1)' });
-    anim.onfinish = () => { flyer.remove(); place(placed, !placed.landedFaceUp); };
+    anim.onfinish = () => { flyer.remove(); place(placed); };
   }
 
   // ---- Motion and taps (inputs to the seed and the jumper chance) ----------
@@ -456,10 +465,10 @@
     const dealSeed = await E.makeDealSeed(s.sessionSeed, ding);
     const spread = s.reading.deal(E.createRng(dealSeed));
     spread.forEach((p, i) => {
-      if (p.source === 'dealt') setTimeout(() => place(p, true), 150 + i * 180);
+      if (p.source === 'dealt') setTimeout(() => place(p), 150 + i * 180);
     });
     if (navigator.vibrate) navigator.vibrate(25);
-    setStatus(reason === 'full' ? 'The cards placed themselves.' : 'Ding.');
+    setStatus((reason === 'full' ? 'The cards placed themselves.' : 'Ding.') + ' Tap each card to turn it over.');
 
     const jumped = s.reading.jumpers.length;
     const effort = s.mode === 'swipe'
@@ -637,16 +646,28 @@
 
   // ---- Tap a card to see it large -------------------------------------------
   const zoom = $('zoom');
-  els.spread.addEventListener('click', (e) => {
-    const h = e.target.closest('.holder');
+  function onCardTap(target) {
+    const h = target.closest('.holder');
     const card = h && h.querySelector('.card');
-    if (!card || card.classList.contains('face-down')) return;
+    if (!card) return;
+    if (card.classList.contains('face-down')) {
+      if (state === 'done') turnOver(card);
+      else setStatus('Cards turn over after the ding.', true);
+      return;
+    }
     const i = Number(h.dataset.slot);
     const key = s ? s.spreadKey : spreadKey;
     const clone = card.cloneNode(true);
     $('zoomCard').replaceChildren(clone);
     $('zoomPos').textContent = `${i + 1}. ${SPREADS[key].positions[i]}`;
     zoom.hidden = false;
+  }
+  els.spread.addEventListener('click', (e) => onCardTap(e.target));
+  els.spread.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
+      e.preventDefault();
+      onCardTap(e.target);
+    }
   });
   zoom.addEventListener('click', () => { zoom.hidden = true; });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') zoom.hidden = true; });
