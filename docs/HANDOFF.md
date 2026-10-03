@@ -14,7 +14,10 @@ A phone-friendly 78-card tarot shuffle for aeonicarts.com is built, merged into
   face-down cards that turn over on tap.
 - Tests: `node --test` → 12 of 12 pass. No installs needed (Node 18+).
 
-Dolores has **not yet tested it on her phone**. That is the first thing to ask about.
+**Device test (Dolores, 2026-10-03, PR #3 comment):** works on her Android (Motorola)
+phone and on her iPad (9:31 a.m.). She loves the shuffling animation and says it
+feels intuitive. On iPad, allowing motion worked with no issues. Not yet tested on
+an iPhone.
 
 ## How it works (plain English)
 
@@ -51,9 +54,11 @@ Dolores has **not yet tested it on her phone**. That is the first thing to ask a
 
 ## Open items, in priority order
 
-1. **Phone test with Dolores** (Android, Motorola). Ask about:
-   - swipe feel and whether the 3 animations look right. The up/down animation
-     was built as a riffle-and-bridge from her phrase "French shuffle"; confirm.
+1. **Follow-ups from the device test.** Android and iPad passed, and she approved the
+   shuffle animation and the intuitive feel. Not yet reported:
+   - whether the up/down animation matches her "French shuffle" (built as a
+     riffle-and-bridge).
+   - an iPhone test.
    - jumper rarity (tune `DIALS` in `engine.js`: `rateStillPerSec`, `rateCapPerSec`,
      `secondsPerSwipe`).
    - tapping **card 1 in the Celtic Cross**: card 2 lies across its middle, so only
