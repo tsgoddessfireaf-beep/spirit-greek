@@ -158,3 +158,70 @@ test('a full spread accepts no more jumpers', () => {
   assert.ok(reading.isFull());
   assert.equal(reading.addJumper(1), null);
 });
+
+// ---- Swipe mode ------------------------------------------------------------
+function line(x0, y0, x1, y1, steps = 20, ms = 300) {
+  return Array.from({ length: steps + 1 }, (_, i) => ({
+    x: x0 + ((x1 - x0) * i) / steps, y: y0 + ((y1 - y0) * i) / steps, t: (ms * i) / steps,
+  }));
+}
+function circle(clockwise, turns = 1.1, r = 60, steps = 60, ms = 600) {
+  return Array.from({ length: steps + 1 }, (_, i) => {
+    const a = (clockwise ? 1 : -1) * 2 * Math.PI * turns * (i / steps);
+    return { x: 100 + r * Math.cos(a), y: 100 + r * Math.sin(a), t: (ms * i) / steps };
+  });
+}
+
+test('swipe shapes are recognized', () => {
+  const k = (pts) => { const s = E.classifyStroke(pts); return `${s.kind}:${s.dir}`; };
+  assert.equal(k(line(0, 0, 200, 10)), 'horizontal:right');
+  assert.equal(k(line(200, 0, 0, -10)), 'horizontal:left');
+  assert.equal(k(line(0, 200, 8, 0)), 'vertical:up');
+  assert.equal(k(line(0, 0, -8, 200)), 'vertical:down');
+  // Screen y points down, so increasing angle looks clockwise.
+  assert.equal(k(circle(true)), 'circular:cw');
+  assert.equal(k(circle(false)), 'circular:ccw');
+  assert.equal(k(line(0, 0, 5, 3, 3, 80)), 'tap:null');
+  assert.equal(E.classifyStroke([{ x: 1, y: 1, t: 0 }]).kind, 'tap');
+  // Back-and-forth (left, right, left) is side-to-side, not a circle.
+  const zigzag = [...line(0, 0, 150, 5), ...line(150, 5, 0, 10), ...line(0, 10, 150, 15)]
+    .map((p, i) => ({ ...p, t: i * 15 }));
+  assert.equal(E.classifyStroke(zigzag).kind, 'horizontal');
+  // Speed is reported in px per second.
+  assert.equal(E.classifyStroke(line(0, 0, 300, 0, 30, 500)).speed, 600);
+});
+
+test('swipe activity rises with speed and unevenness, stays within 0..1', () => {
+  assert.equal(E.swipeActivity({}), 0);
+  const slow = E.swipeActivity({ speeds: [300] });
+  const fast = E.swipeActivity({ speeds: [2400] });
+  assert.ok(fast > slow);
+  const steady = E.swipeActivity({ speeds: [1000, 1000, 1000, 1000] });
+  const uneven = E.swipeActivity({ speeds: [300, 2400, 500, 1000] });
+  assert.ok(uneven > steady);
+  assert.ok(E.swipeActivity({ speeds: [9e9, 1, 9e9], shake: 999 }) <= 1);
+});
+
+test('20 swipes match the 30-second rarity table', () => {
+  const rng = masterRng('swipes');
+  const u01 = () => rng.nextU32() / 0x100000000;
+  const trials = 20000;
+  for (const [activity, expected] of [[0, 1 - Math.exp(-30 / 300)], [1, 1 - Math.exp(-1)]]) {
+    const p = E.swipeJumpChance(activity);
+    let hit = 0;
+    for (let t = 0; t < trials; t++) {
+      for (let k = 0; k < 20; k++) if (u01() < p) { hit++; break; }
+    }
+    const share = hit / trials;
+    assert.ok(Math.abs(share - expected) < 0.015,
+      `activity ${activity}: got ${share.toFixed(3)}, expected ${expected.toFixed(3)}`);
+  }
+});
+
+test('Celtic Cross follows the laying order: 3 below, 4 left, 5 above', () => {
+  const p = SPREADS.celtic.positions;
+  assert.match(p[2], /^Beneath/);
+  assert.match(p[3], /^Behind/);
+  assert.match(p[4], /^Crowns/);
+  assert.match(p[5], /^Before/);
+});

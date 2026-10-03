@@ -6,13 +6,22 @@ you hold your question, and you let go when you feel the "ding" (Dusty White,
 
 ## How it works
 
-- **Hold to shuffle, let go on the ding.** The moment you let go becomes part of
-  the reading. There is also a tap mode: tap to start, tap again on the ding.
+- **Three ways to shuffle** (Settings → How to shuffle):
+  - **Hold**: hold the deck, let go on the ding.
+  - **Tap**: tap to start, tap again on the ding.
+  - **Swipe**: swipe across the deck like a hand shuffle, **double-tap** on the ding.
+    Each swipe plays an animation that matches its shape:
+    - side-to-side: packets pushed across left→right or right→left and stuffed back
+    - circle: the deck swirls around (a wash), clockwise or counter-clockwise
+    - up or down: a riffle, two halves lift and cascade back together
+
+    Arrow keys also swipe, and Enter deals.
 - **Personal seed.** Your question, the ding moment, how long you held, and your
   hand's movement and taps are blended with real randomness into a seed (a starting
   number). The seed decides *which* reading you get. It never changes the odds, so
   every card keeps the same 1-in-78 chance in every position.
-- **Jumpers.** Now and then a card jumps out mid-shuffle. Jumpers are rare and
+- **Jumpers.** Now and then a card jumps out mid-shuffle. In swipe mode a card can
+  only jump during a swipe; faster or more uneven swipes raise the chance. Jumpers are rare and
   random. Movement, uneven taps on the table, a faster shuffle and a longer wait make
   one more likely, but never certain. Each jumper fills the next empty position. If
   jumpers fill the whole spread, the shuffle stops by itself.
@@ -20,8 +29,11 @@ you hold your question, and you let go when you feel the "ding" (Dusty White,
   everything needed to replay the exact same reading.
 - **Private.** Nothing is stored or sent anywhere: no server, no cookies, no tracking.
 
-Spreads: one card, three cards (Past / Present / Future), Celtic Cross (Waite 1910
-positions). Reversed cards are optional (Settings).
+Spreads: one card, three cards (Past / Present / Future), and the Celtic Cross,
+laid out like the table: 1 center, 2 across 1, 3 below, 4 left, 5 above, 6 right,
+then the staff 7–10 on the right from bottom to top. Each position keeps its
+traditional name. Tap any dealt card to see it large with its position.
+Reversed cards are optional (Settings).
 
 ## Try it on your phone
 
@@ -49,12 +61,15 @@ All dials are in one place: `DIALS` at the top of `engine.js`.
 
 Holding longer slowly raises the chance a little more (the "waiting" bonus).
 
+In swipe mode each swipe counts as `secondsPerSwipe` (1.5 s) of shuffling, so
+**20 swipes ≈ the 30-second column** above.
+
 ## Files
 
 | File | Job |
 |---|---|
 | `index.html` | The page: question, spread, deck, settings |
-| `engine.js` | Seed blending, ChaCha20 generator, fair dealing, jumper chance |
+| `engine.js` | Seed blending, ChaCha20 generator, fair dealing, jumper chance, swipe recognition |
 | `deck.js` | The 78 card names and the spread positions |
 | `test/engine.test.js` | Fairness proof |
 

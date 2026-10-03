@@ -98,6 +98,51 @@
   .front .name { font-size: 0.92rem; line-height: 1.2; }
   .front .foot { font-size: 0.7rem; color: #6d6480; min-height: 1em; }
   .card.reversed .front .name, .card.reversed .front .top { transform: rotate(180deg); }
+  /* Celtic Cross, laid out like the table: 1 center, 2 across 1, 3 below, 4 left,
+     5 above, 6 right, staff 7-10 on the right from bottom to top. */
+  .spread.celtic {
+    --gap: 18px;
+    --cw: min(84px, calc((min(100vw - 32px, 688px) - 3 * var(--gap)) / 4));
+    grid-template-columns: repeat(4, var(--cw));
+    grid-template-rows: repeat(8, calc(var(--cw) * 6 / 7));
+    gap: 6px var(--gap); justify-content: center;
+  }
+  .spread.celtic .slot { position: relative; }
+  .spread.celtic .label { display: none; }
+  .spread.celtic .holder { aspect-ratio: auto; height: 100%; }
+  .spread.celtic .c1 { grid-area: 4 / 2 / 6 / 3; }
+  .spread.celtic .c2 { grid-area: 4 / 2 / 6 / 3; z-index: 2; transform: rotate(90deg) scale(0.8); }
+  .spread.celtic .c3 { grid-area: 6 / 2 / 8 / 3; }
+  .spread.celtic .c4 { grid-area: 4 / 1 / 6 / 2; }
+  .spread.celtic .c5 { grid-area: 2 / 2 / 4 / 3; }
+  .spread.celtic .c6 { grid-area: 4 / 3 / 6 / 4; }
+  .spread.celtic .c7 { grid-area: 7 / 4 / 9 / 5; }
+  .spread.celtic .c8 { grid-area: 5 / 4 / 7 / 5; }
+  .spread.celtic .c9 { grid-area: 3 / 4 / 5 / 5; }
+  .spread.celtic .c10 { grid-area: 1 / 4 / 3 / 5; }
+  .spread.celtic .front { padding: 5px 4px; }
+  .spread.celtic .front .top { font-size: 0.58rem; }
+  .spread.celtic .front .name { font-size: 0.66rem; }
+  .spread.celtic .front .foot { font-size: 0.56rem; }
+  .num {
+    position: absolute; top: -7px; left: -7px; z-index: 3; width: 18px; height: 18px; border-radius: 999px;
+    background: var(--gold); color: #1c1930; font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+  }
+  .holder .card { cursor: zoom-in; }
+
+  /* Tap a card to see it large */
+  .zoom {
+    position: fixed; inset: 0; z-index: 20; background: rgba(10, 8, 18, 0.88); padding: 16px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .zoom[hidden] { display: none; }
+  .zoom .zcard { position: relative; width: min(220px, 60vw); aspect-ratio: 7 / 12; }
+  .zoom .card { transition: none; cursor: zoom-out; }
+  .zoom .front .top { font-size: 0.9rem; }
+  .zoom .front .name { font-size: 1.25rem; }
+  .zoom .front .foot { font-size: 0.85rem; }
+  .zoom .zpos { color: var(--gold); margin: 14px 0 0; text-align: center; }
+
   .tag { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-top: 6px; }
 
   .flyer { position: fixed; z-index: 10; pointer-events: none; border-radius: var(--radius); }
@@ -114,7 +159,7 @@
 <main>
   <div class="banner" id="banner" role="alert"></div>
   <h1>Intuitive Shuffle</h1>
-  <p class="sub">Hold the deck while you hold your question. Let go when you feel the <em>ding</em>.</p>
+  <p class="sub">Shuffle while you hold your question. Stop when you feel the <em>ding</em>.</p>
 
   <label class="q" for="question">Your question (optional, never leaves this phone)</label>
   <textarea id="question" maxlength="500" placeholder="What do I most need to understand about…"></textarea>
@@ -132,10 +177,10 @@
     <div class="setting"><span>Shuffle speed</span>
       <select id="speed"><option value="slow">Slow</option><option value="normal" selected>Normal</option><option value="fast">Fast</option></select></div>
     <div class="setting"><span>How to shuffle</span>
-      <select id="mode"><option value="hold">Hold, let go on the ding</option><option value="tap">Tap to start, tap on the ding</option></select></div>
+      <select id="mode"><option value="hold">Hold, let go on the ding</option><option value="tap">Tap to start, tap on the ding</option><option value="swipe">Swipe to shuffle, double-tap on the ding</option></select></div>
     <div class="setting" id="motionRow"><span id="motionText">Let the deck feel your hand (motion)</span>
       <button type="button" class="btn" id="motionBtn">Allow</button></div>
-    <p class="hint">Cards jump out rarely and at random. Movement, uneven taps on the table, a faster shuffle and a longer wait make a jumper more likely, but never certain. Every card always has the same chance.</p>
+    <p class="hint">Cards jump out rarely and at random. Movement, uneven taps on the table, a faster shuffle and a longer wait make a jumper more likely, but never certain. In swipe mode cards can only jump while you swipe, and faster or more uneven swipes raise the chance. Every card always has the same chance.</p>
   </details>
 
   <section class="table" id="table" aria-label="Shuffling table">
@@ -152,6 +197,11 @@
     <button type="button" class="btn" id="copy">Copy full receipt</button>
   </div>
   <p class="receipt" id="receipt"></p>
+
+  <div class="zoom" id="zoom" hidden role="dialog" aria-label="Card close-up">
+    <div class="zcard" id="zoomCard"></div>
+    <p class="zpos" id="zoomPos"></p>
+  </div>
 
   <footer>Prototype. Nothing is stored or sent anywhere: no account, no cookies, no tracking.</footer>
 </main>
@@ -186,11 +236,25 @@
   }
 
   // ---- Status text --------------------------------------------------------
+  const isSwipe = () => els.mode.value === 'swipe';
   function idleText() {
-    return els.mode.value === 'hold'
-      ? 'Hold the deck. Let go when you feel the ding.'
-      : 'Tap the deck to begin. Tap again when you feel the ding.';
+    if (els.mode.value === 'hold') return 'Hold the deck. Let go when you feel the ding.';
+    if (isSwipe()) return 'Swipe across the deck to shuffle. Double-tap when you feel the ding.';
+    return 'Tap the deck to begin. Tap again when you feel the ding.';
   }
+  function shufflingText() {
+    if (els.mode.value === 'hold') return 'Shuffling… let go on the ding.';
+    if (isSwipe()) {
+      const n = s && s.swipes ? s.swipes.length : 0;
+      return `Shuffling… ${n} swipe${n === 1 ? '' : 's'}. Double-tap on the ding.`;
+    }
+    return 'Shuffling… tap the deck on the ding.';
+  }
+  const DECK_LABEL = {
+    hold: 'Deck. Hold to shuffle, let go on the ding.',
+    tap: 'Deck. Tap to start shuffling, tap again on the ding.',
+    swipe: 'Deck. Swipe to shuffle, double-tap on the ding. Arrow keys swipe, Enter deals.',
+  };
   function setStatus(text, quiet) {
     els.status.textContent = text;
     els.status.classList.toggle('quiet', !!quiet);
@@ -203,8 +267,10 @@
     els.spread.innerHTML = '';
     positions.forEach((name, i) => {
       const slot = document.createElement('div');
-      slot.className = 'slot';
-      slot.innerHTML = `<div class="label">${i + 1}. ${name}</div><div class="holder" data-slot="${i}"></div>`;
+      slot.className = `slot c${i + 1}`;
+      slot.innerHTML = `<div class="label">${i + 1}. ${name}</div>` +
+        `<div class="holder" data-slot="${i}" title="${i + 1}. ${name}"></div>` +
+        (spreadKey === 'celtic' ? `<span class="num" aria-hidden="true">${i + 1}</span>` : '');
       els.spread.appendChild(slot);
     });
   }
@@ -301,21 +367,40 @@
     const sessionSeed = await E.makeSessionSeed(secure, question);
     s = {
       secure, question, sessionSeed, spreadKey,
+      mode: els.mode.value,
       reversals: els.reversals.value === 'on',
       speed: els.speed.value,
       startPerf: performance.now(),
-      taps: [], motion: [], shakeEma: 0,
+      taps: [], motion: [], swipes: [], shakeEma: 0,
     };
+    els.mode.disabled = true;
     s.reading = E.createReading({
       spreadSize: SPREADS[spreadKey].positions.length,
       sessionRng: E.createRng(sessionSeed), reversals: s.reversals,
     });
     state = 'shuffling';
     els.deck.style.cursor = 'grabbing';
-    setStatus(els.mode.value === 'hold' ? 'Shuffling… let go on the ding.' : 'Shuffling… tap the deck on the ding.');
-    s.timer = setInterval(tick, E.DIALS.tickSec * 1000);
-    requestAnimationFrame(wobble);
+    setStatus(shufflingText());
+    // Swipe mode has no clock: each swipe is one shuffle pass with its own jumper roll.
+    if (s.mode !== 'swipe') {
+      s.timer = setInterval(tick, E.DIALS.tickSec * 1000);
+      requestAnimationFrame(wobble);
+    }
     if (releaseQueued) finish('ding');
+  }
+
+  function glow(activity) {
+    els.deck.style.boxShadow = `0 0 ${8 + activity * 28}px rgba(217,180,90,${0.15 + activity * 0.45})`;
+  }
+
+  // A card jumps out of the deck into the next empty position.
+  function jump() {
+    const placed = s.reading.addJumper(Math.round(elapsedSec() * 1000));
+    if (!placed) return;
+    animateJumper(placed);
+    setStatus('A card jumped!');
+    setTimeout(() => { if (state === 'shuffling') setStatus(shufflingText()); }, 1400);
+    if (s.reading.isFull()) finish('full');
   }
 
   function elapsedSec() {
@@ -329,16 +414,8 @@
     peakShake = 0;
     if (s.motion.length < 600) s.motion.push(Math.round(s.shakeEma * 10) / 10);
     s.activity = E.computeActivity({ shake: s.shakeEma, tapTimesSec: s.taps, nowSec: now, speed: s.speed, holdSec: now });
-    els.deck.style.boxShadow = `0 0 ${8 + s.activity * 28}px rgba(217,180,90,${0.15 + s.activity * 0.45})`;
-    if (E.shouldJump(s.activity, E.DIALS.tickSec, E.secureUnitFloat())) {
-      const placed = s.reading.addJumper(Math.round(now * 1000));
-      if (placed) {
-        animateJumper(placed);
-        setStatus('A card jumped!');
-        setTimeout(() => { if (state === 'shuffling') setStatus(els.mode.value === 'hold' ? 'Shuffling… let go on the ding.' : 'Shuffling… tap the deck on the ding.'); }, 1400);
-        if (s.reading.isFull()) finish('full');
-      }
-    }
+    glow(s.activity);
+    if (E.shouldJump(s.activity, E.DIALS.tickSec, E.secureUnitFloat())) jump();
   }
 
   // Cosmetic only: the on-screen riffle never decides a card.
@@ -363,19 +440,19 @@
     clearInterval(s.timer);
     els.deck.style.cursor = '';
     els.deck.style.boxShadow = '';
+    els.mode.disabled = false;
     const holdMs = Math.round(performance.now() - s.startPerf);
 
-    if (reason === 'ding' && holdMs < 400 && s.reading.jumpers.length === 0) {
+    if (reason === 'ding' && s.mode !== 'swipe' && holdMs < 400 && s.reading.jumpers.length === 0) {
       state = 'idle';
       renderEmptySpread();
       setStatus('Hold a little longer, then let go when you feel the ding.', true);
       return;
     }
 
-    const ding = {
-      dingAt: Date.now(), holdMs,
-      trace: { taps: s.taps.map((t) => Math.round(t * 1000)), motion: s.motion },
-    };
+    const trace = { taps: s.taps.map((t) => Math.round(t * 1000)), motion: s.motion };
+    if (s.mode === 'swipe') trace.swipes = s.swipes;
+    const ding = { dingAt: Date.now(), holdMs, trace };
     const dealSeed = await E.makeDealSeed(s.sessionSeed, ding);
     const spread = s.reading.deal(E.createRng(dealSeed));
     spread.forEach((p, i) => {
@@ -385,10 +462,13 @@
     setStatus(reason === 'full' ? 'The cards placed themselves.' : 'Ding.');
 
     const jumped = s.reading.jumpers.length;
-    els.receipt.textContent = `Receipt ${E.toHex(dealSeed).slice(0, 12)} · held ${(holdMs / 1000).toFixed(1)} s · ` +
+    const effort = s.mode === 'swipe'
+      ? `${s.swipes.length} swipe${s.swipes.length === 1 ? '' : 's'}`
+      : `held ${(holdMs / 1000).toFixed(1)} s`;
+    els.receipt.textContent = `Receipt ${E.toHex(dealSeed).slice(0, 12)} · ${effort} · ` +
       `${jumped} jumper${jumped === 1 ? '' : 's'}`;
     s.fullReceipt = {
-      version: 1, spread: s.spreadKey, reversals: s.reversals, question: s.question,
+      version: 1, mode: s.mode, spread: s.spreadKey, reversals: s.reversals, question: s.question,
       secureBytes: E.toHex(s.secure), jumperCount: jumped, ding,
       cards: spread.map((p) => ({ position: p.position + 1, card: CARDS[p.card].name, reversed: p.reversed, source: p.source })),
       dealSeed: E.toHex(dealSeed),
@@ -400,7 +480,7 @@
   // ---- Input wiring --------------------------------------------------------
   let holdPointer = null;
   els.deck.addEventListener('pointerdown', (e) => {
-    if (state === 'shuffling' && e.pointerId !== holdPointer) { recordTap(); }
+    if (state === 'shuffling' && !isSwipe() && e.pointerId !== holdPointer) { recordTap(); }
     if (els.mode.value !== 'hold' || (state !== 'idle' && state !== 'done')) return;
     holdPointer = e.pointerId;
     els.deck.setPointerCapture(e.pointerId);
@@ -419,15 +499,157 @@
     if (state === 'idle' || state === 'done') start();
     else finish('ding');
   });
+  const ARROW_SWIPES = {
+    ArrowLeft: ['horizontal', 'left'], ArrowRight: ['horizontal', 'right'],
+    ArrowUp: ['vertical', 'up'], ArrowDown: ['vertical', 'down'],
+  };
   els.deck.addEventListener('keydown', (e) => {
+    if (isSwipe() && ARROW_SWIPES[e.key]) {
+      e.preventDefault();
+      const [kind, dir] = ARROW_SWIPES[e.key];
+      onSwipe({ kind, dir, lengthPx: 200, durationMs: 250, speed: 800 });
+      return;
+    }
     if (e.key !== 'Enter' && e.key !== ' ') return;
     e.preventDefault();
+    if (isSwipe()) { swipeDing(); return; }
     if (state === 'idle' || state === 'done') start(); else finish('ding');
   });
   // Taps on the table (outside the deck) while shuffling count toward the jumper chance.
   els.table.addEventListener('pointerdown', (e) => {
-    if (state === 'shuffling' && !els.deck.contains(e.target)) recordTap();
+    if (state === 'shuffling' && !isSwipe() && !els.deck.contains(e.target)) recordTap();
   });
+
+  // ---- Swipe mode ------------------------------------------------------------
+  // Each swipe is one shuffle pass: it plays a matching animation, joins the seed
+  // trace, and gets one small jumper roll. A double tap is the ding.
+  let stroke = null;
+  let lastTap = null;
+  let hintTimer = null;
+  let deckAnims = [];
+
+  els.table.addEventListener('pointerdown', (e) => {
+    if (!isSwipe() || !secureOk || state === 'finishing') return;
+    e.preventDefault();
+    els.table.setPointerCapture(e.pointerId);
+    stroke = { id: e.pointerId, points: [{ x: e.clientX, y: e.clientY, t: performance.now() }] };
+  });
+  els.table.addEventListener('pointermove', (e) => {
+    if (!stroke || e.pointerId !== stroke.id || stroke.points.length > 2000) return;
+    const list = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+    (list.length ? list : [e]).forEach((p) => stroke.points.push({ x: p.clientX, y: p.clientY, t: performance.now() }));
+  });
+  const endStroke = (e) => {
+    if (!stroke || e.pointerId !== stroke.id) return;
+    const points = stroke.points;
+    stroke = null;
+    if (e.type === 'pointercancel') return;
+    points.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+    const shape = E.classifyStroke(points);
+    if (shape.kind === 'tap') onSwipeTap(points[0]); else onSwipe(shape);
+  };
+  els.table.addEventListener('pointerup', endStroke);
+  els.table.addEventListener('pointercancel', endStroke);
+  els.table.addEventListener('dblclick', (e) => e.preventDefault());
+
+  function onSwipeTap(p) {
+    const now = performance.now();
+    clearTimeout(hintTimer);
+    if (lastTap && now - lastTap.t < 350 && Math.hypot(p.x - lastTap.x, p.y - lastTap.y) < 40) {
+      lastTap = null;
+      swipeDing();
+      return;
+    }
+    lastTap = { t: now, x: p.x, y: p.y };
+    hintTimer = setTimeout(() => {
+      setStatus(state === 'shuffling' ? 'Double-tap the deck to deal.' : 'Swipe across the deck to shuffle.', true);
+    }, 380);
+  }
+
+  function swipeDing() {
+    if (state === 'shuffling' && s.swipes.length) finish('ding');
+    else if (state !== 'finishing') setStatus('Swipe across the deck to shuffle first.', true);
+  }
+
+  async function onSwipe(shape) {
+    if (state === 'starting' || state === 'finishing') return;
+    if (state === 'idle' || state === 'done') await start();
+    if (state !== 'shuffling') return;
+    clearTimeout(hintTimer);
+    playSwipeAnimation(shape.kind, shape.dir);
+    s.shakeEma = 0.5 * s.shakeEma + 0.5 * peakShake;
+    peakShake = 0;
+    s.swipes.push({
+      kind: shape.kind, dir: shape.dir, atMs: Math.round(elapsedSec() * 1000),
+      lengthPx: shape.lengthPx, durationMs: shape.durationMs, speed: shape.speed,
+    });
+    s.activity = E.swipeActivity({ speeds: s.swipes.map((w) => w.speed), shake: s.shakeEma });
+    glow(s.activity);
+    setStatus(shufflingText());
+    if (E.secureUnitFloat() < E.swipeJumpChance(s.activity)) jump();
+  }
+
+  // Cosmetic only: these animations never decide a card.
+  function playSwipeAnimation(kind, dir) {
+    deckAnims.forEach((a) => a.cancel());
+    deckAnims = [];
+    els.deck.dataset.lastSwipe = `${kind}:${dir}`;
+    const k = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches ? 0.4 : 1;
+    const P = 'perspective(500px)';
+    backs.slice(1).forEach((b, i) => { // the bottom card stays put
+      let frames;
+      let duration = 460 * k;
+      let delay = i * 55 * k;
+      if (kind === 'horizontal') {
+        // Packets pushed across and stuffed back in.
+        const sgn = dir === 'right' ? 1 : -1;
+        frames = [
+          { transform: `${P} translate(0px, 0px) rotate(0deg) rotateX(0deg)` },
+          { transform: `${P} translate(${sgn * (55 + i * 8)}px, ${-3 - i}px) rotate(${sgn * 5}deg) rotateX(0deg)`, offset: 0.45 },
+          { transform: `${P} translate(0px, 0px) rotate(0deg) rotateX(0deg)` },
+        ];
+      } else if (kind === 'circular') {
+        // The wash: cards swirl around the table.
+        const sgn = dir === 'cw' ? 1 : -1;
+        const r = 14 + i * 3;
+        frames = [0, 1, 2, 3, 4].map((j) => {
+          if (j === 0 || j === 4) return { transform: `${P} translate(0px, 0px) rotate(0deg) rotateX(0deg)` };
+          const a = ((i * 70 + sgn * j * 90) * Math.PI) / 180;
+          return { transform: `${P} translate(${(r * Math.cos(a)).toFixed(1)}px, ${(r * Math.sin(a)).toFixed(1)}px) rotate(${sgn * j * 9}deg) rotateX(0deg)` };
+        });
+        duration = 560 * k;
+      } else {
+        // Riffle: two halves lift (flip up or down) and cascade back together.
+        const v = dir === 'up' ? -1 : 1;
+        const side = i % 2 ? 1 : -1;
+        frames = [
+          { transform: `${P} translate(0px, 0px) rotate(0deg) rotateX(0deg)` },
+          { transform: `${P} translate(${side * 28}px, ${v * 16}px) rotate(${side * 8}deg) rotateX(${-v * 55}deg)`, offset: 0.4 },
+          { transform: `${P} translate(${side * 6}px, ${v * 4}px) rotate(${side * 2}deg) rotateX(${-v * 15}deg)`, offset: 0.75 },
+          { transform: `${P} translate(0px, 0px) rotate(0deg) rotateX(0deg)` },
+        ];
+        duration = 520 * k;
+        delay = (side < 0 ? i : 3 - i) * 45 * k;
+      }
+      deckAnims.push(b.animate(frames, { duration, delay, easing: 'ease-in-out' }));
+    });
+  }
+
+  // ---- Tap a card to see it large -------------------------------------------
+  const zoom = $('zoom');
+  els.spread.addEventListener('click', (e) => {
+    const h = e.target.closest('.holder');
+    const card = h && h.querySelector('.card');
+    if (!card || card.classList.contains('face-down')) return;
+    const i = Number(h.dataset.slot);
+    const key = s ? s.spreadKey : spreadKey;
+    const clone = card.cloneNode(true);
+    $('zoomCard').replaceChildren(clone);
+    $('zoomPos').textContent = `${i + 1}. ${SPREADS[key].positions[i]}`;
+    zoom.hidden = false;
+  });
+  zoom.addEventListener('click', () => { zoom.hidden = true; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') zoom.hidden = true; });
   function recordTap() {
     s.taps.push(elapsedSec());
     if (s.taps.length > 50) s.taps.shift();
@@ -445,7 +667,10 @@
     els.receipt.textContent = '';
     setStatus(idleText(), true);
   });
-  els.mode.addEventListener('change', () => { if (state === 'idle' || state === 'done') setStatus(idleText(), true); });
+  els.mode.addEventListener('change', () => {
+    els.deck.setAttribute('aria-label', DECK_LABEL[els.mode.value]);
+    if (state === 'idle' || state === 'done') setStatus(idleText(), true);
+  });
   $('again').addEventListener('click', () => {
     state = 'idle';
     renderEmptySpread();
