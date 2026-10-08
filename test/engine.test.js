@@ -225,3 +225,108 @@ test('Celtic Cross follows the laying order: 3 below, 4 left, 5 above', () => {
   assert.match(p[4], /^Crowns/);
   assert.match(p[5], /^Before/);
 });
+
+// ---- Yes / No spread ---------------------------------------------------------
+const { ACES } = require('../deck.js');
+const YESNO = SPREADS.yesno.piles;
+const yesnoReading = (rng) => E.createReading({ sessionRng: rng, reversals: true, piles: YESNO });
+
+test('Yes/No: each pile stops at an Ace or after 13 cards; at most 39 cards', () => {
+  const master = masterRng('yesno-piles');
+  for (let r = 0; r < 5000; r++) {
+    const reading = yesnoReading(E.createRng(seedFrom(master)));
+    reading.deal(E.createRng(seedFrom(master)));
+    const piles = reading.piles();
+    assert.equal(piles.length, 3);
+    assert.ok(reading.positions.length <= 39);
+    piles.forEach((cards) => {
+      assert.ok(cards.length >= 1 && cards.length <= 13);
+      const aceAt = cards.findIndex((p) => ACES.includes(p.card));
+      if (aceAt === -1) assert.equal(cards.length, 13, 'no Ace: the pile holds 13 cards');
+      else assert.equal(aceAt, cards.length - 1, 'the Ace ends the pile');
+      cards.forEach((p, i) => assert.equal(p.index, i));
+    });
+    assert.equal(new Set(reading.positions.map((p) => p.card)).size, reading.positions.length);
+  }
+});
+
+test('Yes/No: a jumper goes on top of the pile being built; a jumped Ace closes it', () => {
+  const master = masterRng('yesno-jumpers');
+  let sawAceJumper = false;
+  for (let r = 0; r < 3000; r++) {
+    const reading = yesnoReading(E.createRng(seedFrom(master)));
+    let expectPile = 0, expectIndex = 0;
+    for (let j = 0; j < 6 && !reading.isFull(); j++) {
+      const placed = reading.addJumper(j);
+      assert.equal(placed.pile, expectPile);
+      assert.equal(placed.index, expectIndex);
+      assert.equal(placed.source, 'jumper');
+      if (ACES.includes(placed.card)) { sawAceJumper = true; expectPile++; expectIndex = 0; } else expectIndex++;
+    }
+    const spread = reading.deal(E.createRng(seedFrom(master)));
+    // jumpers come first, in the order they jumped
+    reading.jumpers.forEach((p, i) => assert.equal(spread[i], p));
+  }
+  assert.ok(sawAceJumper);
+});
+
+test('Yes/No: answers for every combination of upright, reversed and missing Aces', () => {
+  const ace = (reversed) => [{ card: 0 }, { card: ACES[0], reversed }];
+  const none = () => Array.from({ length: 13 }, () => ({ card: 0 }));
+  const P = { up: ace(false), down: ace(true), blank: none() };
+  const cases = [
+    [['up', 'up', 'up'], 'Yes'],
+    [['up', 'up', 'blank'], 'Likely yes'],
+    [['up', 'down', 'up'], 'Likely yes'],
+    [['blank', 'up', 'blank'], 'Maybe yes'],
+    [['up', 'blank', 'down'], 'No clear answer'],
+    [['blank', 'blank', 'blank'], 'No clear answer'],
+    [['down', 'blank', 'blank'], 'Maybe no'],
+    [['down', 'down', 'blank'], 'Likely no'],
+    [['down', 'up', 'down'], 'Likely no'],
+    [['down', 'down', 'down'], 'No'],
+  ];
+  for (const [votes, answer] of cases) {
+    const res = E.scoreYesNo(votes.map((v) => P[v]), ACES);
+    assert.equal(res.answer, answer, votes.join(','));
+    assert.deepEqual(res.votes, votes);
+  }
+});
+
+test('Yes/No fairness: 200,000 readings match the exact odds', () => {
+  const master = masterRng('yesno-fair');
+  const N = 200000;
+  const first = new Array(78).fill(0);
+  let noAce = 0, up = 0, down = 0;
+  for (let r = 0; r < N; r++) {
+    const reading = yesnoReading(E.createRng(seedFrom(master)));
+    const jumperCount = E.randomInt(master, 4); // 0..3 jumpers, all cases covered
+    for (let j = 0; j < jumperCount && !reading.isFull(); j++) reading.addJumper(j);
+    reading.deal(E.createRng(seedFrom(master)));
+    const piles = reading.piles();
+    first[piles[0][0].card]++;
+    if (!piles[0].some((p) => ACES.includes(p.card))) noAce++;
+    piles.forEach((cards) => {
+      const last = cards[cards.length - 1];
+      if (ACES.includes(last.card)) { if (last.reversed) down++; else up++; }
+    });
+  }
+  assert.ok(chiSquare(first) < chiSquareCritical(77), 'the first card can be any card, equally');
+  // No Ace in 13 cards from 78 with 4 Aces: C(74,13) / C(78,13)
+  const exact = (65 * 64 * 63 * 62) / (78 * 77 * 76 * 75);
+  assert.ok(Math.abs(noAce / N - exact) < 0.006, `no-Ace share ${(noAce / N).toFixed(4)} vs ${exact.toFixed(4)}`);
+  assert.ok(Math.abs(up / (up + down) - 0.5) < 0.005, 'upright and reversed Aces equally likely');
+});
+
+test('Yes/No receipt: same inputs replay the same piles', async () => {
+  const secure = new Uint8Array(32).fill(9);
+  const ding = { dingAt: 1759480000000, holdMs: 15000, trace: { taps: [], motion: [0.2] } };
+  async function run() {
+    const sessionSeed = await E.makeSessionSeed(secure, 'Will it sell?');
+    const reading = yesnoReading(E.createRng(sessionSeed));
+    reading.addJumper(4000);
+    reading.deal(E.createRng(await E.makeDealSeed(sessionSeed, ding)));
+    return reading.positions.map((p) => [p.card, p.reversed, p.pile, p.index, p.source]);
+  }
+  assert.deepEqual(await run(), await run());
+});

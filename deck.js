@@ -45,7 +45,17 @@
     },
   };
 
-  const api = { CARDS, SPREADS };
+  // Yes / No: three piles. Each pile stops at an Ace or after 13 cards.
+  // An upright Ace is a yes, a reversed Ace is a no. Reversed cards are always on.
+  const ACES = CARDS.filter((c) => c.name.startsWith('Ace of ')).map((c) => c.id);
+  SPREADS.yesno = {
+    label: 'Yes / No',
+    piles: { count: 3, max: 13, stopCards: ACES },
+    pileNames: ['Pile 1', 'Pile 2', 'Pile 3'],
+    reversals: 'always',
+  };
+
+  const api = { CARDS, SPREADS, ACES };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.SpiritDeck = api;
 })(typeof window !== 'undefined' ? window : globalThis);

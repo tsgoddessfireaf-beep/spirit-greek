@@ -40,6 +40,25 @@ stays reversed. Tap a face-up card to see it large with its position. In the Cel
 Cross, card 1 is turned by tapping its top or bottom end, since card 2 lies across it.
 Reversed cards are optional (Settings).
 
+### Yes / No
+
+Three piles. Cards go onto pile 1 until an **Ace** lands or the pile holds **13
+cards**, then onto pile 2, then pile 3 (at most 39 cards). A jumper goes right on
+top of the pile being built and counts like any card. Reversed cards are always on
+for this spread. Tap a pile to turn its cards over one by one; "Turn all piles"
+turns the rest. Each pile votes: an upright Ace = yes, a reversed Ace = no, no Ace =
+blank.
+
+| Upright Aces | Reversed Aces | Answer |
+|---|---|---|
+| 3 | 0 | Yes |
+| 2 | 0 or 1 | Likely yes |
+| 1 | 0 | Maybe yes |
+| 1 | 1, or 0 / 0 | No clear answer: read the other cards as a story |
+| 0 | 1 | Maybe no |
+| 0 or 1 | 2 | Likely no |
+| 0 | 3 | No |
+
 ## Try it on your phone
 
 The page must be opened over **https** (secure hashing and the motion sensor
@@ -90,5 +109,8 @@ It checks the generator against the official RFC 8439 test vector, and runs
 200,000 simulated Celtic Cross readings to confirm every card is equally likely in
 every position, both for jumpers and for dealt cards. It also checks that no card
 repeats within a spread, that jumper rarity matches the table above, and that a
-receipt replays the same reading. The tests use fixed seeds, so results are the
+receipt replays the same reading. For Yes / No it checks that piles stop at an Ace
+or after 13 cards, that jumpers land on top of the pile being built, every answer in
+the table, and 200,000 readings against the exact odds (no Ace in a 13-card pile:
+C(74,13) / C(78,13) ≈ 47.5 %). The tests use fixed seeds, so results are the
 same on every run.
