@@ -2,6 +2,25 @@
 
 Data only. The app does not use these files yet.
 
+## `rws1909/`: the 78 card images
+
+Scans of an original 1909 "Roses & Lilies" first printing of the Rider–Waite–Smith
+deck (art by Pamela Colman Smith; scanned by Saskia Jansen), from Wikimedia Commons.
+Public domain. File names start with the card `id` from `deck.js`
+(`00-the-fool.jpg` … `77-king-of-pentacles.jpg`). `rws1909-contact-sheet.jpg`
+shows all 78 at once.
+
+`rws1909/sources.json` records, for every image, its Commons page, download
+address, size and SHA-256 fingerprint, and which version it is:
+
+- **original** (25 cards: the 22 Majors and Ace–Three of Cups): the scan exactly
+  as uploaded, about 830 × 1430 pixels.
+- **wikimedia-thumbnail-960px** (53 cards): Wikimedia's own resized copy, 960
+  pixels wide. Wikimedia blocked further full-size downloads (rate limit), so
+  these came from its copies instead. They are slightly enlarged from the
+  scan; no detail is added or lost that shows on a phone. They can be swapped
+  for originals later.
+
 ## `golden-dawn-book-t.json`
 
 The astrology the Hermetic Order of the Golden Dawn (the Rosicrucian order that
