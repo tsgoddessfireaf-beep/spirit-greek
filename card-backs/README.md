@@ -9,7 +9,7 @@ Requirements: Python 3 with Pillow, NumPy and SciPy (`pip install pillow numpy s
 | Script | What it does |
 |---|---|
 | `symmetrize.py` | Makes a finished card back exactly symmetric: keeps one half, turns a copy over for the other half, joins them along a hidden seam. |
-| `skull.py` | Softer skulls for card #3: A smoothed (thorns removed, outline rounded), B flowing (A plus ribbon-style strokes). |
+| `skull.py` | Softer skulls for card #3: A smoothed (thorns removed, outline rounded), B flowing (A plus ribbon-style strokes), C logo (redrawn smooth like the Aeonic Arts logo skull, with its third eye). |
 | `ambigram.py` | Ambigram workbench: letter-pair sheet, pen-stroke drawing, word sheet, card mock-ups. |
 | `glyphs_aeonicarts.py` | The designed left half of the "aeonicarts" ambigram. |
 | `build2.py` | Round 1–3 builds for design 1 (Vesica Piscis, rose, mirrored name). |
@@ -26,7 +26,7 @@ Each prints its largest difference from its upside-down copy (0 = exact).
 ```
 python3 -I skull.py skulls out/card3_symmetric-from-top.png out
 ```
-Writes `card3_skull-A-smoothed.png` and `card3_skull-B-flowing.png`.
+Writes `card3_skull-A-smoothed.png`, `card3_skull-B-flowing.png` and `card3_skull-C-logo.png`.
 
 ## "Aeonic Arts" ambigram
 

@@ -80,8 +80,8 @@ an iPhone.
 5. **Yes / No spread**: phone test pending; answer wording ("Likely yes", "Maybe no",
    "No clear answer") may need her words.
 6. **Card backs** (`card-backs/`, skill `.claude/skills/ambigram/`): card #3 made
-   exactly symmetric; skull options A (smoothed) and B (flowing lines) via
-   `card-backs/skull.py`; ambigram draft v1 (a↔s and e↔t weak). Her choices pending.
+   exactly symmetric; skull options A (smoothed), B (flowing lines) and C (smooth, like her logo
+   skull, with third eye) via `card-backs/skull.py`; ambigram draft v1 (a↔s and e↔t weak). Her choices pending.
 
 ## How Dolores works (read before starting)
 
