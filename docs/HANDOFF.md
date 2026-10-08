@@ -49,6 +49,7 @@ an iPhone.
 | Swipe mode: ding = **double tap**; jumpers **only during swipes**; one swipe counts as 1.5 s of shuffling. | Dolores's choices. 20 swipes ≈ the 30-second rarity table. |
 | Celtic Cross order: 1 center · 2 across 1 · **3 below · 4 left · 5 above** · 6 right · staff 7→10 on the right, bottom to top. Each spot keeps its traditional Waite name. | Matches Dolores's photo of how she lays the cards (not Waite's printed order). |
 | Cards stay face down until tapped; turn over sideways. | Dolores's request; sideways preserves reversals. |
+| **Yes / No spread** (issue #6): 3 piles, each stops at an Ace or 13 cards; upright Ace = yes, reversed = no; jumpers go on top of the pile being built and count; reversals always on. Answer combines majority (direction) and number of Aces (strength); table in README. | Dolores's method and her answers ("combine one and two"). |
 | Card names only. No meanings, no images, no Dusty White text. | Copyright. Meanings must come from Dolores's verified library or public-domain sources. |
 | Plain HTML/JS, no framework, no build step. | Small, easy to embed in aeonicarts.com later. |
 
@@ -76,8 +77,11 @@ an iPhone.
    (Rider-Waite 1910 images are public domain), integration into aeonicarts.com,
    optional reading history ("this card appeared 4 times in your last 10 readings",
    opt-in, stored on the device).
-5. Housekeeping: `main` has an empty `Readme` file Dolores created alongside `README.md`;
-   she may want it deleted.
+5. **Yes / No spread**: phone test pending; answer wording ("Likely yes", "Maybe no",
+   "No clear answer") may need her words.
+6. **Card backs** (`card-backs/`, skill `.claude/skills/ambigram/`): card #3 made
+   exactly symmetric; skull options A (smoothed), B (flowing lines) and C (smooth, like her logo
+   skull, with third eye) via `card-backs/skull.py`; ambigram draft v1 (a↔s and e↔t weak). Her choices pending.
 
 ## How Dolores works (read before starting)
 

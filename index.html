@@ -124,6 +124,22 @@
   .spread.celtic .front .top { font-size: 0.58rem; }
   .spread.celtic .front .name { font-size: 0.66rem; }
   .spread.celtic .front .foot { font-size: 0.56rem; }
+  /* Yes / No: three piles, cards overlapped top to bottom in the order they were laid */
+  .spread.yesno { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: start; }
+  .pile .label { min-height: 1.6em; }
+  .pile .stack { position: relative; }
+  .pile .holder { position: absolute; left: 0; right: 0; aspect-ratio: 7 / 12; }
+  .pile .holder.empty { position: relative; }
+  .spread.yesno .front { justify-content: flex-start; gap: 2px; padding: 4px 5px; }
+  .spread.yesno .front .top { display: none; }
+  .spread.yesno .front .name { font-size: 0.64rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .spread.yesno .holder:last-child .front .name { white-space: normal; }
+  .spread.yesno .front .foot { font-size: 0.56rem; margin-top: auto; }
+  .holder.ace .front { box-shadow: 0 0 0 3px var(--gold), 0 4px 10px rgba(0, 0, 0, 0.45); }
+  .verdict { margin-top: 18px; padding: 14px; text-align: center; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+  .verdict[hidden] { display: none; }
+  .verdict .answer { font-size: 1.6rem; color: var(--gold); margin: 0 0 6px; }
+  .verdict .why { font-size: 0.85rem; color: var(--muted); margin: 0; }
   .num {
     position: absolute; top: -7px; left: -7px; z-index: 3; width: 18px; height: 18px; border-radius: 999px;
     background: var(--gold); color: #1c1930; font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
@@ -169,7 +185,9 @@
     <button type="button" data-spread="one" aria-pressed="false">One card</button>
     <button type="button" data-spread="three" aria-pressed="true">Three cards</button>
     <button type="button" data-spread="celtic" aria-pressed="false">Celtic Cross</button>
+    <button type="button" data-spread="yesno" aria-pressed="false">Yes / No</button>
   </div>
+  <p class="hint" id="spreadHint" hidden>Three piles. Each pile stops at an Ace or after 13 cards. An upright Ace is a yes, a reversed Ace is a no. Reversed cards are always on for this spread.</p>
 
   <details>
     <summary>Settings</summary>
@@ -192,9 +210,14 @@
   </section>
 
   <section class="spread three" id="spread" aria-label="Spread"></section>
+  <section class="verdict" id="verdict" hidden aria-live="polite">
+    <p class="answer" id="answer"></p>
+    <p class="why" id="why"></p>
+  </section>
 
   <div class="after" id="after">
     <button type="button" class="btn primary" id="again">New reading</button>
+    <button type="button" class="btn" id="turnAll" hidden>Turn all piles</button>
     <button type="button" class="btn" id="copy">Copy full receipt</button>
   </div>
   <p class="receipt" id="receipt"></p>
@@ -262,10 +285,25 @@
   }
 
   // ---- Spread slots -------------------------------------------------------
+  const isPiles = (key) => !!SPREADS[key].piles;
+  const PILE_STEP = 24; // px of each card left showing above the next one in a pile
+
   function renderEmptySpread() {
-    const positions = SPREADS[spreadKey].positions;
     els.spread.className = 'spread ' + spreadKey;
     els.spread.innerHTML = '';
+    $('verdict').hidden = true;
+    $('turnAll').hidden = true;
+    if (isPiles(spreadKey)) {
+      SPREADS[spreadKey].pileNames.forEach((name, p) => {
+        const col = document.createElement('div');
+        col.className = 'slot pile';
+        col.dataset.pile = p;
+        col.innerHTML = `<div class="label">${name}</div><div class="stack"><div class="holder empty"></div></div>`;
+        els.spread.appendChild(col);
+      });
+      return;
+    }
+    const positions = SPREADS[spreadKey].positions;
     positions.forEach((name, i) => {
       const slot = document.createElement('div');
       slot.className = `slot c${i + 1}`;
@@ -277,6 +315,25 @@
   }
   function holder(i) {
     return els.spread.querySelector(`[data-slot="${i}"]`);
+  }
+
+  // Pile spreads: each card gets its own holder, overlapping the one before it.
+  function pileHolder(placed) {
+    const existing = holder(placed.position);
+    if (existing) return existing;
+    const stack = els.spread.querySelector(`.pile[data-pile="${placed.pile}"] .stack`);
+    const empty = stack.querySelector('.holder.empty');
+    if (empty) empty.remove();
+    const h = document.createElement('div');
+    h.className = 'holder';
+    h.dataset.slot = placed.position;
+    h.style.top = `${placed.index * PILE_STEP}px`;
+    h.style.zIndex = String(placed.index + 1);
+    if (SPREADS.yesno.piles.stopCards.includes(placed.card)) h.classList.add('ace');
+    stack.appendChild(h);
+    const w = stack.getBoundingClientRect().width || 100;
+    stack.style.height = `${placed.index * PILE_STEP + w * 12 / 7}px`;
+    return h;
   }
 
   function cardElement(placed, startFaceDown) {
@@ -291,13 +348,14 @@
     el.dataset.label = `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`;
     el.setAttribute('role', 'button');
     el.tabIndex = 0;
-    el.setAttribute('aria-label', startFaceDown ? `Face-down card, position ${placed.position + 1}. Tap to turn it over.` : el.dataset.label);
+    const where = placed.pile != null ? `pile ${placed.pile + 1}, card ${placed.index + 1}` : `position ${placed.position + 1}`;
+    el.setAttribute('aria-label', startFaceDown ? `Face-down card, ${where}. Tap to turn it over.` : el.dataset.label);
     return el;
   }
 
   // Cards stay face down for the reading until the reader taps them.
   function place(placed) {
-    const h = holder(placed.position);
+    const h = placed.pile != null ? pileHolder(placed) : holder(placed.position);
     if (!h) return;
     h.innerHTML = '';
     h.appendChild(cardElement(placed, true));
@@ -312,7 +370,7 @@
   // A jumper flies from the deck to its slot. Landing face up or down is animation only.
   function animateJumper(placed) {
     const from = els.deck.getBoundingClientRect();
-    const to = holder(placed.position).getBoundingClientRect();
+    const to = (placed.pile != null ? pileHolder(placed) : holder(placed.position)).getBoundingClientRect();
     const flyer = document.createElement('div');
     flyer.className = 'flyer back';
     Object.assign(flyer.style, { left: from.left + 'px', top: from.top + 'px', width: from.width + 'px', height: from.height + 'px' });
@@ -377,16 +435,18 @@
     s = {
       secure, question, sessionSeed, spreadKey,
       mode: els.mode.value,
-      reversals: els.reversals.value === 'on',
+      reversals: SPREADS[spreadKey].reversals === 'always' || els.reversals.value === 'on',
       speed: els.speed.value,
       startPerf: performance.now(),
       taps: [], motion: [], swipes: [], shakeEma: 0,
     };
     els.mode.disabled = true;
-    s.reading = E.createReading({
-      spreadSize: SPREADS[spreadKey].positions.length,
-      sessionRng: E.createRng(sessionSeed), reversals: s.reversals,
-    });
+    s.reading = isPiles(spreadKey)
+      ? E.createReading({ piles: SPREADS[spreadKey].piles, sessionRng: E.createRng(sessionSeed), reversals: s.reversals })
+      : E.createReading({
+        spreadSize: SPREADS[spreadKey].positions.length,
+        sessionRng: E.createRng(sessionSeed), reversals: s.reversals,
+      });
     state = 'shuffling';
     els.deck.style.cursor = 'grabbing';
     setStatus(shufflingText());
@@ -464,11 +524,19 @@
     const ding = { dingAt: Date.now(), holdMs, trace };
     const dealSeed = await E.makeDealSeed(s.sessionSeed, ding);
     const spread = s.reading.deal(E.createRng(dealSeed));
+    const piles = isPiles(s.spreadKey);
+    const step = piles ? 45 : 180;
     spread.forEach((p, i) => {
-      if (p.source === 'dealt') setTimeout(() => place(p), 150 + i * 180);
+      if (p.source === 'dealt') setTimeout(() => place(p), 150 + i * step);
     });
     if (navigator.vibrate) navigator.vibrate(25);
-    setStatus((reason === 'full' ? 'The cards placed themselves.' : 'Ding.') + ' Tap each card to turn it over.');
+    setStatus((reason === 'full' ? 'The cards placed themselves.' : 'Ding.') +
+      (piles ? ' Tap a pile to turn its cards over.' : ' Tap each card to turn it over.'));
+    if (piles) {
+      s.turned = new Set();
+      s.score = E.scoreYesNo(s.reading.piles(), SPREADS[s.spreadKey].piles.stopCards);
+      setTimeout(() => { $('turnAll').hidden = false; }, 150 + spread.length * step);
+    }
 
     const jumped = s.reading.jumpers.length;
     const effort = s.mode === 'swipe'
@@ -479,7 +547,9 @@
     s.fullReceipt = {
       version: 1, mode: s.mode, spread: s.spreadKey, reversals: s.reversals, question: s.question,
       secureBytes: E.toHex(s.secure), jumperCount: jumped, ding,
-      cards: spread.map((p) => ({ position: p.position + 1, card: CARDS[p.card].name, reversed: p.reversed, source: p.source })),
+      cards: spread.map((p) => Object.assign({ position: p.position + 1, card: CARDS[p.card].name, reversed: p.reversed, source: p.source },
+        p.pile != null ? { pile: p.pile + 1, cardInPile: p.index + 1 } : {})),
+      answer: s.score ? s.score.answer : undefined,
       dealSeed: E.toHex(dealSeed),
     };
     els.after.classList.add('show');
@@ -650,18 +720,54 @@
     const h = target.closest('.holder');
     const card = h && h.querySelector('.card');
     if (!card) return;
-    if (card.classList.contains('face-down')) {
-      if (state === 'done') turnOver(card);
-      else setStatus('Cards turn over after the ding.', true);
-      return;
-    }
     const i = Number(h.dataset.slot);
     const key = s ? s.spreadKey : spreadKey;
+    if (card.classList.contains('face-down')) {
+      if (state !== 'done') setStatus('Cards turn over after the ding.', true);
+      else if (isPiles(key)) turnPile(s.reading.positions[i].pile);
+      else turnOver(card);
+      return;
+    }
     const clone = card.cloneNode(true);
     $('zoomCard').replaceChildren(clone);
-    $('zoomPos').textContent = `${i + 1}. ${SPREADS[key].positions[i]}`;
+    const p = s && s.reading.positions[i];
+    $('zoomPos').textContent = isPiles(key)
+      ? `${SPREADS[key].pileNames[p.pile]} · card ${p.index + 1}`
+      : `${i + 1}. ${SPREADS[key].positions[i]}`;
     zoom.hidden = false;
   }
+  // Yes / No: turn a pile's cards over one by one, in the order they were laid.
+  function turnPile(p) {
+    if (!s || !s.turned || s.turned.has(p)) return;
+    s.turned.add(p);
+    const cards = s.reading.piles()[p];
+    cards.forEach((placed, k) => setTimeout(() => {
+      const c = holder(placed.position) && holder(placed.position).querySelector('.card');
+      if (c) turnOver(c);
+      s.shown = (s.shown || 0) + 1;
+      if (s.shown === s.reading.positions.length) setTimeout(showVerdict, 500);
+    }, k * 300));
+  }
+  function showVerdict() {
+    const sc = s.score;
+    const names = SPREADS[s.spreadKey].pileNames;
+    const piles = s.reading.piles();
+    const parts = sc.votes.map((v, p) => {
+      const last = piles[p][piles[p].length - 1];
+      if (v === 'blank') return `${names[p]}: no Ace`;
+      return `${names[p]}: ${CARDS[last.card].name}${v === 'down' ? ' reversed (no)' : ' upright (yes)'}`;
+    });
+    $('answer').textContent = sc.answer;
+    $('why').textContent = parts.join(' · ') +
+      (sc.key === 'unclear' ? '. Read the other cards in the piles as a story.' : '.');
+    $('verdict').hidden = false;
+    $('turnAll').hidden = true;
+  }
+  $('turnAll').addEventListener('click', () => {
+    if (!s || !s.turned) return;
+    SPREADS[s.spreadKey].pileNames.forEach((_, p) => turnPile(p));
+  });
+
   els.spread.addEventListener('click', (e) => onCardTap(e.target));
   els.spread.addEventListener('keydown', (e) => {
     if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
@@ -681,6 +787,7 @@
     const b = e.target.closest('button[data-spread]');
     if (!b || state === 'shuffling' || state === 'starting' || state === 'finishing') return;
     spreadKey = b.dataset.spread;
+    $('spreadHint').hidden = !isPiles(spreadKey);
     document.querySelectorAll('#spreadPicker button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     state = 'idle';
     renderEmptySpread();

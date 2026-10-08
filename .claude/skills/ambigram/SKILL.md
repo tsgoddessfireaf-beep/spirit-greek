@@ -31,6 +31,18 @@ python3 -I card-backs/symmetrize.py <card.png> <outdir> [--keep top|bottom|both]
   frame edges first): a straight frame shows a step more than curved art does.
 - Make both versions (`--keep both`) and let her choose the better-drawn half.
 
+### Softening the skull on card #3
+`python3 -I card-backs/skull.py skulls <symmetric-card.png> <outdir>` makes two options:
+**A** redraws the outline along a smoothed copy of the skull's shape and keeps only the
+central features (eyes, nose, small diamond, teeth); **B** adds tapered ribbon-style
+strokes (`FLOW` list, drawn on the left and mirrored); **C** redraws the skull smooth
+like Dolores's logo skull (one outline, outlined eyes and nose, two tooth rows, third
+eye; shapes in the `LOGO` dict, drawn upright on the bottom skull). C clears the old
+knobbly cheeks and `extend_lines()` pushes the background lines that ran behind them
+straight on to the new outline. Each option edits one skull and rebuilds the other
+half as its turned copy, so the result stays exact. Dolores's note: the AI-made card
+art gave the skull knobbly sides to fit the busy pattern; she wants it smooth like her logo.
+
 ## Job 2: design a rotational ambigram
 
 ### Method

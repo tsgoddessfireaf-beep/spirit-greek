@@ -144,7 +144,9 @@
 
   // ---- A reading -----------------------------------------------------------
   // sessionRng picks jumpers; deal(dealRng) fills whatever is left.
-  function createReading({ spreadSize, deckSize = 78, sessionRng, reversals = false }) {
+  // With `piles`, cards fill piles instead of fixed positions (see createPileReading).
+  function createReading({ spreadSize, deckSize = 78, sessionRng, reversals = false, piles = null }) {
+    if (piles) return createPileReading({ deckSize, sessionRng, reversals, piles });
     const remaining = Array.from({ length: deckSize }, (_, i) => i);
     const positions = new Array(spreadSize).fill(null);
     const jumpers = [];
@@ -188,6 +190,94 @@
         return positions;
       },
     };
+  }
+
+  // ---- Pile spreads (Yes / No) ----------------------------------------------
+  // piles: { count, max, stopCards }. Cards go onto pile 1 until a stop card (an Ace)
+  // lands or the pile holds `max` cards, then onto pile 2, and so on. Jumpers and
+  // dealt cards follow the same rule, so a jumper goes right on top of the pile being
+  // built. The random steps match createReading: a jumper takes randomInt + reversal bit
+  // + landing bit from sessionRng; the deal shuffles the rest, then takes a reversal bit
+  // per card from dealRng.
+  function createPileReading({ deckSize, sessionRng, reversals, piles }) {
+    const remaining = Array.from({ length: deckSize }, (_, i) => i);
+    const stop = new Set(piles.stopCards);
+    const positions = [];
+    const jumpers = [];
+    let pile = 0;
+    let inPile = 0;
+
+    function isFull() {
+      return pile >= piles.count;
+    }
+    function put(card, reversed, source, extra) {
+      const placed = { card, reversed, position: positions.length, pile, index: inPile, source, ...extra };
+      positions.push(placed);
+      inPile++;
+      if (stop.has(card) || inPile >= piles.max) { pile++; inPile = 0; }
+      return placed;
+    }
+
+    return {
+      positions,
+      jumpers,
+      remaining,
+      isFull,
+      addJumper(atMs) {
+        if (isFull()) return null;
+        const card = remaining.splice(randomInt(sessionRng, remaining.length), 1)[0];
+        const reversed = reversals ? randomBit(sessionRng) : false;
+        const landedFaceUp = randomBit(sessionRng);
+        const placed = put(card, reversed, 'jumper', { atMs, landedFaceUp });
+        jumpers.push(placed);
+        return placed;
+      },
+      deal(dealRng) {
+        for (let i = remaining.length - 1; i > 0; i--) {
+          const j = randomInt(dealRng, i + 1);
+          [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+        }
+        while (!isFull() && remaining.length) {
+          const card = remaining.shift();
+          put(card, reversals ? randomBit(dealRng) : false, 'dealt');
+        }
+        return positions;
+      },
+      // The cards grouped by pile, in the order they were laid.
+      piles() {
+        const out = Array.from({ length: piles.count }, () => []);
+        positions.forEach((p) => out[p.pile].push(p));
+        return out;
+      },
+    };
+  }
+
+  // Yes / No answer from the three piles. Each pile votes: an upright Ace = up,
+  // a reversed Ace = down, no Ace = blank. The majority decides the direction and
+  // the number of Aces decides how strong the answer is.
+  const YESNO_ANSWERS = {
+    yes: 'Yes', likelyYes: 'Likely yes', maybeYes: 'Maybe yes',
+    unclear: 'No clear answer',
+    maybeNo: 'Maybe no', likelyNo: 'Likely no', no: 'No',
+  };
+  function scoreYesNo(pileList, stopCards) {
+    const stop = new Set(stopCards);
+    const votes = pileList.map((cards) => {
+      const last = cards[cards.length - 1];
+      if (!last || !stop.has(last.card)) return 'blank';
+      return last.reversed ? 'down' : 'up';
+    });
+    const up = votes.filter((v) => v === 'up').length;
+    const down = votes.filter((v) => v === 'down').length;
+    let key;
+    if (up === 3) key = 'yes';
+    else if (down === 3) key = 'no';
+    else if (up === 2) key = 'likelyYes';
+    else if (down === 2) key = 'likelyNo';
+    else if (up === 1 && down === 0) key = 'maybeYes';
+    else if (down === 1 && up === 0) key = 'maybeNo';
+    else key = 'unclear';                       // one each, or no Aces at all
+    return { key, answer: YESNO_ANSWERS[key], votes, up, down };
   }
 
   // ---- Jumper chance -------------------------------------------------------
@@ -299,6 +389,8 @@
     makeDealSeed,
     toHex,
     createReading,
+    scoreYesNo,
+    YESNO_ANSWERS,
     computeActivity,
     jumperRatePerSec,
     shouldJump,
