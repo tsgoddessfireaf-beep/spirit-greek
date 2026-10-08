@@ -1,0 +1,776 @@
+{
+ "source": "Book T: A Description of the Cards of the Tarot with their Attributions (Hermetic Order of the Golden Dawn; S. L. MacGregor Mathers and Harriet Felkin, c. 1888). First printed openly in The Equinox, vol. I, 1912. Public domain.",
+ "transcription": "https://benebellwen.com/wp-content/uploads/2013/02/mathers-and-felkin-golden-dawn-book-t-the-tarot-1888.pdf",
+ "notes": [
+  "Card ids match deck.js and the image file numbers in cards/rws1909/.",
+  "Book T court names map one-to-one to Waite's: Knight = Knight (mounted 'King of the Spirits'), Queen = Queen, King = King ('Prince of the Chariot'), Knave = Page ('Princess').",
+  "Court spans run from 20° of one sign to 20° of the next, as Book T gives them. Princesses (Pages) and Aces hold no zodiac degrees.",
+  "Decan 1 = 0°–10°, decan 2 = 10°–20°, decan 3 = 20°–30° of the sign. Book T starts the decans at Saturn in the first decan of Leo (Cor Leonis); Mars rules both the last decan of Pisces and the first of Aries."
+ ],
+ "cards": [
+  {
+   "id": 0,
+   "name": "The Fool",
+   "book_t_name": "The Foolish Man",
+   "book_t_title": "The Spirit of Aether",
+   "hebrew_letter": "Aleph",
+   "hebrew": "א",
+   "attribution": "Air",
+   "attribution_kind": "element"
+  },
+  {
+   "id": 1,
+   "name": "The Magician",
+   "book_t_name": "The Magician",
+   "book_t_title": "The Magus of Power",
+   "hebrew_letter": "Beth",
+   "hebrew": "ב",
+   "attribution": "Mercury",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 2,
+   "name": "The High Priestess",
+   "book_t_name": "The High Priestess",
+   "book_t_title": "The Priestess of the Silver Star",
+   "hebrew_letter": "Gimel",
+   "hebrew": "ג",
+   "attribution": "Moon",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 3,
+   "name": "The Empress",
+   "book_t_name": "The Empress",
+   "book_t_title": "The Daughter of the Mighty Ones",
+   "hebrew_letter": "Daleth",
+   "hebrew": "ד",
+   "attribution": "Venus",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 4,
+   "name": "The Emperor",
+   "book_t_name": "The Emperor",
+   "book_t_title": "Sun of the Morning, Chief among the Mighty",
+   "hebrew_letter": "Heh",
+   "hebrew": "ה",
+   "attribution": "Aries",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 5,
+   "name": "The Hierophant",
+   "book_t_name": "The Hierophant",
+   "book_t_title": "The Magus of the Eternal",
+   "hebrew_letter": "Vav",
+   "hebrew": "ו",
+   "attribution": "Taurus",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 6,
+   "name": "The Lovers",
+   "book_t_name": "The Lovers",
+   "book_t_title": "The Children of the Voice; the Oracles of the Mighty Gods",
+   "hebrew_letter": "Zayin",
+   "hebrew": "ז",
+   "attribution": "Gemini",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 7,
+   "name": "The Chariot",
+   "book_t_name": "The Chariot",
+   "book_t_title": "The Child of the Powers of the Waters; the Lord of the Triumph of Light",
+   "hebrew_letter": "Cheth",
+   "hebrew": "ח",
+   "attribution": "Cancer",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 8,
+   "name": "Strength",
+   "book_t_name": "Fortitude",
+   "book_t_title": "The Daughter of the Flaming Sword",
+   "hebrew_letter": "Teth",
+   "hebrew": "ט",
+   "attribution": "Leo",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 9,
+   "name": "The Hermit",
+   "book_t_name": "The Hermit",
+   "book_t_title": "The Magus of the Voice of Power, the Prophet of the Eternal",
+   "hebrew_letter": "Yod",
+   "hebrew": "י",
+   "attribution": "Virgo",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 10,
+   "name": "Wheel of Fortune",
+   "book_t_name": "The Wheel of Fate",
+   "book_t_title": "The Lord of the Forces of Life",
+   "hebrew_letter": "Kaph",
+   "hebrew": "כ",
+   "attribution": "Jupiter",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 11,
+   "name": "Justice",
+   "book_t_name": "Justice",
+   "book_t_title": "The Daughter of the Lords of Truth: the Ruler of the Balance",
+   "hebrew_letter": "Lamed",
+   "hebrew": "ל",
+   "attribution": "Libra",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 12,
+   "name": "The Hanged Man",
+   "book_t_name": "The Hanged Man",
+   "book_t_title": "The Spirit of the Mighty Waters",
+   "hebrew_letter": "Mem",
+   "hebrew": "מ",
+   "attribution": "Water",
+   "attribution_kind": "element"
+  },
+  {
+   "id": 13,
+   "name": "Death",
+   "book_t_name": "Death",
+   "book_t_title": "The Child of the Great Transformers: the Lord of the Gates of Death",
+   "hebrew_letter": "Nun",
+   "hebrew": "נ",
+   "attribution": "Scorpio",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 14,
+   "name": "Temperance",
+   "book_t_name": "Temperance",
+   "book_t_title": "The Daughter of the Reconcilers: the Bringer-Forth of Life",
+   "hebrew_letter": "Samekh",
+   "hebrew": "ס",
+   "attribution": "Sagittarius",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 15,
+   "name": "The Devil",
+   "book_t_name": "The Devil",
+   "book_t_title": "The Lord of the Gates of Matter: the Child of the Forces of Time",
+   "hebrew_letter": "Ayin",
+   "hebrew": "ע",
+   "attribution": "Capricorn",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 16,
+   "name": "The Tower",
+   "book_t_name": "The Blasted Tower",
+   "book_t_title": "The Lord of the Hosts of the Mighty",
+   "hebrew_letter": "Peh",
+   "hebrew": "פ",
+   "attribution": "Mars",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 17,
+   "name": "The Star",
+   "book_t_name": "The Star",
+   "book_t_title": "The Daughter of the Firmament, the Dweller between the Waters",
+   "hebrew_letter": "Tzaddi",
+   "hebrew": "צ",
+   "attribution": "Aquarius",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 18,
+   "name": "The Moon",
+   "book_t_name": "The Moon",
+   "book_t_title": "The Ruler of Flux and Reflux: the Child of the Sons of the Mighty",
+   "hebrew_letter": "Qoph",
+   "hebrew": "ק",
+   "attribution": "Pisces",
+   "attribution_kind": "sign"
+  },
+  {
+   "id": 19,
+   "name": "The Sun",
+   "book_t_name": "The Sun",
+   "book_t_title": "The Lord of the Fire of the World",
+   "hebrew_letter": "Resh",
+   "hebrew": "ר",
+   "attribution": "Sun",
+   "attribution_kind": "planet"
+  },
+  {
+   "id": 20,
+   "name": "Judgement",
+   "book_t_name": "The Judgment",
+   "book_t_title": "The Spirit of the Primal Fire",
+   "hebrew_letter": "Shin",
+   "hebrew": "ש",
+   "attribution": "Spirit and Fire",
+   "attribution_kind": "element"
+  },
+  {
+   "id": 21,
+   "name": "The World",
+   "book_t_name": "The Universe",
+   "book_t_title": "The Great One of the Night of Time",
+   "hebrew_letter": "Tav",
+   "hebrew": "ת",
+   "attribution": "Earth and Saturn",
+   "attribution_kind": "planet and element"
+  },
+  {
+   "id": 22,
+   "name": "Ace of Wands",
+   "element": "Fire",
+   "book_t_title": "The Root of the Powers of Fire",
+   "rules": "Placed at the north pole of the universe; the Princess of the suit is its throne"
+  },
+  {
+   "id": 23,
+   "name": "Two of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Dominion",
+   "decan_sign": "Aries",
+   "decan": 1,
+   "decan_degrees": "0°–10° Aries",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 24,
+   "name": "Three of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Established Strength",
+   "decan_sign": "Aries",
+   "decan": 2,
+   "decan_degrees": "10°–20° Aries",
+   "decan_ruler": "Sun"
+  },
+  {
+   "id": 25,
+   "name": "Four of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Perfected Work",
+   "decan_sign": "Aries",
+   "decan": 3,
+   "decan_degrees": "20°–30° Aries",
+   "decan_ruler": "Venus"
+  },
+  {
+   "id": 26,
+   "name": "Five of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Strife",
+   "decan_sign": "Leo",
+   "decan": 1,
+   "decan_degrees": "0°–10° Leo",
+   "decan_ruler": "Saturn"
+  },
+  {
+   "id": 27,
+   "name": "Six of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Victory",
+   "decan_sign": "Leo",
+   "decan": 2,
+   "decan_degrees": "10°–20° Leo",
+   "decan_ruler": "Jupiter"
+  },
+  {
+   "id": 28,
+   "name": "Seven of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Valour",
+   "decan_sign": "Leo",
+   "decan": 3,
+   "decan_degrees": "20°–30° Leo",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 29,
+   "name": "Eight of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Swiftness",
+   "decan_sign": "Sagittarius",
+   "decan": 1,
+   "decan_degrees": "0°–10° Sagittarius",
+   "decan_ruler": "Mercury"
+  },
+  {
+   "id": 30,
+   "name": "Nine of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Great Strength",
+   "decan_sign": "Sagittarius",
+   "decan": 2,
+   "decan_degrees": "10°–20° Sagittarius",
+   "decan_ruler": "Moon"
+  },
+  {
+   "id": 31,
+   "name": "Ten of Wands",
+   "element": "Fire",
+   "book_t_title": "The Lord of Oppression",
+   "decan_sign": "Sagittarius",
+   "decan": 3,
+   "decan_degrees": "20°–30° Sagittarius",
+   "decan_ruler": "Saturn"
+  },
+  {
+   "id": 32,
+   "name": "Page of Wands",
+   "element": "Fire",
+   "book_t_name": "Knave of Wands",
+   "book_t_title": "The Princess of the Shining Flame: the Rose of the Palace of Fire",
+   "elemental": "Earth of Fire",
+   "rules": "One quadrant of the heavens around the north pole of the ecliptic, above Leo"
+  },
+  {
+   "id": 33,
+   "name": "Knight of Wands",
+   "element": "Fire",
+   "book_t_name": "Knight of Wands",
+   "book_t_title": "The Lord of the Flame and the Lightning: the King of the Spirits of Fire",
+   "elemental": "Fire of Fire",
+   "rules_from": "20° Scorpio",
+   "rules_to": "20° Sagittarius"
+  },
+  {
+   "id": 34,
+   "name": "Queen of Wands",
+   "element": "Fire",
+   "book_t_name": "Queen of Wands",
+   "book_t_title": "The Queen of the Thrones of Flame",
+   "elemental": "Water of Fire",
+   "rules_from": "20° Pisces",
+   "rules_to": "20° Aries"
+  },
+  {
+   "id": 35,
+   "name": "King of Wands",
+   "element": "Fire",
+   "book_t_name": "King of Wands",
+   "book_t_title": "The Prince of the Chariot of Fire",
+   "elemental": "Air of Fire",
+   "rules_from": "20° Cancer",
+   "rules_to": "20° Leo"
+  },
+  {
+   "id": 36,
+   "name": "Ace of Cups",
+   "element": "Water",
+   "book_t_title": "The Root of the Powers of Water",
+   "rules": "Placed at the north pole of the universe; the Princess of the suit is its throne"
+  },
+  {
+   "id": 37,
+   "name": "Two of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Love",
+   "decan_sign": "Cancer",
+   "decan": 1,
+   "decan_degrees": "0°–10° Cancer",
+   "decan_ruler": "Venus"
+  },
+  {
+   "id": 38,
+   "name": "Three of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Abundance",
+   "decan_sign": "Cancer",
+   "decan": 2,
+   "decan_degrees": "10°–20° Cancer",
+   "decan_ruler": "Mercury"
+  },
+  {
+   "id": 39,
+   "name": "Four of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Blended Pleasure",
+   "decan_sign": "Cancer",
+   "decan": 3,
+   "decan_degrees": "20°–30° Cancer",
+   "decan_ruler": "Moon"
+  },
+  {
+   "id": 40,
+   "name": "Five of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Loss in Pleasure",
+   "decan_sign": "Scorpio",
+   "decan": 1,
+   "decan_degrees": "0°–10° Scorpio",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 41,
+   "name": "Six of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Pleasure",
+   "decan_sign": "Scorpio",
+   "decan": 2,
+   "decan_degrees": "10°–20° Scorpio",
+   "decan_ruler": "Sun"
+  },
+  {
+   "id": 42,
+   "name": "Seven of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Illusionary Success",
+   "decan_sign": "Scorpio",
+   "decan": 3,
+   "decan_degrees": "20°–30° Scorpio",
+   "decan_ruler": "Venus"
+  },
+  {
+   "id": 43,
+   "name": "Eight of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Abandoned Success",
+   "decan_sign": "Pisces",
+   "decan": 1,
+   "decan_degrees": "0°–10° Pisces",
+   "decan_ruler": "Saturn"
+  },
+  {
+   "id": 44,
+   "name": "Nine of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Material Happiness",
+   "decan_sign": "Pisces",
+   "decan": 2,
+   "decan_degrees": "10°–20° Pisces",
+   "decan_ruler": "Jupiter"
+  },
+  {
+   "id": 45,
+   "name": "Ten of Cups",
+   "element": "Water",
+   "book_t_title": "The Lord of Perfected Success",
+   "decan_sign": "Pisces",
+   "decan": 3,
+   "decan_degrees": "20°–30° Pisces",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 46,
+   "name": "Page of Cups",
+   "element": "Water",
+   "book_t_name": "Knave of Cups",
+   "book_t_title": "The Princess of the Waters: the Lotus of the Palace of the Floods",
+   "elemental": "Earth of Water",
+   "rules": "One quadrant of the heavens around the north pole of the ecliptic, above Scorpio"
+  },
+  {
+   "id": 47,
+   "name": "Knight of Cups",
+   "element": "Water",
+   "book_t_name": "Knight of Cups",
+   "book_t_title": "The Lord of the Waves and the Waters: the King of the Hosts of the Sea",
+   "elemental": "Fire of Water",
+   "rules_from": "20° Aquarius",
+   "rules_to": "20° Pisces"
+  },
+  {
+   "id": 48,
+   "name": "Queen of Cups",
+   "element": "Water",
+   "book_t_name": "Queen of Cups",
+   "book_t_title": "The Queen of the Thrones of the Waters",
+   "elemental": "Water of Water",
+   "rules_from": "20° Gemini",
+   "rules_to": "20° Cancer"
+  },
+  {
+   "id": 49,
+   "name": "King of Cups",
+   "element": "Water",
+   "book_t_name": "King of Cups",
+   "book_t_title": "The Prince of the Chariot of the Waters",
+   "elemental": "Air of Water",
+   "rules_from": "20° Libra",
+   "rules_to": "20° Scorpio"
+  },
+  {
+   "id": 50,
+   "name": "Ace of Swords",
+   "element": "Air",
+   "book_t_title": "The Root of the Powers of Air",
+   "rules": "Placed at the north pole of the universe; the Princess of the suit is its throne"
+  },
+  {
+   "id": 51,
+   "name": "Two of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Peace Restored",
+   "decan_sign": "Libra",
+   "decan": 1,
+   "decan_degrees": "0°–10° Libra",
+   "decan_ruler": "Moon"
+  },
+  {
+   "id": 52,
+   "name": "Three of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Sorrow",
+   "decan_sign": "Libra",
+   "decan": 2,
+   "decan_degrees": "10°–20° Libra",
+   "decan_ruler": "Saturn"
+  },
+  {
+   "id": 53,
+   "name": "Four of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Rest from Strife",
+   "decan_sign": "Libra",
+   "decan": 3,
+   "decan_degrees": "20°–30° Libra",
+   "decan_ruler": "Jupiter"
+  },
+  {
+   "id": 54,
+   "name": "Five of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Defeat",
+   "decan_sign": "Aquarius",
+   "decan": 1,
+   "decan_degrees": "0°–10° Aquarius",
+   "decan_ruler": "Venus"
+  },
+  {
+   "id": 55,
+   "name": "Six of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Earned Success",
+   "decan_sign": "Aquarius",
+   "decan": 2,
+   "decan_degrees": "10°–20° Aquarius",
+   "decan_ruler": "Mercury"
+  },
+  {
+   "id": 56,
+   "name": "Seven of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Unstable Effort",
+   "decan_sign": "Aquarius",
+   "decan": 3,
+   "decan_degrees": "20°–30° Aquarius",
+   "decan_ruler": "Moon"
+  },
+  {
+   "id": 57,
+   "name": "Eight of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Shortened Force",
+   "decan_sign": "Gemini",
+   "decan": 1,
+   "decan_degrees": "0°–10° Gemini",
+   "decan_ruler": "Jupiter"
+  },
+  {
+   "id": 58,
+   "name": "Nine of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Despair and Cruelty",
+   "decan_sign": "Gemini",
+   "decan": 2,
+   "decan_degrees": "10°–20° Gemini",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 59,
+   "name": "Ten of Swords",
+   "element": "Air",
+   "book_t_title": "The Lord of Ruin",
+   "decan_sign": "Gemini",
+   "decan": 3,
+   "decan_degrees": "20°–30° Gemini",
+   "decan_ruler": "Sun"
+  },
+  {
+   "id": 60,
+   "name": "Page of Swords",
+   "element": "Air",
+   "book_t_name": "Knave of Swords",
+   "book_t_title": "The Princess of the Rushing Winds: the Lotus of the Palace of Air",
+   "elemental": "Earth of Air",
+   "rules": "One quadrant of the heavens around the north pole of the ecliptic, above Aquarius"
+  },
+  {
+   "id": 61,
+   "name": "Knight of Swords",
+   "element": "Air",
+   "book_t_name": "Knight of Swords",
+   "book_t_title": "The Lord of the Wind and the Breezes: the King of the Spirits of Air",
+   "elemental": "Fire of Air",
+   "rules_from": "20° Taurus",
+   "rules_to": "20° Gemini"
+  },
+  {
+   "id": 62,
+   "name": "Queen of Swords",
+   "element": "Air",
+   "book_t_name": "Queen of Swords",
+   "book_t_title": "The Queen of the Thrones of Air",
+   "elemental": "Water of Air",
+   "rules_from": "20° Virgo",
+   "rules_to": "20° Libra"
+  },
+  {
+   "id": 63,
+   "name": "King of Swords",
+   "element": "Air",
+   "book_t_name": "King of Swords",
+   "book_t_title": "The Prince of the Chariot of the Winds",
+   "elemental": "Air of Air",
+   "rules_from": "20° Capricorn",
+   "rules_to": "20° Aquarius"
+  },
+  {
+   "id": 64,
+   "name": "Ace of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Root of the Powers of Earth",
+   "rules": "Placed at the north pole of the universe; the Princess of the suit is its throne"
+  },
+  {
+   "id": 65,
+   "name": "Two of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Harmonious Change",
+   "decan_sign": "Capricorn",
+   "decan": 1,
+   "decan_degrees": "0°–10° Capricorn",
+   "decan_ruler": "Jupiter"
+  },
+  {
+   "id": 66,
+   "name": "Three of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Material Works",
+   "decan_sign": "Capricorn",
+   "decan": 2,
+   "decan_degrees": "10°–20° Capricorn",
+   "decan_ruler": "Mars"
+  },
+  {
+   "id": 67,
+   "name": "Four of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Earthly Power",
+   "decan_sign": "Capricorn",
+   "decan": 3,
+   "decan_degrees": "20°–30° Capricorn",
+   "decan_ruler": "Sun"
+  },
+  {
+   "id": 68,
+   "name": "Five of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Material Trouble",
+   "decan_sign": "Taurus",
+   "decan": 1,
+   "decan_degrees": "0°–10° Taurus",
+   "decan_ruler": "Mercury"
+  },
+  {
+   "id": 69,
+   "name": "Six of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Material Success",
+   "decan_sign": "Taurus",
+   "decan": 2,
+   "decan_degrees": "10°–20° Taurus",
+   "decan_ruler": "Moon"
+  },
+  {
+   "id": 70,
+   "name": "Seven of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Success Unfulfilled",
+   "decan_sign": "Taurus",
+   "decan": 3,
+   "decan_degrees": "20°–30° Taurus",
+   "decan_ruler": "Saturn"
+  },
+  {
+   "id": 71,
+   "name": "Eight of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Prudence",
+   "decan_sign": "Virgo",
+   "decan": 1,
+   "decan_degrees": "0°–10° Virgo",
+   "decan_ruler": "Sun"
+  },
+  {
+   "id": 72,
+   "name": "Nine of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Material Gain",
+   "decan_sign": "Virgo",
+   "decan": 2,
+   "decan_degrees": "10°–20° Virgo",
+   "decan_ruler": "Venus"
+  },
+  {
+   "id": 73,
+   "name": "Ten of Pentacles",
+   "element": "Earth",
+   "book_t_title": "The Lord of Wealth",
+   "decan_sign": "Virgo",
+   "decan": 3,
+   "decan_degrees": "20°–30° Virgo",
+   "decan_ruler": "Mercury"
+  },
+  {
+   "id": 74,
+   "name": "Page of Pentacles",
+   "element": "Earth",
+   "book_t_name": "Knave of Pentacles",
+   "book_t_title": "The Princess of the Echoing Hills: the Rose of the Palace of Earth",
+   "elemental": "Earth of Earth",
+   "rules": "One quadrant of the heavens around the north pole of the ecliptic, above Taurus"
+  },
+  {
+   "id": 75,
+   "name": "Knight of Pentacles",
+   "element": "Earth",
+   "book_t_name": "Knight of Pentacles",
+   "book_t_title": "The Lord of the Wide and Fertile Land: the King of the Spirits of Earth",
+   "elemental": "Fire of Earth",
+   "rules_from": "20° Leo",
+   "rules_to": "20° Virgo"
+  },
+  {
+   "id": 76,
+   "name": "Queen of Pentacles",
+   "element": "Earth",
+   "book_t_name": "Queen of Pentacles",
+   "book_t_title": "The Queen of the Thrones of Earth",
+   "elemental": "Water of Earth",
+   "rules_from": "20° Sagittarius",
+   "rules_to": "20° Capricorn"
+  },
+  {
+   "id": 77,
+   "name": "King of Pentacles",
+   "element": "Earth",
+   "book_t_name": "King of Pentacles",
+   "book_t_title": "The Prince of the Chariot of Earth",
+   "elemental": "Air of Earth",
+   "rules_from": "20° Aries",
+   "rules_to": "20° Taurus"
+  }
+ ]
+}
