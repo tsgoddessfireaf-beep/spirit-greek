@@ -28,6 +28,10 @@ you hold your question, and you let go when you feel the "ding" (Dusty White,
 - **Receipt.** Each reading shows a short fingerprint. "Copy full receipt" copies
   everything needed to replay the exact same reading.
 - **Private.** Nothing is stored or sent anywhere: no server, no cookies, no tracking.
+- **Colors.** Settings → Colors: *Match my phone* (the default; follows the phone's
+  dark or light mode), *Dark* (teal night) or *Light* (parchment). Both use the teal,
+  copper and cream of the Aeonic Arts card back. The choice lasts for the visit and is
+  not saved.
 
 Spreads: one card, three cards (Past / Present / Future), and the Celtic Cross,
 laid out like the table: 1 center, 2 across 1, 3 below, 4 left, 5 above, 6 right,
