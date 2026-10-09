@@ -34,3 +34,21 @@ test('card back: a JPEG in the card shape (7 : 12)', () => {
   assert.deepEqual({ width, height }, { width: 704, height: 1200 });
   assert.ok(Math.abs(width / height - 7 / 12) < 0.01);
 });
+
+test('card faces: every card has its picture, in the card shape', () => {
+  const { CARDS } = require('../deck.js');
+  assert.equal(CARDS.length, 78);
+  for (const c of CARDS) {
+    const file = path.join(root, 'img/cards', `${String(c.id).padStart(2, '0')}.jpg`);
+    assert.ok(fs.existsSync(file), `missing picture for ${c.name}`);
+    const { width, height } = jpegSize(fs.readFileSync(file));
+    assert.ok(Math.abs(width / height - 7 / 12) < 0.03, `${c.name} is ${width}x${height}`);
+  }
+});
+
+test('suits: the fourth suit is Coins', () => {
+  const { CARDS } = require('../deck.js');
+  assert.deepEqual([...new Set(CARDS.map((c) => c.suit).filter(Boolean))], ['Wands', 'Cups', 'Swords', 'Coins']);
+  assert.equal(CARDS[77].name, 'King of Coins');
+  assert.ok(!CARDS.some((c) => /Pentacle/.test(c.name)));
+});

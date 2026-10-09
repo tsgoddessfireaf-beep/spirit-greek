@@ -5,7 +5,8 @@
   "Card ids match deck.js and the image file numbers in cards/rws1909/.",
   "Book T court names map one-to-one to Waite's: Knight = Knight (mounted 'King of the Spirits'), Queen = Queen, King = King ('Prince of the Chariot'), Knave = Page ('Princess').",
   "Court spans run from 20° of one sign to 20° of the next, as Book T gives them. Princesses (Pages) and Aces hold no zodiac degrees.",
-  "Decan 1 = 0°–10°, decan 2 = 10°–20°, decan 3 = 20°–30° of the sign. Book T starts the decans at Saturn in the first decan of Leo (Cor Leonis); Mars rules both the last decan of Pisces and the first of Aries."
+  "Decan 1 = 0°–10°, decan 2 = 10°–20°, decan 3 = 20°–30° of the sign. Book T starts the decans at Saturn in the first decan of Leo (Cor Leonis); Mars rules both the last decan of Pisces and the first of Aries.",
+  "The app calls the fourth suit Coins (Book T and Waite: Pentacles); 'name' follows the app, 'book_t_name' keeps Book T's."
  ],
  "cards": [
   {
@@ -638,14 +639,14 @@
   },
   {
    "id": 64,
-   "name": "Ace of Pentacles",
+   "name": "Ace of Coins",
    "element": "Earth",
    "book_t_title": "The Root of the Powers of Earth",
    "rules": "Placed at the north pole of the universe; the Princess of the suit is its throne"
   },
   {
    "id": 65,
-   "name": "Two of Pentacles",
+   "name": "Two of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Harmonious Change",
    "decan_sign": "Capricorn",
@@ -655,7 +656,7 @@
   },
   {
    "id": 66,
-   "name": "Three of Pentacles",
+   "name": "Three of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Material Works",
    "decan_sign": "Capricorn",
@@ -665,7 +666,7 @@
   },
   {
    "id": 67,
-   "name": "Four of Pentacles",
+   "name": "Four of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Earthly Power",
    "decan_sign": "Capricorn",
@@ -675,7 +676,7 @@
   },
   {
    "id": 68,
-   "name": "Five of Pentacles",
+   "name": "Five of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Material Trouble",
    "decan_sign": "Taurus",
@@ -685,7 +686,7 @@
   },
   {
    "id": 69,
-   "name": "Six of Pentacles",
+   "name": "Six of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Material Success",
    "decan_sign": "Taurus",
@@ -695,7 +696,7 @@
   },
   {
    "id": 70,
-   "name": "Seven of Pentacles",
+   "name": "Seven of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Success Unfulfilled",
    "decan_sign": "Taurus",
@@ -705,7 +706,7 @@
   },
   {
    "id": 71,
-   "name": "Eight of Pentacles",
+   "name": "Eight of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Prudence",
    "decan_sign": "Virgo",
@@ -715,7 +716,7 @@
   },
   {
    "id": 72,
-   "name": "Nine of Pentacles",
+   "name": "Nine of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Material Gain",
    "decan_sign": "Virgo",
@@ -725,7 +726,7 @@
   },
   {
    "id": 73,
-   "name": "Ten of Pentacles",
+   "name": "Ten of Coins",
    "element": "Earth",
    "book_t_title": "The Lord of Wealth",
    "decan_sign": "Virgo",
@@ -735,7 +736,7 @@
   },
   {
    "id": 74,
-   "name": "Page of Pentacles",
+   "name": "Page of Coins",
    "element": "Earth",
    "book_t_name": "Knave of Pentacles",
    "book_t_title": "The Princess of the Echoing Hills: the Rose of the Palace of Earth",
@@ -744,7 +745,7 @@
   },
   {
    "id": 75,
-   "name": "Knight of Pentacles",
+   "name": "Knight of Coins",
    "element": "Earth",
    "book_t_name": "Knight of Pentacles",
    "book_t_title": "The Lord of the Wide and Fertile Land: the King of the Spirits of Earth",
@@ -754,7 +755,7 @@
   },
   {
    "id": 76,
-   "name": "Queen of Pentacles",
+   "name": "Queen of Coins",
    "element": "Earth",
    "book_t_name": "Queen of Pentacles",
    "book_t_title": "The Queen of the Thrones of Earth",
@@ -764,7 +765,7 @@
   },
   {
    "id": 77,
-   "name": "King of Pentacles",
+   "name": "King of Coins",
    "element": "Earth",
    "book_t_name": "King of Pentacles",
    "book_t_title": "The Prince of the Chariot of Earth",
