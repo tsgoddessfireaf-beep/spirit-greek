@@ -5,27 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Intuitive Shuffle</title>
 <meta name="description" content="Hold to shuffle a 78-card tarot deck. Let go on the ding.">
+<script>
+  // Colours: follow the phone's dark or light mode until the reader picks one in Settings.
+  // Set before the page draws, so it never flashes the wrong colours. Nothing is saved.
+  document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+</script>
 <style>
+  /* Colours come from the Aeonic Arts card back: deep teal, copper and cream.
+     Dark = "Teal night" (also the default); Light = "Parchment". */
   :root {
-    --bg: #12101c;
-    --panel: #1c1930;
-    --panel-2: #26223f;
-    --ink: #efe9dc;
-    --muted: #a49cb8;
-    --gold: #d9b45a;
-    --gold-soft: rgba(217, 180, 90, 0.18);
-    --line: #3a3458;
+    color-scheme: dark;
+    --bg: #0b2629;
+    --body-top: #12393e;
+    --panel: #113338;
+    --panel-2: #173f44;
+    --table-bg: var(--panel);
+    --ink: #f2e9d8;
+    --muted: #a7c0bc;
+    --gold: #d08a52;
+    --gold-soft: rgba(208, 138, 82, 0.18);
+    --glow-rgb: 208, 138, 82;
+    --on-gold: #0b2629;
+    --line: #2a5258;
+    --slot-line: var(--line);
+    --overlay: rgba(4, 20, 22, 0.9);
+    --overlay-ink: #d08a52;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
     --wands: #e08a4f;
     --cups: #6aa6e0;
     --swords: #c9cfdb;
     --pentacles: #79c08a;
-    --major: #d9b45a;
+    --major: #d08a52;
     --radius: 12px;
+  }
+  /* Parchment: the table is a shade deeper than the page, and cards get a thin teal
+     edge and a firmer shadow, so cream cards stand out on cream paper. */
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #eee4d2;
+    --body-top: #f6efe2;
+    --panel: #f7f0e3;
+    --panel-2: #e8dcc6;
+    --table-bg: #e1d1b3;
+    --ink: #173a3e;
+    --muted: #5f6b66;
+    --gold: #9a4f22;
+    --gold-soft: rgba(154, 79, 34, 0.12);
+    --glow-rgb: 154, 79, 34;
+    --on-gold: #fff7ea;
+    --line: #cdbb9c;
+    --slot-line: #a8916a;
+    --overlay: rgba(38, 30, 20, 0.82);
+    --overlay-ink: #e9b48a;
+    --card-shadow: 0 0 0 1px rgba(23, 58, 62, 0.45), 0 4px 12px rgba(60, 40, 15, 0.38);
+    --wands: #a8501f;
+    --cups: #2d6a88;
+    --swords: #55606c;
+    --pentacles: #466f44;
+    --major: #9a4f22;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body {
-    background: radial-gradient(ellipse at top, #1d1833 0%, var(--bg) 60%) fixed, var(--bg);
+    background: radial-gradient(ellipse at top, var(--body-top) 0%, var(--bg) 60%) fixed, var(--bg);
     color: var(--ink);
     font: 16px/1.45 Georgia, "Times New Roman", serif;
     min-height: 100vh;
@@ -58,7 +100,7 @@
   /* Table and deck */
   .table {
     position: relative; margin-top: 18px; padding: 22px 16px 18px; text-align: center;
-    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    background: var(--table-bg); border: 1px solid var(--line); border-radius: 18px;
     touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
   }
   .deck {
@@ -72,7 +114,7 @@
   .back {
     border-radius: var(--radius);
     background: #e6dccb url("img/card-back.jpg") center / 100% 100% no-repeat;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+    box-shadow: var(--card-shadow);
   }
   .status { margin: 16px 0 0; min-height: 1.5em; color: var(--gold); }
   .status.quiet { color: var(--muted); }
@@ -83,18 +125,18 @@
   .spread.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .slot { text-align: center; }
   .slot .label { font-size: 0.78rem; color: var(--muted); margin-bottom: 6px; min-height: 2.9em; display: flex; align-items: flex-end; justify-content: center; }
-  .slot .holder { position: relative; aspect-ratio: 7 / 12; border: 1px dashed var(--line); border-radius: var(--radius); perspective: 600px; }
+  .slot .holder { position: relative; aspect-ratio: 7 / 12; border: 1px dashed var(--slot-line); border-radius: var(--radius); perspective: 600px; }
   .card { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.6s; }
   .card.face-down { transform: rotateY(180deg); }
   .card .front, .card .back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: var(--radius); }
   .card .back { transform: rotateY(180deg); }
   .front {
-    background: linear-gradient(160deg, #f6efdf, #e6dac0); color: #2a2238; border: 2px solid var(--accent, var(--gold));
-    display: flex; flex-direction: column; justify-content: space-between; padding: 8px 6px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+    background: linear-gradient(160deg, #f6efdf, #e6dac0); color: #173a3e; border: 2px solid var(--accent, var(--gold));
+    display: flex; flex-direction: column; justify-content: space-between; padding: 8px 6px; box-shadow: var(--card-shadow);
   }
   .front .top { font-size: 0.75rem; color: var(--accent-ink, #6b5520); letter-spacing: 0.05em; }
   .front .name { font-size: 0.92rem; line-height: 1.2; }
-  .front .foot { font-size: 0.7rem; color: #6d6480; min-height: 1em; }
+  .front .foot { font-size: 0.7rem; color: #5f6b66; min-height: 1em; }
   .card.reversed .front .name, .card.reversed .front .top { transform: rotate(180deg); }
   /* Celtic Cross, laid out like the table: 1 center, 2 across 1, 3 below, 4 left,
      5 above, 6 right, staff 7-10 on the right from bottom to top. */
@@ -133,21 +175,21 @@
   .spread.yesno .front .name { font-size: 0.64rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .spread.yesno .holder:last-child .front .name { white-space: normal; }
   .spread.yesno .front .foot { font-size: 0.56rem; margin-top: auto; }
-  .holder.ace .front { box-shadow: 0 0 0 3px var(--gold), 0 4px 10px rgba(0, 0, 0, 0.45); }
+  .holder.ace .front { box-shadow: 0 0 0 3px var(--gold), var(--card-shadow); }
   .verdict { margin-top: 18px; padding: 14px; text-align: center; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
   .verdict[hidden] { display: none; }
   .verdict .answer { font-size: 1.6rem; color: var(--gold); margin: 0 0 6px; }
   .verdict .why { font-size: 0.85rem; color: var(--muted); margin: 0; }
   .num {
     position: absolute; top: -7px; left: -7px; z-index: 3; width: 18px; height: 18px; border-radius: 999px;
-    background: var(--gold); color: #1c1930; font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+    background: var(--gold); color: var(--on-gold); font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
   }
   .holder .card { cursor: zoom-in; }
   .holder .card.face-down { cursor: pointer; }
 
   /* Tap a card to see it large */
   .zoom {
-    position: fixed; inset: 0; z-index: 20; background: rgba(10, 8, 18, 0.88); padding: 16px;
+    position: fixed; inset: 0; z-index: 20; background: var(--overlay); padding: 16px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
   .zoom[hidden] { display: none; }
@@ -156,7 +198,7 @@
   .zoom .front .top { font-size: 0.9rem; }
   .zoom .front .name { font-size: 1.25rem; }
   .zoom .front .foot { font-size: 0.85rem; }
-  .zoom .zpos { color: var(--gold); margin: 14px 0 0; text-align: center; }
+  .zoom .zpos { color: var(--overlay-ink); margin: 14px 0 0; text-align: center; }
 
   .tag { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-top: 6px; }
 
@@ -189,6 +231,8 @@
 
   <details>
     <summary>Settings</summary>
+    <div class="setting"><span>Colors</span>
+      <select id="theme"><option value="auto" selected>Match my phone</option><option value="dark">Dark (teal night)</option><option value="light">Light (parchment)</option></select></div>
     <div class="setting"><span>Reversed cards</span>
       <select id="reversals"><option value="off">Off</option><option value="on">On</option></select></div>
     <div class="setting"><span>Shuffle speed</span>
@@ -243,6 +287,16 @@
     reversals: $('reversals'), speed: $('speed'), mode: $('mode'), banner: $('banner'),
   };
   const backs = Array.from(els.deck.querySelectorAll('.back'));
+
+  // ---- Colours: Match my phone / Dark / Light (nothing is saved) -------------
+  const phoneLight = matchMedia('(prefers-color-scheme: light)');
+  const themeSel = $('theme');
+  function applyTheme() {
+    const pick = themeSel.value === 'auto' ? (phoneLight.matches ? 'light' : 'dark') : themeSel.value;
+    document.documentElement.dataset.theme = pick;
+  }
+  themeSel.addEventListener('change', applyTheme);
+  phoneLight.addEventListener('change', applyTheme);
   const SUIT_COLOR = { Wands: '--wands', Cups: '--cups', Swords: '--swords', Pentacles: '--pentacles' };
 
   let spreadKey = 'three';
@@ -457,7 +511,8 @@
   }
 
   function glow(activity) {
-    els.deck.style.boxShadow = `0 0 ${8 + activity * 28}px rgba(217,180,90,${0.15 + activity * 0.45})`;
+    const rgb = getComputedStyle(document.documentElement).getPropertyValue('--glow-rgb').trim();
+    els.deck.style.boxShadow = `0 0 ${8 + activity * 28}px rgba(${rgb},${0.15 + activity * 0.45})`;
   }
 
   // A card jumps out of the deck into the next empty position.
