@@ -11,7 +11,7 @@ repository, or to fork it on GitHub, does not give anyone permission to copy,
 print, sell, modify or reuse the card-back art. To ask about permission,
 contact Aeonic Arts through aeonicarts.com.
 
-Each card back carries the notice "© 2026 DOLORES PUCKETT · AEONIC ARTS" at
+The app's card back is `img/card-back.jpg`. Each card back carries the notice "© 2026 DOLORES PUCKETT · AEONIC ARTS" at
 both ends, once upright and once upside down. That keeps the back identical
 after a half turn, so it never reveals a reversed card.
 
