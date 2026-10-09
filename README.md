@@ -95,7 +95,9 @@ In swipe mode each swipe counts as `secondsPerSwipe` (1.5 s) of shuffling, so
 | `index.html` | The page: question, spread, deck, settings |
 | `engine.js` | Seed blending, ChaCha20 generator, fair dealing, jumper chance, swipe recognition |
 | `deck.js` | The 78 card names and the spread positions |
+| `img/card-back.jpg` | The card back (Aeonic Arts art, © 2026 Dolores Puckett); reads the same upside down |
 | `test/engine.test.js` | Fairness proof |
+| `test/assets.test.js` | Checks the card-back image |
 
 ## Fairness test
 

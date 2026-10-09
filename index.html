@@ -15,8 +15,6 @@
     --gold: #d9b45a;
     --gold-soft: rgba(217, 180, 90, 0.18);
     --line: #3a3458;
-    --back-1: #2d2350;
-    --back-2: #4a3a7a;
     --wands: #e08a4f;
     --cups: #6aa6e0;
     --swords: #c9cfdb;
@@ -69,11 +67,11 @@
   }
   .deck.disabled { cursor: not-allowed; opacity: 0.5; }
   .deck .back { position: absolute; inset: 0; will-change: transform; }
+  /* Card back: Aeonic Arts art, (c) 2026 Dolores Puckett (see COPYRIGHT.md).
+     It reads the same upside down, so it never gives away a reversed card. */
   .back {
-    border-radius: var(--radius); border: 2px solid var(--gold);
-    background:
-      radial-gradient(circle at 50% 50%, transparent 28%, rgba(217, 180, 90, 0.35) 29%, transparent 31%),
-      repeating-linear-gradient(45deg, var(--back-1) 0 8px, var(--back-2) 8px 16px);
+    border-radius: var(--radius);
+    background: #e6dccb url("img/card-back.jpg") center / 100% 100% no-repeat;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
   }
   .status { margin: 16px 0 0; min-height: 1.5em; color: var(--gold); }
