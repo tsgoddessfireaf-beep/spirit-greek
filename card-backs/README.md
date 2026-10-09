@@ -4,10 +4,16 @@ Scripts that build the deck's card backs. A card back must look the same after a
 turn, so nobody can spot a reversed card from its back. The artwork itself is **not**
 in this repository (it is public); pass your image file to each script.
 
+The card-back art is © 2026 Dolores Puckett, Aeonic Arts, all rights reserved
+(see `COPYRIGHT.md`). Every finished back carries the notice
+"© 2026 DOLORES PUCKETT · AEONIC ARTS" in the top frame and, turned upside down,
+in the bottom frame: `notice.py` adds it and keeps the back exactly symmetric.
+
 Requirements: Python 3 with Pillow, NumPy and SciPy (`pip install pillow numpy scipy`).
 
 | Script | What it does |
 |---|---|
+| `notice.py` | Writes the copyright notice in the top frame and an upside-down copy in the bottom frame; the back stays exactly symmetric. |
 | `symmetrize.py` | Makes a finished card back exactly symmetric: keeps one half, turns a copy over for the other half, joins them along a hidden seam. |
 | `skull.py` | Softer skulls for card #3: A smoothed (thorns removed, outline rounded), B flowing (A plus ribbon-style strokes), C logo (redrawn smooth like the Aeonic Arts logo skull, with its third eye). |
 | `ambigram.py` | Ambigram workbench: letter-pair sheet, pen-stroke drawing, word sheet, card mock-ups. |
