@@ -114,3 +114,9 @@ or after 13 cards, that jumpers land on top of the pile being built, every answe
 the table, and 200,000 readings against the exact odds (no Ace in a 13-card pile:
 C(74,13) / C(78,13) ≈ 47.5 %). The tests use fixed seeds, so results are the
 same on every run.
+
+## Copyright
+
+The Aeonic Arts card-back art is © 2026 Dolores Puckett, all rights reserved.
+The 1909 card faces in `cards/rws1909/` are public domain. Details:
+[`COPYRIGHT.md`](COPYRIGHT.md).
