@@ -4,7 +4,8 @@
 
 © 2026 Dolores Puckett, Aeonic Arts. All rights reserved.
 
-The card-back artwork for the Aeonic Arts tarot deck, including every version
+The card-back designs for the Aeonic Arts tarot deck are developed from
+Dolores Puckett's original artwork. The card-back art, including every version
 and variant of it, is the property of Dolores Puckett. Being able to see this
 repository, or to fork it on GitHub, does not give anyone permission to copy,
 print, sell, modify or reuse the card-back art. To ask about permission,
