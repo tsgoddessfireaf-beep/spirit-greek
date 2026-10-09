@@ -13,7 +13,7 @@ Requirements: Python 3 with Pillow, NumPy and SciPy (`pip install pillow numpy s
 
 | Script | What it does |
 |---|---|
-| `notice.py` | Writes the copyright notice in the top frame and an upside-down copy in the bottom frame; the back stays exactly symmetric. |
+| `notice.py` | Writes the copyright notice in the top frame and an upside-down copy in the bottom frame; the back stays exactly symmetric. `--band`, `--color` and `--size` place it on other designs. |
 | `symmetrize.py` | Makes a finished card back exactly symmetric: keeps one half, turns a copy over for the other half, joins them along a hidden seam. |
 | `skull.py` | Softer skulls for card #3: A smoothed (thorns removed, outline rounded), B flowing (A plus ribbon-style strokes), C logo (redrawn smooth like the Aeonic Arts logo skull, with its third eye). |
 | `ambigram.py` | Ambigram workbench: letter-pair sheet, pen-stroke drawing, word sheet, card mock-ups. |
