@@ -1,0 +1,293 @@
+<title>Aeonic Tarot at MakePlayingCards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column like a printer's job ticket; spec tables and the card diagram sit beside the text on wide screens, stack on phones. */
+:root {
+  --bg: #eee4d2;        /* parchment (the app's Light theme) */
+  --panel: #f7f0e3;
+  --ink: #173a3e;       /* deep teal ink */
+  --muted: #5f6b66;
+  --accent: #9a4f22;    /* copper */
+  --line: #cdbb9c;
+  --teal: #0c454c;      /* card-back teal: frame lines in the diagram */
+  --warn-bg: #f3dfc6;
+  --ok: #466f44;
+  --font-display: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: 0.875rem; --step-0: 1.0625rem; --step-1: 1.3rem; --step-2: 1.7rem; --step-3: 2.4rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b2629; --panel: #113338; --ink: #f2e9d8; --muted: #a7c0bc; --accent: #d08a52;
+    --line: #2a5258; --teal: #6fb3b0; --warn-bg: #2b2a22; --ok: #79c08a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b2629; --panel: #113338; --ink: #f2e9d8; --muted: #a7c0bc; --accent: #d08a52;
+  --line: #2a5258; --teal: #6fb3b0; --warn-bg: #2b2a22; --ok: #79c08a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; }
+.wrap { max-width: 68rem; margin: 0 auto; padding-inline: 16px; padding-block: 2.5rem 4rem; display: grid; gap: 3rem; }
+header { display: grid; gap: .75rem; border-bottom: 1px solid var(--line); padding-bottom: 1.75rem; }
+.eyebrow { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-3); }
+h2 { font-size: var(--step-2); }
+h3 { font-size: var(--step-1); }
+p { margin: 0; max-width: 65ch; }
+.lede { font-size: var(--step-1); max-width: 60ch; }
+section { display: grid; gap: 1.1rem; }
+.cols { display: grid; gap: 2rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 52rem) { .cols { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; } }
+.cols > * { min-width: 0; }
+.stack { display: grid; gap: 1rem; }
+ul, ol { margin: 0; padding-left: 1.3rem; display: grid; gap: .45rem; max-width: 65ch; }
+dl.terms { display: grid; gap: .6rem 1.25rem; grid-template-columns: minmax(0, 1fr); margin: 0; }
+@media (min-width: 40rem) { dl.terms { grid-template-columns: 11rem minmax(0, 1fr); } }
+dl.terms dt { font-weight: 700; }
+dl.terms dd { margin: 0; color: var(--ink); }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: var(--step--1); }
+th, td { text-align: left; vertical-align: top; padding: .55rem .75rem; border-bottom: 1px solid var(--line); }
+th { font-weight: 700; color: var(--muted); white-space: nowrap; }
+tr:last-child td, tr:last-child th { border-bottom: 0; }
+td.num, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ticket { border: 1px solid var(--line); background: var(--panel); padding: 1.25rem; display: grid; gap: .75rem; }
+.callout { border-left: 3px solid var(--accent); background: var(--warn-bg); padding: 1rem 1.15rem; display: grid; gap: .5rem; }
+.callout strong { color: var(--accent); }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: .75rem; letter-spacing: .05em; text-transform: uppercase; padding: .05rem .45rem; border: 1px solid currentColor; border-radius: 3px; vertical-align: .1em; }
+.tag.found { color: var(--ok); }
+.tag.check { color: var(--accent); }
+.tag.mine { color: var(--muted); }
+figure { margin: 0; display: grid; gap: .6rem; }
+figure svg { width: 100%; max-width: 22rem; height: auto; justify-self: center; }
+figcaption { font-size: var(--step--1); color: var(--muted); }
+.rules { list-style: none; padding: 0; display: grid; gap: .9rem; }
+.rules li { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: .75rem; align-items: baseline; }
+.rules .id { font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
+.steps { counter-reset: s; list-style: none; padding: 0; display: grid; gap: 1rem; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: .75rem; }
+.steps li::before { content: counter(s); font-family: var(--font-display); font-size: var(--step-2); line-height: 1; color: var(--accent); }
+.options { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 48rem) { .options { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.options > div { border: 1px solid var(--line); padding: 1rem; display: grid; gap: .5rem; align-content: start; background: var(--panel); }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sources { font-size: var(--step--1); }
+.sources li { overflow-wrap: anywhere; }
+footer { border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: var(--step--1); color: var(--muted); display: grid; gap: .4rem; }
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Aeonic Arts &middot; print research &middot; October 2026</span>
+  <h1>Aeonic Tarot at MakePlayingCards</h1>
+  <p class="lede">MakePlayingCards (MPC) prints one tarot deck at a time with no minimum order. To print ours, the deck needs 79 image files, 78 faces and one back, each exactly 897&nbsp;&times;&nbsp;1497 pixels. Our scans need four fixes before they meet MPC's rules, listed under &ldquo;Rules for our files&rdquo;.</p>
+  <p><span class="tag found">found</span> means MPC's own pages say it. <span class="tag check">check</span> means I could not confirm it; look in MPC's design tool. <span class="tag mine">measured</span> means I measured it from our card files.</p>
+</header>
+
+<section>
+  <h2>The short version</h2>
+  <ul>
+    <li><strong>Print one deck:</strong> upload 79 images, choose card stock and a box, and order. One tarot deck is listed at <span class="mono">$26.10</span>. Production is about 1&ndash;2 weeks, plus shipping. <span class="tag found">found</span></li>
+    <li><strong>Order one proof deck first.</strong> Screens and card stock never match exactly. Teal and copper are the colors most likely to print darker.</li>
+    <li><strong>Sell it without handling stock:</strong> the MPC Marketplace prints, ships and handles customer service. You set a markup on MPC's price. <span class="tag found">found</span></li>
+    <li><strong>Our files are not print-ready yet.</strong> The 1909 scans have worn round corners, uneven shapes, and frame lines that sit a little too close to the cut. A program in this folder will fix that.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Words used here</h2>
+  <dl class="terms">
+    <dt>Print-on-demand</dt><dd>The printer makes each deck only when someone orders it, so nobody holds stock.</dd>
+    <dt>Trim (cut line)</dt><dd>Where the blade cuts. For MPC tarot this is the finished card: 2.75&nbsp;&times;&nbsp;4.75 inches.</dd>
+    <dt>Bleed</dt><dd>Extra picture around the outside of the trim. The blade cuts it off. It exists so that a slightly off-center cut shows picture, not a white sliver.</dd>
+    <dt>Safe area</dt><dd>The inner zone where text and important lines are sure to survive the cut. Anything between the safe line and the trim might be cut close or unevenly.</dd>
+    <dt>DPI</dt><dd>Dots (pixels) per inch. MPC wants at least 300, so a 2.75-inch-wide card needs 825 pixels across.</dd>
+    <dt>Proof deck</dt><dd>One copy you order for yourself to check colors, cutting and card stock before anyone else buys.</dd>
+    <dt>Markup</dt><dd>What you add on top of MPC's base price when you sell through their marketplace. It is your earnings, minus fees.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>MPC's rules for tarot cards</h2>
+  <div class="cols">
+    <div class="stack">
+      <div class="table-scroll">
+        <table>
+          <tr><th scope="row">Card size</th><td class="num">2.75 &times; 4.75 in (70 &times; 121 mm)</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Upload size</th><td class="num">897 &times; 1497 px at 300 dpi (bleed included)</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Bleed</th><td class="num">36 px each side (1/8 in)</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Safe area</th><td class="num">a further 36 px inside the trim</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Files</th><td>JPG, PNG, TIFF, BMP, GIF or PDF</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Color</th><td>RGB or CMYK both accepted</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Cards per deck</th><td class="num">10 to 160; each card can have its own front and back</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Price</th><td class="num">1 deck $26.10; cheaper per deck in bulk</td><td><span class="tag check">check</span> whether that price covers 78 cards</td></tr>
+          <tr><th scope="row">Wrong-size upload</th><td>MPC &ldquo;best fits&rdquo; it: enlarges or shrinks to cover the card, which can crop the edges</td><td><span class="tag found">found</span></td></tr>
+          <tr><th scope="row">Production</th><td>about 1&ndash;2 weeks; shipping options and cost appear at checkout</td><td><span class="tag found">found</span></td></tr>
+        </table>
+      </div>
+      <h3>Card stock and packaging</h3>
+      <ul>
+        <li><strong>Smooth:</strong> S30 (standard, blue core), S33 (black core, smoother and more opaque).</li>
+        <li><strong>Linen texture:</strong> M28 and M29 (blue core), M31 (casino quality, black core). M30 and M32 need 1,000 decks.</li>
+        <li><strong>Other:</strong> S20 (thin), A35 (thick), P10 (plastic), E27 (eco).</li>
+        <li><strong>Finish:</strong> MPC finish or gloss. Extras include gilt edges and gold, silver or holographic foil.</li>
+        <li><strong>Packaging:</strong> shrink-wrap (default), tuck box, rigid box, magnetic book box, tin, or a black or purple velvet bag.</li>
+      </ul>
+      <p>A <strong>core</strong> is a layer inside the card stock that stops light shining through, so nobody can read a card from its back. A black core blocks more light than a blue one.</p>
+    </div>
+    <figure>
+      <svg viewBox="-10 -10 917 1517" role="img" aria-labelledby="dg-t dg-d">
+        <title id="dg-t">One MPC tarot card file, drawn to scale</title>
+        <desc id="dg-d">The 897 by 1497 pixel file. The cut line is 36 pixels in from every edge. The safe line is 36 pixels further in. Our frame line sits about 30 pixels inside the cut, which is outside the safe line.</desc>
+        <rect x="0" y="0" width="897" height="1497" fill="var(--warn-bg)" stroke="var(--muted)" stroke-width="3"/>
+        <rect x="36" y="36" width="825" height="1425" rx="30" fill="var(--panel)" stroke="var(--ink)" stroke-width="4"/>
+        <rect x="72" y="72" width="753" height="1353" fill="none" stroke="var(--accent)" stroke-width="4" stroke-dasharray="18 12"/>
+        <rect x="64" y="70" width="769" height="1342" fill="none" stroke="var(--teal)" stroke-width="9"/>
+        <text x="448" y="26" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" fill="var(--muted)">bleed: 36 px, cut away</text>
+        <text x="448" y="560" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="38" fill="var(--ink)">cut line</text>
+        <text x="448" y="606" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="30" fill="var(--muted)">825 &#215; 1425 px</text>
+        <text x="448" y="720" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="34" fill="var(--accent)">- - safe line</text>
+        <text x="448" y="766" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="30" fill="var(--accent)">72 px from file edge</text>
+        <text x="448" y="880" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="34" fill="var(--teal)">&#9632; our frame line</text>
+        <text x="448" y="926" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="30" fill="var(--teal)">about 30 px inside the cut</text>
+        <rect x="64" y="1300" width="769" height="112" fill="none" stroke="var(--teal)" stroke-width="6"/>
+        <text x="448" y="1372" text-anchor="middle" font-family="IM Fell English, Georgia, serif" font-size="58" fill="var(--accent)">KING of COINS.</text>
+        <text x="448" y="1489" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" fill="var(--muted)">897 &#215; 1497 px file</text>
+      </svg>
+      <figcaption>One card file, to scale. MPC's design tool shows the safe line as a red dotted line; neither line is printed. The rounded corners are drawn as a reminder that the cut card has rounded corners. I could not find MPC's exact corner radius <span class="tag check">check</span>.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <h2>What our card files look like now</h2>
+  <p>Measured from the 78 cards in <span class="mono">cards/aeonic/</span>, scaled to MPC's 825-pixel card width. <span class="tag mine">measured</span></p>
+  <div class="table-scroll">
+    <table>
+      <tr><th scope="col">What</th><th scope="col">Our files</th><th scope="col">MPC wants</th><th scope="col">Effect</th></tr>
+      <tr><td>Card width in the scan</td><td class="num">811&ndash;960 px</td><td class="num">825 px at the cut</td><td>Detail is close to 300 dpi; sharp enough.</td></tr>
+      <tr><td>Card shape (width &divide; height)</td><td class="num">0.564&ndash;0.596</td><td class="num">0.579</td><td>Up to about 3% off. Stretching would distort the art slightly; padding with paper does not.</td></tr>
+      <tr><td>Corners</td><td>Worn and rounded, with white scanner background outside them</td><td>Square file; MPC rounds the corners itself</td><td>White specks could print in the corners or the bleed.</td></tr>
+      <tr><td>Frame line to cut (median)</td><td class="num">left 26, right 33, top 34, bottom 61 px</td><td class="num">36 px or more</td><td>Side and top frame lines sit just outside the safe area. A slightly off cut makes the paper border uneven. The title strip at the bottom is safe.</td></tr>
+      <tr><td>Card back in the repository</td><td class="num">704 &times; 1200 px</td><td class="num">897 &times; 1497 px</td><td>Too small. A full-size back (1526 &times; 2730) is needed for printing.</td></tr>
+    </table>
+  </div>
+  <div class="callout">
+    <p><strong>A note on uneven borders.</strong> The 1909 printing itself has uneven paper borders, which shows in the scans. Every bordered deck from every printer has some cutting drift. The question is only whether our frame lines should sit fully inside MPC's safe line. That choice is listed under decisions below.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Rules for our files</h2>
+  <p>These are what the conversion program must do. Each rule traces back to an MPC rule or to a measurement above.</p>
+  <ol class="rules">
+    <li><span class="id">R1</span><span>Write each card as a <span class="mono">897 &times; 1497</span> pixel image marked 300 dpi, in RGB, as high-quality JPEG or PNG.</span></li>
+    <li><span class="id">R2</span><span>Find each scan's card edge, remove the scanner background, and fill the worn round corners with the card's own cream paper.</span></li>
+    <li><span class="id">R3</span><span>Fit every card to the 825 &times; 1425 cut size without stretching it out of shape. Make up the difference with paper, not distortion.</span></li>
+    <li><span class="id">R4</span><span>Extend the cream paper 36 pixels past the cut on every side (the bleed), so a drifting blade never shows white.</span></li>
+    <li><span class="id">R5</span><span>Decide how the frame lines relate to the safe line (see decisions), and apply the same rule to all 78 cards.</span></li>
+    <li><span class="id">R6</span><span>Make the back from the full-size art. It must look identical after a half turn, so it never reveals a reversed card, and the copyright notice must sit inside the safe area.</span></li>
+    <li><span class="id">R7</span><span>Name the files in deck order, <span class="mono">00</span> to <span class="mono">77</span> and <span class="mono">back</span>, so the upload order matches the deck.</span></li>
+    <li><span class="id">R8</span><span>Produce a check sheet: every card with its cut line and safe line drawn on, to inspect before uploading.</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Decisions for Dolores</h2>
+  <div class="options">
+    <div>
+      <h3>Frame lines and the safe line</h3>
+      <p><strong>Option A:</strong> shrink each picture about 5% inside a wider paper border, so every frame line sits inside the safe line. The cards look slightly more framed than the 1909 originals.</p>
+      <p><strong>Option B:</strong> keep the 1909 proportions. The cards match the originals, and borders may come out a little uneven.</p>
+      <p>Either can be changed later by re-running the program.</p>
+    </div>
+    <div>
+      <h3>Where the full-size back lives</h3>
+      <p>This repository is public. A full-size back stored here can be downloaded and printed by anyone, copyright notice or not.</p>
+      <p><strong>Option A:</strong> keep the full-size back and the finished print files out of the repository. The program reads the back from a file you supply, as the card-back scripts already do.</p>
+      <p><strong>Option B:</strong> store them in the repository for convenience.</p>
+    </div>
+    <div>
+      <h3>How to sell</h3>
+      <p><strong>MPC Marketplace:</strong> MPC prints, ships and handles customers.</p>
+      <p><strong>QPMN:</strong> MPC's sister company. It prints and ships orders from your own Shopify, Etsy, Squarespace or WooCommerce shop.</p>
+      <p><strong>Bulk order:</strong> buy many decks at the lower bulk price and sell them yourself.</p>
+      <p>Details are below.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Ordering a proof deck</h2>
+  <ol class="steps">
+    <li><span>Run the conversion program. It writes 79 files and a check sheet. Look through the check sheet.</span></li>
+    <li><span>Open MPC's <a href="https://www.makeplayingcards.com/design/design-your-own-tarot-cards.html" target="_blank" rel="noopener">tarot cards page</a> and start the design. Choose the card stock, set the number of cards to 78, and set the quantity to 1. <span class="tag check">check</span> the exact button names.</span></li>
+    <li><span>Upload the 78 faces in order, and use the one back for every card. <span class="tag check">check</span> whether the tool takes many files at once.</span></li>
+    <li><span>In the preview, check that nothing important crosses the red dotted safe line. If MPC says an image is below print requirements, stop; the file is the wrong size.</span></li>
+    <li><span>Choose the packaging, add the deck to the cart, and check the shipping options and cost at checkout. <span class="tag check">check</span> import duties for US delivery, which the checkout page should show.</span></li>
+    <li><span>When the proof arrives, check four things: how the colors compare with the screen, whether the borders are even, how the card stock feels while shuffling, and whether the backs give away reversals. Fix anything you find, then reorder.</span></li>
+  </ol>
+</section>
+
+<section>
+  <h2>Selling options</h2>
+  <div class="table-scroll">
+    <table>
+      <tr><th scope="col"></th><th scope="col">MPC Marketplace</th><th scope="col">QPMN</th><th scope="col">Bulk order</th></tr>
+      <tr><th scope="row">Who prints and ships</th><td>MPC</td><td>QPMN, under your brand</td><td>You ship</td></tr>
+      <tr><th scope="row">Where buyers shop</th><td>MPC's marketplace</td><td>Your Shopify, Etsy, Squarespace or WooCommerce shop</td><td>Anywhere</td></tr>
+      <tr><th scope="row">Your earnings</th><td>Your markup, up to 2.5&times; MPC's base price, minus a 5% handling fee <span class="tag found">found</span></td><td>Not published <span class="tag check">check</span></td><td>Sale price minus deck and shipping costs</td></tr>
+      <tr><th scope="row">Payment</th><td>Store credit, or PayPal (+8% fee), in US dollars; paid about the 20th once you reach 100; earnings wait 15&ndash;40 days first <span class="tag found">found</span></td><td><span class="tag check">check</span></td><td>Your own</td></tr>
+      <tr><th scope="row">Approval</th><td>MPC approves each design and can refuse any <span class="tag found">found</span></td><td><span class="tag check">check</span></td><td>None</td></tr>
+      <tr><th scope="row">Customer service</th><td>MPC</td><td>QPMN prints and ships; <span class="tag check">check</span> returns</td><td>You</td></tr>
+    </table>
+  </div>
+  <p>The Marketplace pages disagree on whether the 5% fee is taken from your markup only or from the whole price. Some of those pages are years old, so confirm current terms when you open a shop.</p>
+</section>
+
+<section>
+  <h2>Rights and naming</h2>
+  <ul>
+    <li><strong>Pamela Colman Smith's 1909 art</strong> is public domain, and so are our recolored versions of it. MPC requires sellers not to infringe copyright, and the seller carries that responsibility.</li>
+    <li><strong>The card back</strong> is &copy; 2026 Dolores Puckett, Aeonic Arts. Selling it through MPC does not give MPC or buyers rights to it; MPC acts only as a service provider. <span class="tag found">found</span></li>
+    <li><strong>The name &ldquo;Rider-Waite&rdquo;</strong> is, I believe, a trademark of U.S. Games Systems. Avoid it in the product name until that is checked. <span class="tag check">check</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Still unconfirmed</h2>
+  <ul>
+    <li>Whether the $26.10 price covers 78 cards, or changes with the card count.</li>
+    <li>Shipping cost, delivery time and import duties to the US. Checkout shows them.</li>
+    <li>The exact button names in MPC's design tool, and whether it uploads many images at once.</li>
+    <li>The corner radius MPC cuts. The program does not depend on it, because the rounded corners fall in plain paper.</li>
+    <li>QPMN's fees and returns policy.</li>
+  </ul>
+</section>
+
+<section class="sources">
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://www.makeplayingcards.com/design/design-your-own-tarot-cards.html" target="_blank" rel="noopener">MPC: Design your own personalized tarot cards</a> (size, bleed, safe margin, dpi, files, color, stocks, packaging, price)</li>
+    <li><a href="https://www.makeplayingcards.com/faq-photo.aspx" target="_blank" rel="noopener">MPC: FAQ on digital photos, pixels and image file types</a> (897 &times; 1497 px, safe area, best fit, design-tool lines)</li>
+    <li><a href="https://www.makeplayingcards.com/faq-shipping.aspx" target="_blank" rel="noopener">MPC: Shipping FAQ</a> (1&ndash;2 weeks production)</li>
+    <li><a href="https://www.makeplayingcards.com/marketplace/faq-marketplace.aspx" target="_blank" rel="noopener">MPC: Marketplace FAQ</a> (markup, fees, payouts, approval, fulfillment)</li>
+    <li><a href="https://www.makeplayingcards.com/pops/pc-temp-guide.html" target="_blank" rel="noopener">MPC: Template guide</a> (tarot templates in PSD, AI and PDF)</li>
+    <li><a href="https://www.qpmarketnetwork.com/making-custom-tarot-cards-with-print-on-demand/" target="_blank" rel="noopener">QPMN: Custom tarot cards with print-on-demand</a> (shop connections, 3 mm bleed, 300 dpi)</li>
+    <li><a href="https://www.wopc.co.uk/explore/manufacturer/mpc-makeplayingcardscom/" target="_blank" rel="noopener">World of Playing Cards: MPC</a> (MPC is run by QP Group, Hong Kong)</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Researched and written by Claude for Aeonic Arts, 10 October 2026. Stored in the repository at <span class="mono">print/mpc-guide.html</span>.</p>
+  <p>Measurements come from <span class="mono">cards/aeonic/</span> as of commit <span class="mono">b9e4e37</span>. MPC's terms change, so check the live pages before ordering.</p>
+</footer>
+
+</div>
