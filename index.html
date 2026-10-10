@@ -34,7 +34,7 @@
     --wands: #e08a4f;
     --cups: #6aa6e0;
     --swords: #c9cfdb;
-    --pentacles: #79c08a;
+    --coins: #79c08a;
     --major: #d08a52;
     --radius: 12px;
   }
@@ -61,7 +61,7 @@
     --wands: #a8501f;
     --cups: #2d6a88;
     --swords: #55606c;
-    --pentacles: #466f44;
+    --coins: #466f44;
     --major: #9a4f22;
   }
   * { box-sizing: border-box; }
@@ -138,6 +138,14 @@
   .front .name { font-size: 0.92rem; line-height: 1.2; }
   .front .foot { font-size: 0.7rem; color: #5f6b66; min-height: 1em; }
   .card.reversed .front .name, .card.reversed .front .top { transform: rotate(180deg); }
+  /* Card pictures: the Aeonic Arts edition of the 1909 deck (img/cards/NN.jpg). A reversed
+     card's picture is upside down, as on the table. The text stays for the Yes / No piles. */
+  .front.has-art { background: #e6dccb; border: 0; padding: 0; }
+  .front .art { position: absolute; inset: 0; border-radius: inherit; background: center / 100% 100% no-repeat; }
+  .card.reversed .front .art { transform: rotate(180deg); }
+  .front.has-art .top, .front.has-art .name { display: none; }
+  .front.has-art .foot { position: absolute; left: 4px; right: 4px; bottom: 4px; text-align: center; }
+  .front.has-art .foot:not(:empty) { background: rgba(234, 223, 205, 0.9); color: #0e343a; border-radius: 6px; padding: 1px 4px; }
   /* Celtic Cross, laid out like the table: 1 center, 2 across 1, 3 below, 4 left,
      5 above, 6 right, staff 7-10 on the right from bottom to top. */
   .spread.celtic {
@@ -175,6 +183,8 @@
   .spread.yesno .front .name { font-size: 0.64rem; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .spread.yesno .holder:last-child .front .name { white-space: normal; }
   .spread.yesno .front .foot { font-size: 0.56rem; margin-top: auto; }
+  .spread.yesno .front.has-art .name { display: block; position: absolute; top: 0; left: 0; right: 0; padding: 2px 4px;
+    background: rgba(234, 223, 205, 0.92); color: #0e343a; border-radius: var(--radius) var(--radius) 0 0; }
   .holder.ace .front { box-shadow: 0 0 0 3px var(--gold), var(--card-shadow); }
   .verdict { margin-top: 18px; padding: 14px; text-align: center; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
   .verdict[hidden] { display: none; }
@@ -297,7 +307,7 @@
   }
   themeSel.addEventListener('change', applyTheme);
   phoneLight.addEventListener('change', applyTheme);
-  const SUIT_COLOR = { Wands: '--wands', Cups: '--cups', Swords: '--swords', Pentacles: '--pentacles' };
+  const SUIT_COLOR = { Wands: '--wands', Cups: '--cups', Swords: '--swords', Coins: '--coins' };
 
   let spreadKey = 'three';
   let state = 'idle'; // idle | starting | shuffling | finishing | done
@@ -396,7 +406,8 @@
     el.style.setProperty('--accent', accent);
     const top = c.arcana === 'major' ? c.numeral : c.suit;
     const foot = [placed.reversed ? 'Reversed' : '', placed.source === 'jumper' ? 'Jumped' : ''].filter(Boolean).join(' · ');
-    el.innerHTML = `<div class="front"><div class="top">${top}</div><div class="name">${c.name}</div><div class="foot">${foot}</div></div><div class="back"></div>`;
+    const art = `img/cards/${String(c.id).padStart(2, '0')}.jpg`;
+    el.innerHTML = `<div class="front has-art"><div class="art" style="background-image:url('${art}')"></div><div class="top">${top}</div><div class="name">${c.name}</div><div class="foot">${foot}</div></div><div class="back"></div>`;
     el.dataset.label = `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`;
     el.setAttribute('role', 'button');
     el.tabIndex = 0;
@@ -784,9 +795,10 @@
     const clone = card.cloneNode(true);
     $('zoomCard').replaceChildren(clone);
     const p = s && s.reading.positions[i];
-    $('zoomPos').textContent = isPiles(key)
+    const where = isPiles(key)
       ? `${SPREADS[key].pileNames[p.pile]} · card ${p.index + 1}`
       : `${i + 1}. ${SPREADS[key].positions[i]}`;
+    $('zoomPos').textContent = `${card.dataset.label} — ${where}`;
     zoom.hidden = false;
   }
   // Yes / No: turn a pile's cards over one by one, in the order they were laid.

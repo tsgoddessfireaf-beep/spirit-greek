@@ -22,6 +22,10 @@ The 78 card images in `cards/rws1909/` are Pamela Colman Smith's art from the
 public domain. Aeonic Arts claims no copyright in them. Sources:
 `cards/rws1909/sources.json`.
 
+The card faces the app shows (`img/cards/`, from `cards/aeonic/`) are the same
+public-domain art, recolored by Aeonic Arts, with silver coins carrying a new emblem
+and the suit renamed Coins. Aeonic Arts makes no claim over Smith's art.
+
 ## Golden Dawn attributions: public domain source
 
 `cards/golden-dawn-book-t.json` is taken from Book T (Hermetic Order of the

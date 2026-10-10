@@ -1,5 +1,6 @@
 // The 78 cards of a standard tarot deck: names and suits only.
-// No meanings, no images. Names follow the public-domain Waite (1910) deck.
+// No meanings. Names follow the public-domain Waite (1910) deck, except that the fourth
+// suit is called Coins (Waite: Pentacles). Pictures: img/cards/NN.jpg, NN = card id.
 (function (root) {
   'use strict';
 
@@ -13,7 +14,7 @@
     '0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
     'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI',
   ];
-  const SUITS = ['Wands', 'Cups', 'Swords', 'Pentacles'];
+  const SUITS = ['Wands', 'Cups', 'Swords', 'Coins'];
   const RANKS = [
     'Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
     'Eight', 'Nine', 'Ten', 'Page', 'Knight', 'Queen', 'King',

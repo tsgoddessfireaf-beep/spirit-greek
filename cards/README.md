@@ -1,6 +1,35 @@
 # Cards: images and Golden Dawn attributions
 
-Data only. The app does not use these files yet.
+The app shows the Aeonic Arts edition (`img/cards/`, made from `aeonic/`). The other
+files here are source material and data.
+
+## `aeonic/`: the Aeonic Arts edition (78 cards)
+
+The 1909 cards below, recolored for Aeonic Arts:
+
+- Palette: deep teal ink, cream paper, amber-gold and teal from the card back.
+- Cups and coins silver; swords gold (Justice and the Wheel of Fortune too).
+- Every pentagram coin replaced by a silver coin with thin teal circles and a copper
+  hexagon and Y. The Three of Coins' carved pentagrams are carved hexagons with a Y.
+  The Devil's pentagram is left as Smith drew it.
+- The fourth suit is **Coins**: "PENTACLES" re-lettered as "COINS" on the Ace, Page,
+  Knight, Queen and King, from Smith's own letters.
+- Deep copper lettering (RGB 150, 80, 40: dark enough to read on cream); teal
+  outline around each picture.
+
+`aeonic-contact-sheet.jpg` shows all 78. `img/cards/NN.jpg` are 440-pixel-wide copies
+for the app (NN = card id).
+
+`aeonic-tools/` rebuilds the edition: `aeonic.py` is the program and `marks.json` holds
+the hand-placed marks for every cup, coin and sword:
+
+```
+python3 -I cards/aeonic-tools/aeonic.py cards/aeonic-tools/marks.json cards/rws1909 <out-dir> <card names…>
+```
+
+Known imperfections: one sword tip in the Eight of Swords stays blue (it sits in water
+of the same colour); a few thin white highlight lines on the Seven of Swords stay white;
+the re-lettered "COINS" letters come from several cards, so ink weight differs slightly.
 
 ## `rws1909/`: the 78 card images
 
