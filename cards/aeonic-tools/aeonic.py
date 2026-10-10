@@ -8,8 +8,9 @@ from PIL import Image, ImageDraw
 
 INK, PAPER = np.array([54, 45, 40.]), np.array([218, 197, 163.])
 TEAL_INK, CREAM = np.array([14, 52, 58.]), np.array([234, 223, 205.])
-TEAL = (12, 69, 76)                 # lettering, coin circles (card-back teal)
-COPPER = (176, 101, 56)             # outline, coin hexagon and Y
+TEAL = (12, 69, 76)                 # outline, coin circles (card-back teal)
+COPPER = (176, 101, 56)             # coin hexagon and Y (card-back copper)
+LETTER = (150, 80, 40)              # lettering: deeper copper, readable on cream (contrast 4.6)
 SILVER = (np.array([104, 112, 118.]), np.array([236, 238, 240.]))
 GOLD = (np.array([140, 94, 30.]), np.array([238, 198, 98.]))
 KNOTS = np.array([[0, 0], [35, 35], [45, 39], [62, 41], [80, 120], [110, 165], [150, 178], [200, 188], [260, 198], [300, 300], [360, 360]])
@@ -197,7 +198,7 @@ def frame_and_letters(out, a0, has_title=True):
         ys0 = max(fb[0], fb[1] - t + 1)
         band[ys0:fb[1] + 1, x0:x1] |= dk[ys0:fb[1] + 1, x0:x1]
         banner = (fb[2], fb[3])
-    out[band] = COPPER
+    out[band] = TEAL
     letters = np.zeros((H, W), bool)
     if banner:
         letters[banner[0]:banner[1], int(W * .04):int(W * .96)] = True
@@ -206,9 +207,9 @@ def frame_and_letters(out, a0, has_title=True):
     near = band.copy()                               # pixels touching the frame line belong to the frame
     for d_ in range(1, 4):
         near |= np.roll(band, d_, 1) | np.roll(band, -d_, 1) | np.roll(band, d_, 0) | np.roll(band, -d_, 0)
-    out[letters & dk & near & ~band] = COPPER
+    out[letters & dk & near & ~band] = TEAL
     lm = letters & ink & ~near
-    out[lm] = TEAL
+    out[lm] = LETTER
     return banner, t
 
 def inpaint(out, mask, iters=60):
@@ -276,7 +277,13 @@ def retitle(out, a0, spec, src_dir, interior):
     H, W = out.shape[:2]
     _t, _b, lef, rig, _th = frame_lines(a0)
     ex0 = (lef[1] + 4) if lef else bx0; ex1 = (rig[0] - 4) if rig else bx1
+    f = (lum(a0[ty0 + 1:ty1 - 2]) < 175).mean(0)      # the frame line where it crosses the title (it can drift):
+    for x in range(int(W * .14), -1, -1):               # the first solid column met going outward from the title
+        if f[x] >= .95: ex0 = x + 1; break
+    for x in range(int(W * .86), W):
+        if f[x] >= .95: ex1 = x; break
     region = np.zeros((H, W), bool); region[ty0 + 1:ty1 - 2, ex0:ex1] = True
+    region &= ~(out == TEAL).all(-1)                    # never erase the frame already drawn
     erase = region & (lum(a0) < 175); grown = erase.copy()
     for dy in (-2, -1, 0, 1, 2):
         for dx in (-2, -1, 0, 1, 2): grown |= np.roll(np.roll(erase, dy, 0), dx, 1)
@@ -288,7 +295,7 @@ def retitle(out, a0, spec, src_dir, interior):
     base = spec['baseline']; x = int((bx0 + bx1) / 2 - total / 2)
     def put(al, x, ytop):
         h, w = al.shape; sl = out[ytop:ytop + h, x:x + w]
-        sl[:] = sl * (1 - al[..., None]) + np.array(TEAL) * al[..., None]
+        sl[:] = sl * (1 - al[..., None]) + np.array(LETTER) * al[..., None]
     put(prefix, x, ty0 + spec['prefix_dy']); x += prefix.shape[1] + word
     for g in scaled: put(g, x, base - g.shape[0]); x += g.shape[1] + gap
     x += 3 - gap; put(dot, x, base - dot.shape[0])

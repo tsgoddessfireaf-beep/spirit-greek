@@ -14,7 +14,8 @@ The 1909 cards below, recolored for Aeonic Arts:
   The Devil's pentagram is left as Smith drew it.
 - The fourth suit is **Coins**: "PENTACLES" re-lettered as "COINS" on the Ace, Page,
   Knight, Queen and King, from Smith's own letters.
-- Teal lettering; copper outline around each picture.
+- Deep copper lettering (RGB 150, 80, 40: dark enough to read on cream); teal
+  outline around each picture.
 
 `aeonic-contact-sheet.jpg` shows all 78. `img/cards/NN.jpg` are 440-pixel-wide copies
 for the app (NN = card id).
