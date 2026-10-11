@@ -197,6 +197,11 @@ footer { border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: var
     <li><span class="id">R7</span><span>Name the files in deck order, <span class="mono">00</span> to <span class="mono">77</span> and <span class="mono">back</span>, so the upload order matches the deck.</span></li>
     <li><span class="id">R8</span><span>Produce a check sheet: every card with its cut line and safe line drawn on, to inspect before uploading.</span></li>
   </ol>
+  <div class="ticket">
+    <h3>The program</h3>
+    <p><span class="mono">print/mpc_print.py</span> follows R1&ndash;R8. Run it with <span class="mono">--fit safe</span> (art shrunk 5%) or <span class="mono">--fit original</span> (1909 size), and with <span class="mono">--back</span> naming the full-size back. It writes the 78 faces, the back and a check sheet to a folder outside this public repository. <span class="mono">print/README.md</span> explains how to run it.</p>
+    <p><span class="tag mine">measured</span> With <span class="mono">--fit safe</span>, 12 cards still have a frame line 0&ndash;5 px past the safe line (under 0.5 mm); <span class="mono">--scale 0.91</span> moves every one inside. With <span class="mono">--fit original</span>, 67 cards cross it, by up to 25 px (about 2 mm). The back comes out exactly symmetric in both versions, and its copyright notice sits inside the safe line.</p>
+  </div>
 </section>
 
 <section>
