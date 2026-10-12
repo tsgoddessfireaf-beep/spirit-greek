@@ -1,0 +1,35 @@
+# Sends the reading server (functions/) and the database rules to Google.
+# Manual only: nothing deploys until someone presses "Run workflow" in the Actions tab.
+name: Deploy reading server
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install server packages
+        run: npm ci
+        working-directory: functions
+
+      # The deploy stops here if any test fails.
+      - name: Run all tests
+        run: node --test
+
+      # GOOGLE_SERVICE_ACCOUNT_KEY is a repository secret (Settings > Secrets and variables > Actions).
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+
+      - name: Deploy to Firebase
+        run: npx --yes firebase-tools@13 deploy --only functions,firestore:rules --project cogent-spirit-498920-j3 --non-interactive
