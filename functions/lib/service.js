@@ -93,4 +93,15 @@ async function deleteReading({ body, store }) {
   return { deleted: true };
 }
 
-module.exports = { MODEL, runReading, deleteReading };
+// What to write in the error log when something fails. It never includes the request, so a
+// reader's question cannot end up in the logs. (Use "reason", not "message": Firebase's
+// logger overwrites a field named "message" with its own text, which hid the real cause.)
+function describeError(err) {
+  return {
+    errorName: err && err.name ? String(err.name) : 'Error',
+    errorCode: err && err.code != null ? String(err.code) : undefined,
+    reason: err && err.message ? String(err.message).slice(0, 500) : 'unknown',
+  };
+}
+
+module.exports = { MODEL, runReading, deleteReading, describeError };

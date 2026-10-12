@@ -8,7 +8,7 @@ const logger = require('firebase-functions/logger');
 
 const anthropicKey = defineSecret('ANTHROPIC_API_KEY');
 const { loadLibrary, RequestError } = require('./lib/packet');
-const { runReading, deleteReading } = require('./lib/service');
+const { runReading, deleteReading, describeError } = require('./lib/service');
 
 // Only these pages may call the server from a browser.
 const ORIGINS = [
@@ -42,7 +42,7 @@ const store = {
 
 function fail(res, err) {
   if (err instanceof RequestError) return res.status(400).json({ error: err.message });
-  logger.error('reading failed', { message: err.message }); // never the question
+  logger.error('reading failed', describeError(err)); // never the question
   return res.status(500).json({ error: 'The reading service had a problem. Please try again.' });
 }
 
