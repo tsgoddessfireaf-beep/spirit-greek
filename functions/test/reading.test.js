@@ -5,7 +5,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { loadLibrary, validateRequest, buildPacket, RequestError } = require('../lib/packet');
 const { parseReply, checkReading } = require('../lib/checks');
-const { runReading, deleteReading, MODEL } = require('../lib/service');
+const { runReading, deleteReading, describeError, MODEL } = require('../lib/service');
 
 const lib = loadLibrary();
 const THREE = { spread: 'three', cards: [{ card: 0, reversed: false }, { card: 37, reversed: true }, { card: 22, reversed: false }] };
@@ -179,4 +179,14 @@ test('a saved question can be deleted only with its token', async () => {
   assert.deepEqual(await deleteReading({ body: { id: out.saved.id, token: out.saved.deleteToken }, store }), { deleted: true });
   assert.equal(store.docs.size, 0);
   assert.deepEqual(await deleteReading({ body: {}, store }), { deleted: false });
+});
+
+test('error logs carry the real reason and code, under names the logger does not overwrite', () => {
+  const err = Object.assign(new Error('7 PERMISSION_DENIED: Missing or insufficient permissions.'), { code: 7 });
+  const d = describeError(err);
+  assert.equal(d.reason, '7 PERMISSION_DENIED: Missing or insufficient permissions.');
+  assert.equal(d.errorCode, '7');
+  assert.ok(!('message' in d), '"message" is overwritten by Firebase\'s logger');
+  assert.deepEqual(describeError(null), { errorName: 'Error', errorCode: undefined, reason: 'unknown' });
+  assert.ok(describeError(new Error('x'.repeat(2000))).reason.length <= 500);
 });
