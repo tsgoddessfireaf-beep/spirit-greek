@@ -1,20 +1,21 @@
 """Print-ready MakePlayingCards (MPC) files for the Aeonic Arts tarot.
 
-    python3 -I print/mpc_print.py <out-dir> --fit safe|original [--back <full-size-back.png>]
-                                  [--scale 0.91] [--faces cards/aeonic] [--only 00,40,77]
+    python3 -I print/mpc_print.py <out-dir> [--back <full-size-back.png>] [--faces cards/aeonic] [--only 00,40,77]
 
 MPC's tarot rules (print/mpc-guide.html): every card is a 897 x 1497 pixel image at
 300 dpi; 36 px of bleed is cut away on each side; a further 36 px inside the cut is
 the safe area. For each of the 78 faces this program:
 
-  1. finds the card in the 1909 scan (drops the scanner background and the worn edge),
-  2. fits it to the 825 x 1425 cut size without stretching it,
-       --fit original  keeps the 1909 proportions,
-       --fit safe      shrinks the art (one factor for the whole deck) so the frame lines
-                       sit inside the safe line,
-  3. fills paper, coloured from the card's own margin, into the worn corners, any
-     padding and the bleed, so a drifting blade never shows white,
-  4. saves NN.jpg (quality 95, full colour detail, 300 dpi).
+  1. finds the card in the 1909 scan and straightens it, using its frame lines,
+  2. cuts it exactly at the outer edge of Smith's frame (the worn old paper goes),
+  3. fits the picture to one box, the same for every card, so every card has the same
+     clean cream border: 40 px (3.4 mm) at the sides, 61 px (5.2 mm) top and bottom
+     after cutting, with the frame inside the safe area,
+  4. draws a crisp teal edge on Smith's frame line and saves NN.jpg (quality 95,
+     full colour detail, 300 dpi).
+
+Smith's frames differ in shape by a few per cent from card to card; fitting them to one
+box squeezes or stretches a picture by that much, which the report lists.
 
 With --back it also makes back.png from the full-size card back (kept out of this
 public repository): corners filled, widened to the card shape, bleed added, and made
@@ -22,7 +23,6 @@ exactly identical after a half turn, so it never reveals a reversed card. PNG ke
 exact; JPEG would not.
 
 check-sheet.jpg shows every card with its cut line (solid) and safe line (dashed).
-The report lists the scale, padding and any frame line still outside the safe line.
 Exit status is 1 if a self-check fails.
 """
 import sys, os, argparse, importlib.util
@@ -33,17 +33,21 @@ sys.dont_write_bytecode = True
 HERE = os.path.dirname(os.path.abspath(__file__))
 _spec = importlib.util.spec_from_file_location('aeonic', os.path.join(HERE, '..', 'cards', 'aeonic-tools', 'aeonic.py'))
 aeonic = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(aeonic)
-lum, flood, frame_lines = aeonic.lum, aeonic.flood, aeonic.frame_lines
+lum, flood = aeonic.lum, aeonic.flood
 
 W, H = 897, 1497                       # MPC tarot file, bleed included
 BLEED = 36                             # cut away on each side
 TW, TH = W - 2 * BLEED, H - 2 * BLEED  # 825 x 1425: the finished card
 SAFE = 2 * BLEED                       # safe line, from the file edge
-SPARE = 4                              # --fit safe keeps frame lines this far inside the safe line
-K_FLOOR = 0.95                         # --fit safe never shrinks the art more than this
+SIDE = 76                              # frame's outer edge from the file edge, left and right: 40 px border after the cut
+BOX_ASPECT = 0.572                     # the box every picture is fitted to (width / height): the deck's median frame
+BW = W - 2 * SIDE; BH = round(BW / BOX_ASPECT); TOP = (H - BH) // 2
+PAPER = (228, 217, 201)                # border cream: between the title-strip paper and the back's paper
+TEAL = aeonic.TEAL                     # the deck's frame colour
+BACK_SCALE = 0.95                      # the back's art, so its copper frame and notice sit inside the safe line
 INSET = 3                              # px trimmed off the scan's worn card edge
-WARM, INK = 12, 150                    # paper is warm (red minus blue > WARM); the scanner background is
-                                       # neutral white or grey, or bluish after recolouring; ink is darker than INK
+WARM = 12                              # paper is warm (red minus blue > WARM); the scanner background is
+                                       # neutral white or grey, or bluish after recolouring
 
 def warmth(a): return a[..., 0] - a[..., 2]
 
@@ -57,26 +61,6 @@ def card_box(a):
     cols = np.nonzero(card[int(h * .3):int(h * .7)].mean(0) > .5)[0]
     rows = np.nonzero(card[:, int(w * .3):int(w * .7)].mean(1) > .5)[0]
     return (cols[0] + INSET, rows[0] + INSET, cols[-1] + 1 - INSET, rows[-1] + 1 - INSET), bg
-
-
-def corner_fill(crop, bg):
-    """Pixels to replace with paper in a cropped card: scanner background (the worn corners)
-    and anything else that is not paper touching a corner (dark specks, edge shadow), plus a 3 px fringe."""
-    L = lum(crop); h, w = L.shape; warm = warmth(crop)
-    # The repair zone: a strip EDGE px wide along each side, and the area a rounded corner of
-    # radius R could cover. Its deepest point is R(1 - 1/sqrt 2) = 15 px in, short of every frame line.
-    EDGE, R = 8, 50
-    yy, xx = np.mgrid[0:h, 0:w]
-    dx = np.minimum(xx, w - 1 - xx); dy = np.minimum(yy, h - 1 - yy)
-    corner = (dx < R) & (dy < R) & ((R - dx) ** 2 + (R - dy) ** 2 > R ** 2)
-    edge = np.minimum(dx, dy) < EDGE
-    odd = (edge & (warm < WARM) & (L > INK)) | (corner & ((warm < WARM) | (L < INK)))
-    seeds = [(0, x) for x in range(w)] + [(h - 1, x) for x in range(w)] + [(y, 0) for y in range(h)] + [(y, w - 1) for y in range(h)]
-    fill = bg | flood(odd, seeds) | corner | (np.minimum(dx, dy) < 4)   # the worn outline itself goes too
-    grown = fill.copy()
-    for dy in range(-3, 4):
-        for dx in range(-3, 4): grown |= np.roll(np.roll(fill, dy, 0), dx, 1)
-    return grown
 
 
 def side_colours(img, known, rect):
@@ -138,28 +122,52 @@ def place(crop, holes, k):
     return img, known, (ox, oy, ox + nw, oy + nh), s
 
 
-def frame_k(geom):
-    """Largest k (art scale) that keeps this card's detected frame lines SPARE px inside the safe line."""
-    (x0, y0, x1, y1), (top, bot, lef, rig) = geom
-    w, h = x1 - x0, y1 - y0; s = min(TW / w, TH / h); ks = [1.]
-    lim_x, lim_y = W / 2 - SAFE - SPARE, H / 2 - SAFE - SPARE
-    if lef: ks.append(lim_x / max(1e-6, (w / 2 - (lef[0] - x0)) * s))
-    if rig: ks.append(lim_x / max(1e-6, ((rig[1] - x0) - w / 2) * s))
-    if top: ks.append(lim_y / max(1e-6, (h / 2 - (top[0] - y0)) * s))
-    if bot: ks.append(lim_y / max(1e-6, ((bot[1] - y0) - h / 2) * s))
-    return min(ks)
+def first_dark(dark):
+    """Per row: the first dark pixel from the left (nan where there is none)."""
+    idx = np.argmax(dark, 1).astype(float); idx[~dark.any(1)] = np.nan
+    return idx
 
 
-def frame_gap(geom, k):
-    """How far (px) the nearest detected frame line sits inside the safe line at art scale k;
-    negative means it crosses the safe line into the zone the cut may reach."""
-    (x0, y0, x1, y1), (top, bot, lef, rig) = geom
-    w, h = x1 - x0, y1 - y0; s = min(TW / w, TH / h) * k; gaps = []
-    if lef: gaps.append(W / 2 - (w / 2 - (lef[0] - x0)) * s - SAFE)
-    if rig: gaps.append(W / 2 - ((rig[1] - x0) - w / 2) * s - SAFE)
-    if top: gaps.append(H / 2 - (h / 2 - (top[0] - y0)) * s - SAFE)
-    if bot: gaps.append(H / 2 - ((bot[1] - y0) - h / 2) * s - SAFE)
-    return min(gaps) if gaps else float('inf')
+def mode_edge(v):
+    """The position most rows (or columns) agree on, and the share that agree."""
+    v = v[~np.isnan(v)]
+    hist, e = np.histogram(v, bins=np.arange(v.min(), v.max() + 3, 2))
+    i = hist.argmax(); sel = v[(v >= e[i] - 2) & (v <= e[i + 1] + 2)]
+    return float(np.median(sel)), sel.size / v.size
+
+
+def fit_slope(t, v, centre):
+    ok = ~np.isnan(v) & (np.abs(v - centre) < 6); t, v = t[ok], v[ok]
+    return np.polyfit(t, v, 1)[0] if t.size > 50 else 0.
+
+
+def frame_box(c):
+    """Outer edges of Smith's frame (left, top, right, bottom), how many rows/columns agree on
+    each, and the tilt of the left, right and top lines. The bottom is the title box's line."""
+    h, w = c.shape[:2]; dark = lum(c) < 110
+    e = 8; dark[:e] = dark[-e:] = False; dark[:, :e] = dark[:, -e:] = False   # the scan's dark edge is not the frame
+    rows = np.arange(int(h * .15), int(h * .85)); cols = np.arange(int(w * .15), int(w * .85))
+    nx, ny = int(w * .12), int(h * .12)
+    L = first_dark(dark[rows, :nx]); R = w - 1 - first_dark(dark[rows, ::-1][:, :nx])
+    T = first_dark(dark[:ny, cols].T); B = h - 1 - first_dark(dark[::-1][:ny, cols].T)
+    (l, fl), (r, fr), (t, ft), (b, fb) = mode_edge(L), mode_edge(R), mode_edge(T), mode_edge(B)
+    return (l, t, r, b), (fl, fr, ft, fb), (fit_slope(rows, L, l), fit_slope(rows, R, r), -fit_slope(cols, T, t))
+
+
+def make_face(path, seed):
+    """One card face: straightened, cut at the frame, fitted to the deck's box on clean paper."""
+    a = np.asarray(Image.open(path).convert('RGB')).astype(float)
+    (x0, y0, x1, y1), bg = card_box(a)
+    c = a[y0:y1, x0:x1].copy(); c[bg[y0:y1, x0:x1]] = PAPER
+    tilt = float(np.degrees(np.median(frame_box(c)[2])))
+    c = np.asarray(Image.fromarray(c.astype(np.uint8)).rotate(tilt, resample=Image.BICUBIC, fillcolor=PAPER))
+    (l, t, r, b), agree, _ = frame_box(c.astype(float))
+    art = Image.fromarray(c).crop((round(l) + 1, round(t) + 1, round(r), round(b))).resize((BW, BH), Image.LANCZOS)
+    rng = np.random.default_rng(seed)                  # a faint grain, so the border prints as paper, not flat plastic
+    out = Image.fromarray(np.clip(np.array(PAPER, float) + rng.normal(0, 1.5, (H, W, 1)), 0, 255).astype(np.uint8))
+    out.paste(art, (SIDE, TOP))
+    ImageDraw.Draw(out).rectangle((SIDE, TOP, SIDE + BW - 1, TOP + BH - 1), outline=TEAL, width=3)
+    return out, tilt, agree, (r - l) / (b - t)
 
 
 def half_turn(b):
@@ -212,50 +220,29 @@ def check_sheet(paths, dst, cols=10, scale=0.2):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n\n')[0])
     ap.add_argument('out_dir')
-    ap.add_argument('--fit', choices=['safe', 'original'], required=True)
     ap.add_argument('--back', help='full-size finished card back (not kept in the repository)')
     ap.add_argument('--faces', default=os.path.join(HERE, '..', 'cards', 'aeonic'))
     ap.add_argument('--only', help='comma-separated card numbers, e.g. 00,40,77')
-    ap.add_argument('--scale', type=float, help=f'with --fit safe: art scale to use instead of the automatic one (which never goes below {K_FLOOR})')
     args = ap.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
     names = sorted(f for f in os.listdir(args.faces) if f[:2].isdigit() and f.endswith('.jpg'))
     if args.only: names = [f for f in names if f[:2] in args.only.split(',')]
-    fails = []
+    fails, outs = [], []
+    print(f"every picture fitted to {BW}x{BH} px; border after the cut {SIDE - BLEED} px at the sides, {TOP - BLEED} px top and bottom")
 
-    # Pass 1: where is each card, and where are its frame lines?
-    geoms = {}
     for f in names:
-        a = np.asarray(Image.open(os.path.join(args.faces, f)).convert('RGB')).astype(float)
-        (x0, y0, x1, y1), bg = card_box(a)
-        crop = a[y0:y1, x0:x1].copy()
-        crop[corner_fill(crop, bg[y0:y1, x0:x1])] = (232, 220, 200)   # plain paper, so the scan's edge shadow
-        geoms[f] = ((0, 0, x1 - x0, y1 - y0), frame_lines(crop)[:4])  # is not mistaken for a frame line
-    need = {f: frame_k(g) for f, g in geoms.items()}
-    k = 1. if args.fit == 'original' else (args.scale or min(1., max(K_FLOOR, min(need.values()))))
-    print(f"fit: {args.fit}; art scale {k:.3f} of the full cut size")
-
-    # Pass 2: build each card.
-    outs = []
-    for f in names:
-        a = np.asarray(Image.open(os.path.join(args.faces, f)).convert('RGB')).astype(float)
-        (x0, y0, x1, y1), bg = card_box(a)
-        crop = a[y0:y1, x0:x1]
-        img, known, rect, s = place(crop, corner_fill(crop, bg[y0:y1, x0:x1]), k)
-        out = np.clip(fill_paper(img, known, rect, seed=int(f[:2])), 0, 255).round().astype(np.uint8)
+        out, tilt, agree, aspect = make_face(os.path.join(args.faces, f), seed=int(f[:2]))
         dst = os.path.join(args.out_dir, f[:2] + '.jpg')
-        Image.fromarray(out).save(dst, quality=95, subsampling=0, dpi=(300, 300), optimize=True)
+        out.save(dst, quality=95, subsampling=0, dpi=(300, 300), optimize=True)
         outs.append(dst)
-        ring = np.ones((H, W), bool); ring[BLEED:H - BLEED, BLEED:W - BLEED] = False
-        stray = int((warmth(out.astype(float))[ring] < WARM / 2).sum())   # scanner white or grey left in the bleed
-        pad = (rect[0] - BLEED, rect[1] - BLEED)
-        gap = frame_gap(geoms[f], k)
-        flag = '' if gap >= 0 else f'  frame line {-gap:.0f} px past the safe line (scale {need[f]:.3f} would fix it)'
-        print(f"{f[:2]}  scan {x1 - x0}x{y1 - y0} -> art {rect[2] - rect[0]}x{rect[3] - rect[1]} (x{s:.3f}), paper pad {pad[0]},{pad[1]} px; non-paper pixels in bleed {stray}{flag}")
-        if stray > 50: fails.append(f'{f}: {stray} non-paper pixels in the bleed')
+        stretch = (BOX_ASPECT / aspect - 1) * 100       # + = picture made wider, - = narrower
+        flag = '  CHECK: frame edge unclear' if min(agree) < .15 else ''
+        flag += f'  CHECK: shape changed {stretch:+.1f}%' if abs(stretch) > 5 else ''
+        print(f"{f[:2]}  straightened {tilt:+.2f} deg; width {stretch:+.1f}%; frame edges agreed by "
+              f"{', '.join(f'{x:.0%}' for x in agree)} of rows/columns{flag}")
 
     if args.back:
-        b, rect = make_back(args.back, k)
+        b, rect = make_back(args.back, BACK_SCALE)
         dst = os.path.join(args.out_dir, 'back.png')
         Image.fromarray(b).save(dst, dpi=(300, 300), optimize=True)
         c = np.asarray(Image.open(dst).convert('RGB')).astype(int)
