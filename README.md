@@ -128,3 +128,7 @@ same on every run.
 The Aeonic Arts card-back art is © 2026 Dolores Puckett, all rights reserved.
 The 1909 card faces in `cards/rws1909/` are public domain. Details:
 [`COPYRIGHT.md`](COPYRIGHT.md).
+
+## Session records
+
+Session records (QEDs) and Aeonic Arts operating documents live in the private repository `aeonic-operations`, not here. `docs/HANDOFF.md` stays here because it explains how this project's server and page work.
