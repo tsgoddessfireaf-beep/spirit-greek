@@ -120,3 +120,40 @@ test('spreads with no source yet say so instead of inventing meanings', () => {
     for (const p of s.positions) assert.equal(p.meaning, null);
   }
 });
+
+// ---- The phone page reads knowledge/approved.json: approved quotes only ----
+const { approvedFile } = require('../knowledge/tools/build.js');
+
+test('phone page file holds no draft text (verified.json is the only way in)', () => {
+  const approvedJson = JSON.parse(fs.readFileSync(path.join(KDIR, 'approved.json'), 'utf8'));
+  const approvedIds = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(KDIR, 'verified.json'), 'utf8')).verified));
+  const shown = Object.values(approvedJson.cards).flatMap((c) => [c.upright, c.reversed].filter(Boolean));
+  for (const text of shown) {
+    const q = K.quotes(lib).find((x) => x.text === text);
+    assert.ok(q, 'shown text is not a known quote');
+    assert.ok(approvedIds.has(q.id), `${q.id} is shown but not approved`);
+  }
+});
+
+test('approved file includes exactly the quotes listed as approved', () => {
+  const built = build();
+  const upId = built.cards[0].waite.upright.id;
+  const f = approvedFile(built, new Set([upId]));
+  assert.equal(f.cards[0].upright, built.cards[0].waite.upright.text);
+  assert.equal(f.cards[0].reversed, undefined, 'an unapproved reversed meaning must not appear');
+  // Card 0 (approved upright) and card 37 (Two of Cups: no reversed in the source).
+  assert.deepEqual(Object.keys(f.cards), ['0', '37']);
+});
+
+test('Two of Cups is marked as having no reversed meaning in the source', () => {
+  const approvedJson = JSON.parse(fs.readFileSync(path.join(KDIR, 'approved.json'), 'utf8'));
+  assert.equal(approvedJson.cards[37].noReversed, true);
+});
+
+test('the page loads only approved.json, never the draft library', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  assert.match(html, /knowledge\/approved\.json/);
+  for (const draft of ['cards.json', 'spreads.json', 'rules.json', 'verified.json', 'sources.json']) {
+    assert.ok(!html.includes(draft), `index.html must not load ${draft}`);
+  }
+});

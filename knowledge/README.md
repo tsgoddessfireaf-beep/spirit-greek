@@ -12,6 +12,7 @@ server will read it to write readings. The phone page does not use it yet.
 | `rules.json` | Rules that apply to every spread. Today this holds Waite's meanings for 2, 3 or 4 cards of one rank in a reading (for example, "3 Kings = consultation"). |
 | `sources.json` | The source ledger: each book, its edition, why it is public domain, and where the saved copy came from. |
 | `verified.json` | The quotes Dolores has approved. Empty until she approves some. |
+| `approved.json` | Generated from `verified.json`. Holds only approved quotes, and is the only library file the phone page reads. Never edit by hand. |
 | `sources/` | The saved source page, exactly as it was downloaded. |
 | `tools/build.js` | The program that cuts the quotes out of the saved page. |
 | `text.js` | The one formatting clean-up rule, used by both the program and the tests. |

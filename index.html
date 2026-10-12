@@ -209,6 +209,8 @@
   .zoom .front .name { font-size: 1.25rem; }
   .zoom .front .foot { font-size: 0.85rem; }
   .zoom .zpos { color: var(--overlay-ink); margin: 14px 0 0; text-align: center; }
+  .zoom .zmean { color: var(--overlay-ink); margin: 10px 0 0; max-width: 34ch; text-align: center; font-size: 0.95rem; }
+  .zoom .zmean:empty { display: none; }
 
   .tag { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-top: 6px; }
 
@@ -277,6 +279,7 @@
   <div class="zoom" id="zoom" hidden role="dialog" aria-label="Card close-up">
     <div class="zcard" id="zoomCard"></div>
     <p class="zpos" id="zoomPos"></p>
+    <p class="zmean" id="zoomMean"></p>
   </div>
 
   <footer>Prototype. Nothing is stored or sent anywhere: no account, no cookies, no tracking.</footer>
@@ -289,6 +292,13 @@
   'use strict';
   const E = window.SpiritEngine;
   const { CARDS, SPREADS } = window.SpiritDeck;
+  // Approved quotes only (knowledge/approved.json). If it cannot load, the close-up
+  // shows names and positions with no meaning, which is safe.
+  let approved = {};
+  fetch('knowledge/approved.json')
+    .then((r) => (r.ok ? r.json() : {}))
+    .then((j) => { approved = j.cards || {}; })
+    .catch(() => {});
   const $ = (id) => document.getElementById(id);
 
   const els = {
@@ -409,6 +419,7 @@
     const art = `img/cards/${String(c.id).padStart(2, '0')}.jpg`;
     el.innerHTML = `<div class="front has-art"><div class="art" style="background-image:url('${art}')"></div><div class="top">${top}</div><div class="name">${c.name}</div><div class="foot">${foot}</div></div><div class="back"></div>`;
     el.dataset.label = `${c.name}${placed.reversed ? ', reversed' : ''}${placed.source === 'jumper' ? ', jumped from the deck' : ''}`;
+    el.dataset.card = String(placed.card);
     el.setAttribute('role', 'button');
     el.tabIndex = 0;
     const where = placed.pile != null ? `pile ${placed.pile + 1}, card ${placed.index + 1}` : `position ${placed.position + 1}`;
@@ -799,7 +810,17 @@
       ? `${SPREADS[key].pileNames[p.pile]} · card ${p.index + 1}`
       : `${i + 1}. ${SPREADS[key].positions[i]}`;
     $('zoomPos').textContent = `${card.dataset.label} — ${where}`;
+    $('zoomMean').textContent = meaningFor(card);
     zoom.hidden = false;
+  }
+  // The approved meaning for this card, upright or reversed. Empty until Dolores approves it.
+  function meaningFor(card) {
+    const entry = approved[Number(card.dataset.card)] || {};
+    if (card.classList.contains('reversed')) {
+      if (entry.reversed) return entry.reversed;
+      return entry.noReversed ? 'No reversed meaning in this source.' : '';
+    }
+    return entry.upright || '';
   }
   // Yes / No: turn a pile's cards over one by one, in the order they were laid.
   function turnPile(p) {

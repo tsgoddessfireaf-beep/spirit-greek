@@ -306,11 +306,33 @@ function build() {
 
   const built = { cards, spreads, rules };
   addNotes(built);
+  const verified = new Set(Object.keys(JSON.parse(fs.readFileSync(path.join(ROOT, 'verified.json'), 'utf8')).verified));
+  built.approved = approvedFile(built, verified);
   return built;
 }
 
+// The file the phone page reads. It holds ONLY quotes listed in verified.json, so
+// draft text never reaches a reader. "noReversed" is a fact about the source (Waite
+// gives no reversed meaning), not a quote, so it needs no approval.
+function approvedFile(built, verified) {
+  const cards = {};
+  for (const c of built.cards) {
+    const out = {};
+    const up = c.waite.upright;
+    const rev = c.waite.reversed;
+    if (up && verified.has(up.id)) out.upright = up.text;
+    if (rev && verified.has(rev.id)) out.reversed = rev.text;
+    if (!rev) out.noReversed = true;
+    if (Object.keys(out).length) cards[c.id] = out;
+  }
+  return {
+    about: 'Approved quotes only. Written by knowledge/tools/build.js from verified.json. Do not edit by hand.',
+    cards,
+  };
+}
+
 const json = (v) => `${JSON.stringify(v, null, 1)}\n`;
-const OUT = { cards: 'cards.json', spreads: 'spreads.json', rules: 'rules.json' };
+const OUT = { cards: 'cards.json', spreads: 'spreads.json', rules: 'rules.json', approved: 'approved.json' };
 
 if (require.main === module) {
   const built = build();
@@ -330,4 +352,4 @@ if (require.main === module) {
   process.exit(stale ? 1 : 0);
 }
 
-module.exports = { build, json, OUT };
+module.exports = { build, json, OUT, approvedFile };
