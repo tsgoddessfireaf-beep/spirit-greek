@@ -1,0 +1,37 @@
+[
+ {
+  "id": "waite-pkt",
+  "title": "The Pictorial Key to the Tarot",
+  "author": "Arthur Edward Waite",
+  "illustrator": "Pamela Colman Smith",
+  "edition": "Rider, London: first published 1910, reprinted 1922 (the printing transcribed on Wikisource)",
+  "used": "Part III, The Outer Method of the Oracles: §2 suit cards, §3 trumps, §4 additional meanings, §5 recurrence of cards, §7 Celtic Cross",
+  "public_domain": {
+   "us": "Yes: first published before 1931.",
+   "life_plus_70": "Yes: Waite died 1942; Smith died 1951."
+  },
+  "transcription": {
+   "site": "Wikisource",
+   "url": "https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot/Part_3",
+   "page_modified": "2025-08-14T03:26:43Z",
+   "revision_sha1": "670c550696f48ed3e2c2056f95afc5dbf81cc529",
+   "retrieved": "2026-10-12",
+   "retrieved_via": "Firecrawl scrape, as Markdown (this build environment's network blocks wikisource.org)",
+   "file": "knowledge/sources/waite-pkt-part3.wikisource.md",
+   "file_sha256": "d64e4328e4b7b52774e8b42b822aab12fae00807de6c1688845674a8183bf8dd",
+   "licence_note": "The book is public domain. Wikisource labels its transcriptions CC BY-SA; credit Wikisource when quoting at length."
+  },
+  "known_problems": "A few transcription slips are flagged with a note on the quote they affect (see TRANSCRIPTION_NOTES in knowledge/tools/build.js)."
+ },
+ {
+  "id": "owner",
+  "title": "Dolores Puckett's own methods",
+  "author": "Dolores Puckett, Aeonic Arts",
+  "used": "Yes / No three-pile method (spreads.json, yesno)",
+  "evidence": "Issue #6; approved and merged in PR #7 (2026-10-08)",
+  "public_domain": {
+   "us": "No: Aeonic Arts' own method.",
+   "life_plus_70": "No."
+  }
+ }
+]

@@ -1,0 +1,933 @@
+{
+ "recurrence": {
+  "applies_to": "every spread",
+  "source": "waite-pkt",
+  "where": "Part III §5",
+  "items": [
+   {
+    "count": 4,
+    "rank": "King",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "great honour"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "King",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "consultation"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "King",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "minor counsel"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Queen",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "great debate"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Queen",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "deception by women"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Queen",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "sincere friends"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Knight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "serious matters"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Knight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "lively debate"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Knight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "intimacy"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Page",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "dangerous illness"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Page",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "dispute"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Page",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "disquiet"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Ten",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "condemnation"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Ten",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "new condition"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Ten",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "change"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Nine",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "a good friend"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Nine",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "success"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Nine",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "receipt"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Eight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "reverse"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Eight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "marriage"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Eight",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "new knowledge"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Seven",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "intrigue"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Seven",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "infirmity"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Seven",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "news"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Six",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "abundance"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Six",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "success"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Six",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "irritability"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Five",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "regularity"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Five",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "determination"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Five",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "vigils"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Four",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "journey near at hand"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Four",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "a subject of reflection"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Four",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "insomnia"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Three",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "progress"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Three",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "unity"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Three",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "calm"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Two",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "contention"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Two",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "security"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Two",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "accord"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Ace",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:4-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "favourable chance"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Ace",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:3-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "small success"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Ace",
+    "orientation": "upright",
+    "meaning": {
+     "id": "waite-pkt:recurrence:upright:2-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "trickery"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "King",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "celerity"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "King",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "commerce"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "King",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-kings",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "projects"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Queen",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "bad company"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Queen",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "gluttony"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Queen",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-queens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "work"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Knight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "alliance"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Knight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "a duel, or personal encounter"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Knight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-knights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "susceptibility"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Page",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "privation"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Page",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "idleness"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Page",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-pages",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "society"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Ten",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "event, happening"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Ten",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "disappointment"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Ten",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-tens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "expectation justified"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Nine",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "usury"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Nine",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "imprudence"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Nine",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-nines",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "a small profit"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Eight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "error"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Eight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "a spectacle"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Eight",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-eights",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "misfortune"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Seven",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "quarrellers"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Seven",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "joy"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Seven",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-sevens",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "women of no repute"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Six",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "care"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Six",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "satisfaction"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Six",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-sixes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "downfall"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Five",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "order"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Five",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "hesitation"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Five",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-fives",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "reverse"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Four",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "walks abroad"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Four",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "disquiet"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Four",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-fours",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "dispute"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Three",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "great success"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Three",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "serenity"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Three",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-threes",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "safety"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Two",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "reconciliation"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Two",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "apprehension"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Two",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-twos",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "mistrust"
+    }
+   },
+   {
+    "count": 4,
+    "rank": "Ace",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:4-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "dishonour"
+    }
+   },
+   {
+    "count": 3,
+    "rank": "Ace",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:3-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "debauchery"
+    }
+   },
+   {
+    "count": 2,
+    "rank": "Ace",
+    "orientation": "reversed",
+    "meaning": {
+     "id": "waite-pkt:recurrence:reversed:2-aces",
+     "source": "waite-pkt",
+     "where": "Part III §5",
+     "text": "enemies"
+    }
+   }
+  ]
+ }
+}
