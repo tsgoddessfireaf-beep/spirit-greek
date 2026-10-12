@@ -189,18 +189,18 @@ footer { border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: var
   <p>These are what the conversion program must do. Each rule traces back to an MPC rule or to a measurement above.</p>
   <ol class="rules">
     <li><span class="id">R1</span><span>Write each card as a <span class="mono">897 &times; 1497</span> pixel image marked 300 dpi, in RGB, as high-quality JPEG or PNG.</span></li>
-    <li><span class="id">R2</span><span>Find each scan's card edge, remove the scanner background, and fill the worn round corners with the card's own cream paper.</span></li>
-    <li><span class="id">R3</span><span>Fit every card to the 825 &times; 1425 cut size without stretching it out of shape. Make up the difference with paper, not distortion.</span></li>
-    <li><span class="id">R4</span><span>Extend the cream paper 36 pixels past the cut on every side (the bleed), so a drifting blade never shows white.</span></li>
-    <li><span class="id">R5</span><span>Decide how the frame lines relate to the safe line (see decisions), and apply the same rule to all 78 cards.</span></li>
+    <li><span class="id">R2</span><span>Straighten each scan and cut it exactly at the outer edge of Smith's frame, so the worn 1909 paper, round corners and scanner background are all gone.</span></li>
+    <li><span class="id">R3</span><span>Fit every picture to one box, the same for all 78 cards, on clean cream paper. Smith's frames differ by a few per cent, so a picture may change width slightly; keep that under 5%, where it can't be seen.</span></li>
+    <li><span class="id">R4</span><span>Carry the cream paper 36 pixels past the cut on every side (the bleed), so a drifting blade never shows white.</span></li>
+    <li><span class="id">R5</span><span>Place the box so every frame sits inside the safe line, with an even border on all cards.</span></li>
     <li><span class="id">R6</span><span>Make the back from the full-size art. It must look identical after a half turn, so it never reveals a reversed card, and the copyright notice must sit inside the safe area.</span></li>
     <li><span class="id">R7</span><span>Name the files in deck order, <span class="mono">00</span> to <span class="mono">77</span> and <span class="mono">back</span>, so the upload order matches the deck.</span></li>
     <li><span class="id">R8</span><span>Produce a check sheet: every card with its cut line and safe line drawn on, to inspect before uploading.</span></li>
   </ol>
   <div class="ticket">
     <h3>The program</h3>
-    <p><span class="mono">print/mpc_print.py</span> follows R1&ndash;R8. Run it with <span class="mono">--fit safe</span> (art shrunk 5%) or <span class="mono">--fit original</span> (1909 size), and with <span class="mono">--back</span> naming the full-size back. It writes the 78 faces, the back and a check sheet to a folder outside this public repository. <span class="mono">print/README.md</span> explains how to run it.</p>
-    <p><span class="tag mine">measured</span> With <span class="mono">--fit safe</span>, 12 cards still have a frame line 0&ndash;5 px past the safe line (under 0.5 mm); <span class="mono">--scale 0.91</span> moves every one inside. With <span class="mono">--fit original</span>, 67 cards cross it, by up to 25 px (about 2 mm). The back comes out exactly symmetric in both versions, and its copyright notice sits inside the safe line.</p>
+    <p><span class="mono">print/mpc_print.py</span> follows R1&ndash;R8 with one look for the whole deck. It straightens each scan, cuts it exactly at Smith's frame (the worn 1909 paper goes), and fits the picture to one box on clean cream paper, so every card has the same border: 3.4&nbsp;mm at the sides and 5.2&nbsp;mm at the top and bottom after cutting, with the frame inside the safe area. Run it with <span class="mono">--back</span> naming the full-size back. It writes the 78 faces, the back and a check sheet to a folder outside this public repository. <span class="mono">print/README.md</span> explains how to run it.</p>
+    <p><span class="tag mine">measured</span> Scans straightened by up to 0.9&deg;. Fitting Smith's slightly different frames to one box changes a picture's width by &minus;3.6% to +2.0%, which can't be seen. The back comes out exactly symmetric, and its copyright notice sits inside the safe line.</p>
   </div>
 </section>
 
@@ -209,15 +209,12 @@ footer { border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: var
   <div class="options">
     <div>
       <h3>Frame lines and the safe line</h3>
-      <p><strong>Option A:</strong> shrink each picture about 5% inside a wider paper border, so every frame line sits inside the safe line. The cards look slightly more framed than the 1909 originals.</p>
-      <p><strong>Option B:</strong> keep the 1909 proportions. The cards match the originals, and borders may come out a little uneven.</p>
-      <p>Either can be changed later by re-running the program.</p>
+      <p><strong>Decided:</strong> each picture is cut at its frame and fills the card, with the same clean border on every card and the frame inside the safe line. (Two earlier versions kept the worn 1909 paper border and were dropped.)</p>
     </div>
     <div>
       <h3>Where the full-size back lives</h3>
       <p>This repository is public. A full-size back stored here can be downloaded and printed by anyone, copyright notice or not.</p>
-      <p><strong>Option A:</strong> keep the full-size back and the finished print files out of the repository. The program reads the back from a file you supply, as the card-back scripts already do.</p>
-      <p><strong>Option B:</strong> store them in the repository for convenience.</p>
+      <p><strong>Decided:</strong> the full-size back and the finished print files stay out of the repository. The program reads the back from a file Dolores supplies.</p>
     </div>
     <div>
       <h3>How to sell</h3>
@@ -272,7 +269,7 @@ footer { border-top: 1px solid var(--line); padding-top: 1.25rem; font-size: var
     <li>Whether the $26.10 price covers 78 cards, or changes with the card count.</li>
     <li>Shipping cost, delivery time and import duties to the US. Checkout shows them.</li>
     <li>The exact button names in MPC's design tool, and whether it uploads many images at once.</li>
-    <li>The corner radius MPC cuts. The program does not depend on it, because the rounded corners fall in plain paper.</li>
+    <li>The corner radius MPC cuts. The program does not depend on it, because the rounded corners fall in the plain border.</li>
     <li>QPMN's fees and returns policy.</li>
   </ul>
 </section>

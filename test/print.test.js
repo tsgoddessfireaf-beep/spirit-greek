@@ -23,7 +23,7 @@ function imageSize(buf) {
   throw new Error('no frame marker');
 }
 
-test('print files: MPC size (897 x 1497), symmetric back, both fits', { skip: !hasPython && 'python3 with Pillow and NumPy not found' }, () => {
+test('print files: MPC size (897 x 1497), symmetric back', { skip: !hasPython && 'python3 with Pillow and NumPy not found' }, () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'mpc-'));
   const back = path.join(tmp, 'back-source.png');
   // A stand-in card back: cream, with a teal frame. (The real back is kept out of the repository.)
@@ -31,15 +31,14 @@ test('print files: MPC size (897 x 1497), symmetric back, both fits', { skip: !h
     'import sys; from PIL import Image, ImageDraw; im = Image.new("RGB", (620, 1110), (232, 220, 200)); ' +
     'ImageDraw.Draw(im).rectangle((60, 60, 559, 1049), outline=(12, 69, 76), width=8); im.save(sys.argv[1])', back]);
   assert.equal(make.status, 0, String(make.stderr));
-  for (const fit of ['safe', 'original']) {
-    const out = path.join(tmp, fit);
-    const run = spawnSync('python3', ['-I', path.join(root, 'print/mpc_print.py'), out, '--fit', fit, '--back', back, '--only', '00,77'], { encoding: 'utf8' });
-    assert.equal(run.status, 0, run.stdout + run.stderr);
-    assert.match(run.stdout, /largest difference from its half turn: 0\n/);
-    for (const f of ['00.jpg', '77.jpg', 'back.png']) {
-      assert.deepEqual(imageSize(fs.readFileSync(path.join(out, f))), { width: 897, height: 1497 }, `${fit}/${f}`);
-    }
-    assert.ok(fs.existsSync(path.join(out, 'check-sheet.jpg')));
+  const out = path.join(tmp, 'out');
+  const run = spawnSync('python3', ['-I', path.join(root, 'print/mpc_print.py'), out, '--back', back, '--only', '00,40,77'], { encoding: 'utf8' });
+  assert.equal(run.status, 0, run.stdout + run.stderr);
+  assert.match(run.stdout, /largest difference from its half turn: 0\n/);
+  assert.doesNotMatch(run.stdout, /CHECK/);
+  for (const f of ['00.jpg', '40.jpg', '77.jpg', 'back.png']) {
+    assert.deepEqual(imageSize(fs.readFileSync(path.join(out, f))), { width: 897, height: 1497 }, f);
   }
+  assert.ok(fs.existsSync(path.join(out, 'check-sheet.jpg')));
   fs.rmSync(tmp, { recursive: true, force: true });
 });
