@@ -1,0 +1,3 @@
+node_modules/
+# Copied from ../knowledge at deploy time by tools/copy-knowledge.js. Never edit here.
+knowledge/
