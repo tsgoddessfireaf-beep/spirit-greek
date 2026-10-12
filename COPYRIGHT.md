@@ -31,6 +31,16 @@ and the suit renamed Coins. Aeonic Arts makes no claim over Smith's art.
 `cards/golden-dawn-book-t.json` is taken from Book T (Hermetic Order of the
 Golden Dawn, c. 1888; printed 1912), which is in the public domain.
 
+## Card meanings and spread rules: public domain source
+
+The quotes in `knowledge/` come from A. E. Waite, *The Pictorial Key to the
+Tarot* (Rider, 1910; reprinted 1922), which is in the public domain. The saved
+copy is the Wikisource transcription
+(https://en.wikisource.org/wiki/The_Pictorial_Key_to_the_Tarot/Part_3), with
+thanks to Wikisource. Details: `knowledge/sources.json`.
+
+The Yes / No method in `knowledge/spreads.json` is Dolores Puckett's own.
+
 ## Everything else
 
 No open-source license is granted for the code or other files in this

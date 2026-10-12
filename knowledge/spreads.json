@@ -1,0 +1,313 @@
+{
+ "one": {
+  "label": "One card",
+  "positions": [
+   {
+    "index": 0,
+    "name": "The card",
+    "meaning": null
+   }
+  ],
+  "rules": [],
+  "source_note": "No public-domain source chosen yet for a one-card draw."
+ },
+ "three": {
+  "label": "Three cards",
+  "positions": [
+   {
+    "index": 0,
+    "name": "Past",
+    "meaning": null
+   },
+   {
+    "index": 1,
+    "name": "Present",
+    "meaning": null
+   },
+   {
+    "index": 2,
+    "name": "Future",
+    "meaning": null
+   }
+  ],
+  "rules": [],
+  "source_note": "Waite gives no three-card spread. Position meanings wait for a source."
+ },
+ "celtic": {
+  "label": "Celtic Cross",
+  "source": "waite-pkt",
+  "layout_note": "Cards are laid in Dolores's order (1 center, 2 across, 3 below, 4 left, 5 above, 6 right, 7-10 bottom to top). Waite's meanings are matched by position name; waite_number is Waite's own numbering.",
+  "positions": [
+   {
+    "index": 0,
+    "name": "Covers (the present)",
+    "waite_number": 1,
+    "waite_words": "This covers him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-1",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "This card gives the influence which is affecting the person or matter of inquiry generally, the atmosphere of it in which the other currents work."
+    }
+   },
+   {
+    "index": 1,
+    "name": "Crosses (the obstacle)",
+    "waite_number": 2,
+    "waite_words": "This crosses him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-2",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It shews the nature of the obstacles in the matter. If it is a favourable card, the opposing forces will not be serious, or it may indicate that something good in itself will not be productive of good in the particular connexion."
+    }
+   },
+   {
+    "index": 2,
+    "name": "Beneath (the foundation)",
+    "waite_number": 4,
+    "waite_words": "This is beneath him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-4",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It shews the foundation or basis of the matter, that which has already passed into actuality and which the Significator has made his own."
+    }
+   },
+   {
+    "index": 3,
+    "name": "Behind (the recent past)",
+    "waite_number": 5,
+    "waite_words": "This is behind him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-5",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It gives the influence that is just passed, or is now passing away."
+    }
+   },
+   {
+    "index": 4,
+    "name": "Crowns (the aim)",
+    "waite_number": 3,
+    "waite_words": "This crowns him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-3",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It represents (a) the Querent's aim or ideal in the matter; (b) the best that can be achieved under the circumstances, but that which has not yet been made actual."
+    }
+   },
+   {
+    "index": 5,
+    "name": "Before (the near future)",
+    "waite_number": 6,
+    "waite_words": "This is before him.",
+    "meaning": {
+     "id": "waite-pkt:celtic:position-6",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It shews the influence that is coming into action and will operate in the near future."
+    }
+   },
+   {
+    "index": 6,
+    "name": "Self",
+    "waite_number": 7,
+    "waite_words": null,
+    "meaning": {
+     "id": "waite-pkt:celtic:position-7",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "signifies himself—that is, the Significator—whether person or thing—and shews its position or attitude in the circumstances."
+    }
+   },
+   {
+    "index": 7,
+    "name": "House (surroundings)",
+    "waite_number": 8,
+    "waite_words": null,
+    "meaning": {
+     "id": "waite-pkt:celtic:position-8",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The Eighth Card signifies his house, that is, his environment and the tendencies at work therein which have an effect on the matter—for instance, his position in life, the influence of immediate friends, and so forth."
+    }
+   },
+   {
+    "index": 8,
+    "name": "Hopes and fears",
+    "waite_number": 9,
+    "waite_words": null,
+    "meaning": {
+     "id": "waite-pkt:celtic:position-9",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The Ninth Card gives his hopes or fears in the matter."
+    }
+   },
+   {
+    "index": 9,
+    "name": "What will come",
+    "waite_number": 10,
+    "waite_words": null,
+    "meaning": {
+     "id": "waite-pkt:celtic:position-10",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The Tenth is what will come, the final result, the culmination which is brought about by the influences shewn by the other cards that have been turned up in the divination."
+    }
+   }
+  ],
+  "rules": [
+   {
+    "id": "significator",
+    "text": {
+     "id": "waite-pkt:celtic:significator",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The Diviner first selects a card to represent the person or matter about which inquiry is made. This card is called the Significator. Should he wish to ascertain something in connexion with himself he takes the one which corresponds to his personal description. A Knight should be chosen as the Significator if the subject of inquiry is a man of forty years old and upward; a King should be chosen for any male who is under that age; a Queen for a woman who is over forty years; and a Page for any female of less age."
+    }
+   },
+   {
+    "id": "significator-by-colouring",
+    "text": {
+     "id": "waite-pkt:celtic:significator-by-colouring",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The four Court Cards in Wands represent very fair people, with yellow or auburn hair, fair complexion and blue eyes. The Court Cards in Cups signify people with light brown or dull fair hair and grey or blue eyes. Those in Swords stand for people having hazel or grey eyes, dark brown hair and dull complexion. Lastly, the Court Cards in Pentacles are referred to persons with very dark brown or black hair, dark eyes and sallow or swarthy complexions. These allocations are subject, however, to the following reserve, which will prevent them being taken too conventionally. You can be guided on occasion by the known temperament of a person; one who is exceedingly dark may be very energetic, and would be better represented by a Sword card than a Pentacle. On the other hand, a very fair subject who is indolent and lethargic should be referred to Cups rather than to Wands."
+    }
+   },
+   {
+    "id": "significator-by-matter",
+    "text": {
+     "id": "waite-pkt:celtic:significator-by-matter",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "If it is more convenient for the purpose of a divination to take as the Significator the matter about which inquiry is to be made, that Trump or small card should be selected which has a meaning corresponding to the matter. Let it be supposed that the question is: Will a lawsuit be necessary? In this case, take the Trump No. 11, or Justice, as the Significator. This has reference to legal affairs. But if the question is Shall I be successful in my lawsuit? one of the Court Cards must be chosen as the Significator. Subsequently, consecutive divinations may be performed to ascertain the course of the process itself and its result to each of the parties concerned."
+    }
+   },
+   {
+    "id": "shuffle-and-cut",
+    "text": {
+     "id": "waite-pkt:celtic:shuffle-and-cut",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "Having selected the Significator, place it on the table, face upwards. Then shuffle and cut the rest of the pack three times, keeping the faces of the cards downwards."
+    }
+   },
+   {
+    "id": "facing",
+    "text": {
+     "id": "waite-pkt:celtic:facing",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "N.B.—If the Significator is a Trump or any small card that cannot be said to face either way, the Diviner must decide before beginning the operation which side he will take it as facing."
+    }
+   },
+   {
+    "id": "tenth-card-focus",
+    "text": {
+     "id": "waite-pkt:celtic:tenth-card-focus",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "It is on this card that the Diviner should especially concentrate his intuitive faculties and his memory in respect of the official divinatory meanings attached thereto. It should embody whatsoever you may have divined from the other cards on the table, including the Significator itself and concerning him or it, not excepting such lights upon higher significance as might fall like sparks from heaven if the card which serves for the oracle, the card for reading, should happen to be a Trump Major."
+    }
+   },
+   {
+    "id": "repeat-if-dubious",
+    "text": {
+     "id": "waite-pkt:celtic:repeat-if-dubious",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "The operation is now completed; but should it happen that the last card is of a dubious nature, from which no final decision can be drawn, or which does not appear to indicate the ultimate conclusion of the affair, it may be well to repeat the operation, taking in this case the Tenth Card as the Significator, instead of the one previously used. The pack must be again shuffled and cut three times and the first ten cards laid out as before. By this a more detailed account of \"What will come me\" may be obtained.",
+     "note": "Reads \"What will come me\"; check the scan."
+    }
+   },
+   {
+    "id": "tenth-card-court",
+    "text": {
+     "id": "waite-pkt:celtic:tenth-card-court",
+     "source": "waite-pkt",
+     "where": "Part III §7",
+     "text": "If in any divination the Tenth Card should be a Court Card, it shews that the subject of the divination falls ultimately into the hands of a person represented by that card, and its end depends mainly on him. In this event also it is useful to take the Court Card in question as the Significator in a fresh operation, and discover what is the nature of his influence in the matter and to what issue he will bring it."
+    }
+   }
+  ]
+ },
+ "yesno": {
+  "label": "Yes / No",
+  "source": "owner",
+  "source_note": "Dolores Puckett's method (issue #6; approved and merged in PR #7). The app's engine.js scoreYesNo must give the same answers; a test checks this.",
+  "piles": 3,
+  "pile_stops": "Each pile stops at an Ace or after 13 cards. Reversed cards are always on.",
+  "votes": {
+   "up": "upright Ace = yes",
+   "down": "reversed Ace = no",
+   "blank": "no Ace"
+  },
+  "answers": [
+   {
+    "up": 3,
+    "down": 0,
+    "key": "yes",
+    "answer": "Yes"
+   },
+   {
+    "up": 2,
+    "down": 0,
+    "key": "likelyYes",
+    "answer": "Likely yes"
+   },
+   {
+    "up": 2,
+    "down": 1,
+    "key": "likelyYes",
+    "answer": "Likely yes"
+   },
+   {
+    "up": 1,
+    "down": 0,
+    "key": "maybeYes",
+    "answer": "Maybe yes"
+   },
+   {
+    "up": 1,
+    "down": 1,
+    "key": "unclear",
+    "answer": "No clear answer"
+   },
+   {
+    "up": 0,
+    "down": 0,
+    "key": "unclear",
+    "answer": "No clear answer"
+   },
+   {
+    "up": 0,
+    "down": 1,
+    "key": "maybeNo",
+    "answer": "Maybe no"
+   },
+   {
+    "up": 1,
+    "down": 2,
+    "key": "likelyNo",
+    "answer": "Likely no"
+   },
+   {
+    "up": 0,
+    "down": 2,
+    "key": "likelyNo",
+    "answer": "Likely no"
+   },
+   {
+    "up": 0,
+    "down": 3,
+    "key": "no",
+    "answer": "No"
+   }
+  ],
+  "unclear_note": "No clear answer: read the other cards as a story."
+ }
+}

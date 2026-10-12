@@ -1,0 +1,2841 @@
+[
+ {
+  "id": 0,
+  "name": "The Fool",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:0:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Folly, mania, extravagance, intoxication, delirium, frenzy, bewrayment."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:0:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Negligence, absence, distribution, carelessness, apathy, nullity, vanity."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 1,
+  "name": "The Magician",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:1:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Skill, diplomacy, address, subtlety; sickness, pain, loss, disaster, of enemies; self-confidence, will; the Querent, if male."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:1:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Physician, Magus, mental disease, disgrace, disquiet."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 2,
+  "name": "The High Priestess",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:2:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Secrets, mystery, the future as yet unrevealed; the woman who interests the Querent, if male; the Querent herself, if female silence, tenacity; mystery, wisdom, science.",
+    "note": "Reads \"if female silence\"; the printed book probably has a semicolon (\"if female; silence\"). Check the scan."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:2:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Passion, moral or physical ardour, conceit, surface knowledge."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 3,
+  "name": "The Empress",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:3:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Fruitfulness, action, initiative, length of days; the unknown, clandestine; also difficulty, doubt, ignorance."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:3:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Light, truth, the unravelling of involved matters, public rejoicings; according to another reading, vacillation."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 4,
+  "name": "The Emperor",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:4:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Stability, power, protection, realization; a great person; aid, reason, conviction; also authority and will."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:4:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Benevolence, compassion, credit; also confusion to enemies, obstruction, immaturity."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 5,
+  "name": "The Hierophant",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:5:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Marriage, alliance, captivity, servitude; by another account, mercy and goodness; inspiration; the man to whom the Querent has recourse."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:5:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Society, good understanding, concord, over-kindness, weakness."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 6,
+  "name": "The Lovers",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:6:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Attraction, love, beauty, trials overcome."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:6:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Failure, foolish designs. Another account speaks of marriage frustrated and contrarieties of all kinds."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 7,
+  "name": "The Chariot",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:7:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Succour, providence; also war, triumph, presumption, vengeance, trouble."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:7:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Riot, quarrel, dispute, litigation, defeat."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 8,
+  "name": "Strength",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:8:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Power, energy, action, courage, magnanimity; also complete success and honours."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:8:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Despotism, abuse of power, weakness, discord, sometimes even disgrace."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 9,
+  "name": "The Hermit",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:9:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Prudence, circumspection; also and especially treason, dissimulation, roguery, corruption."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:9:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Concealment, disguise, policy, fear, unreasoned caution."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 10,
+  "name": "Wheel of Fortune",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:10:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Destiny, fortune, success, elevation, luck, felicity."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:10:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Increase, abundance, superfluity."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 11,
+  "name": "Justice",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:11:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Equity, rightness, probity, executive; triumph of the deserving side in law."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:11:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Law in all its departments, legal complications, bigotry, bias, excessive severity."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 12,
+  "name": "The Hanged Man",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:12:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Wisdom, circumspection, discernment, trials, sacrifice, intuition, divination, prophecy."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:12:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Selfishness, the crowd, body politic."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 13,
+  "name": "Death",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:13:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "End, mortality, destruction, corruption; also, for a man, the loss of a benefactor; for a woman, many contrarieties; for a maid, failure of marriage projects."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:13:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Inertia, sleep, lethargy, petrifaction, somnambulism; hope destroyed."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 14,
+  "name": "Temperance",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:14:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Economy, moderation, frugality, management, accommodation."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:14:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Things connected with churches, religions, sects, the priesthood, sometimes even the priest who will marry the Querent; also disunion, unfortunate combinations, competing interests."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 15,
+  "name": "The Devil",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:15:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Ravage, violence, vehemence, extraordinary efforts, force, fatality; that which is predestined but is not for this reason evil."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:15:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Evil fatality, weakness, pettiness, blindness."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 16,
+  "name": "The Tower",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:16:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Misery, distress, indigence, adversity, calamity, disgrace, deception, ruin. It is a card in particular of unforeseen catastrophe."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:16:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "According to one account, the same in a lesser degree; also oppression, imprisonment, tyranny."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 17,
+  "name": "The Star",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:17:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Loss, theft, privation, abandonment; another reading says—hope and bright prospects",
+    "note": "The source prints a comma before \"Reversed:\"; the comma is left off the end of this quote."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:17:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Arrogance, haughtiness, impotence."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 18,
+  "name": "The Moon",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:18:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Hidden enemies, danger, calumny, darkness, terror, deception, occult forces, error."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:18:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Instability, inconstancy, silence, lesser degrees of deception and error."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 19,
+  "name": "The Sun",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:19:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Material happiness, fortunate marriage, contentment."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:19:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "The same in a lesser sense."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 20,
+  "name": "Judgement",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:20:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Change of position, renewal, outcome. Another account specifies total loss though lawsuit.",
+    "note": "Reads \"total loss though lawsuit\"; probably \"through\". Check the scan."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:20:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Weakness, pusillanimity, simplicity; also deliberation, decision, sentence."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 21,
+  "name": "The World",
+  "waite": {
+   "picture": null,
+   "upright": {
+    "id": "waite-pkt:card:21:upright",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Assured success, recompense, voyage, route, emigration, flight, change of place."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:21:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §3",
+    "text": "Inertia, fixity, stagnation, permanence."
+   },
+   "extra_upright": null,
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 22,
+  "name": "Ace of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:22:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A hand issuing from a cloud grasps a stout wand or club."
+   },
+   "upright": {
+    "id": "waite-pkt:card:22:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Creation, invention, enterprise, the powers which result in these principle, beginning, source; birth, family, origin, and in a sense the virility which is behind them; the starting point of enterprises; according to another account, money, fortune, inheritance."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:22:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Fall, decadence, ruin, perdition, to perish; also a certain clouded joy."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:22:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Calamities of all kinds."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:22:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A sign of birth."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 23,
+  "name": "Two of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:23:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A tall man looks from a battlemented roof over sea and shore; he holds a globe in his right hand, while a staff in his left rests on the battlement; another is fixed in a ring. The Rose and Cross and Lily should be noticed on the left side."
+   },
+   "upright": {
+    "id": "waite-pkt:card:23:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Between the alternative readings there is no marriage possible; on the one hand, riches, fortune, magnificence; on the other, physical suffering, disease, chagrin, sadness, mortification. The design gives one suggestion; here is a lord overlooking his dominion and alternately contemplating a globe; it looks like the malady, the mortification, the sadness of Alexander amidst the grandeur of this world's wealth."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:23:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Surprise, wonder, enchantment, emotion, trouble, fear."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:23:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A young lady may expect trivial disappointments."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 24,
+  "name": "Three of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:24:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A calm, stately personage, with his back turned, looking from a cliff's edge at ships passing over the sea. Three staves are planted in the ground, and he leans slightly on one of them."
+   },
+   "upright": {
+    "id": "waite-pkt:card:24:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He symbolizes established strength, enterprise, effort, trade, commerce, discovery; those are his ships, bearing his merchandise, which are sailing over the sea. The card also signifies able co-operation in business, as if the successful merchant prince were looking from his side towards yours with a view to help you."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:24:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The end of troubles, suspension or cessation of adversity, toil and disappointment."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:24:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A very good card; collaboration will favour enterprise."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 25,
+  "name": "Four of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:25:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "From the four great staves planted in the foreground there is a great garland suspended; two female figures uplift nose-gays; at their side is a bridge over a moat, leading to an old manorial house."
+   },
+   "upright": {
+    "id": "waite-pkt:card:25:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "They are for once almost on the surface—country life, haven of refuge, a species of domestic harvest-home, repose, concord, harmony, prosperity, peace, and the perfected work of these."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:25:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The meaning remains unaltered; it is prosperity, increase, felicity, beauty, embellishment."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:25:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Unexpected good fortune."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:25:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A married woman will have beautiful children."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 26,
+  "name": "Five of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:26:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A posse of youths, who are brandishing staves, as if in sport or strife. It is mimic warfare, and hereto correspond the"
+   },
+   "upright": {
+    "id": "waite-pkt:card:26:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Imitation, as, for example, sham fight, but also the strenuous competition and struggle of the search after riches and fortune. In this sense it connects with the battle of life. Hence some attributions say that it is a card of gold, gain, opulence."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:26:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Litigation, disputes, trickery, contradiction."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:26:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Success in financial speculation."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:26:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Quarrels may be turned to advantage."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 27,
+  "name": "Six of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:27:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A laurelled horseman bears one staff adorned with a laurel crown; footmen with staves are at his side."
+   },
+   "upright": {
+    "id": "waite-pkt:card:27:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The card has been so designed that it can cover several significations; on the surface, it is a victor triumphing, but it is also great news, such as might be carried in state by the King's courier; it is expectation crowned with its own desire, the crown of hope, and so forth."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:27:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Apprehension, fear, as of a victorious enemy at the gate; treachery, disloyalty, as of gates being opened to the enemy; also indefinite delay."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:27:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Servants may lose the confidence of their masters; a young lady may be betrayed by a friend."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:27:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Fulfilment of deferred hope."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 28,
+  "name": "Seven of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:28:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A young man on a craggy eminence brandishing a staff; six other staves are raised towards him from below."
+   },
+   "upright": {
+    "id": "waite-pkt:card:28:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "It is a card of valour, for, on the surface, six are attacking one, who has, however, the vantage position. On the intellectual plane, it signifies discussion, wordy strife; in business—negotiations, war of trade, barter, competition. It is further a card of success, for the combatant is on the top and his enemies may be unable to reach him."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:28:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Perplexity, embarrassments, anxiety. It is also a caution against indecision."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:28:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A dark child."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 29,
+  "name": "Eight of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:29:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The card represents motion through the immovable—a flight of wands through an open country; but they draw to the term of their course. That which they signify is at hand; it may be even on the threshold."
+   },
+   "upright": {
+    "id": "waite-pkt:card:29:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Activity in undertakings, the path of such activity, swiftness, as that of an express messenger; great haste, great hope, speed towards an end which promises assured felicity; generally, that which is on the move; also the arrows of love."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:29:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Arrows of jealousy, internal dispute, stingings of conscience, quarrels; and domestic disputes for persons who are married."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:29:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Domestic disputes for a married person."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 30,
+  "name": "Nine of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:30:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The figure leans upon his staff and has an expectant look, as if awaiting an enemy. Behind are eight other staves—erect, in orderly disposition, like a palisade."
+   },
+   "upright": {
+    "id": "waite-pkt:card:30:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The card signifies strength in opposition. If attacked, the person will meet an onslaught boldly; and his build shews that he may prove a formidable antagonist. With this main significance there are all its possible adjuncts—delay, suspension, adjournment."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:30:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Obstacles, adversity, calamity."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:30:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Generally speaking, a bad card."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 31,
+  "name": "Ten of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:31:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A man oppressed by the weight of the ten staves which he is carrying."
+   },
+   "upright": {
+    "id": "waite-pkt:card:31:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A card of many significances, and some of the readings cannot be harmonized. I set aside that which connects it with honour and good faith. The chief meaning is oppression simply, but it is also fortune, gain, any kind of success, and then it is the oppression of these things. It is also a card of false-seeming, disguise, perfidy. The place which the figure is approaching may suffer from the rods that he carries. Success is stultified if the Nine of Swords follows, and if it is a question of a lawsuit, there will be certain loss."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:31:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Contrarieties, difficulties, intrigues, and their analogies."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:31:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Difficulties and contradictions, if near a good card."
+   },
+   "extra_reversed": null
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 32,
+  "name": "Page of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:32:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "In a scene similar to the former, a young man stands in the act of proclamation. He is unknown but faithful, and his tidings are strange."
+   },
+   "upright": {
+    "id": "waite-pkt:card:32:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Dark young man, faithful, a lover, an envoy, a postman. Beside a man, he will bear favourable testimony concerning him. A dangerous rival, if followed by the Page of Cups. Has the chief qualities of his suit. He may signify family intelligence."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:32:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Anecdotes, announcements, evil news. Also indecision and the instability which accompanies it."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:32:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Young man of family in search of young lady."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:32:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Bad news."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 33,
+  "name": "Knight of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:33:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He is shewn as if upon a journey, armed with a short wand, and although mailed is not on a warlike errand. He is passing mounds or pyramids. The motion of the horse is a key to the character of its rider, and suggests the precipitate mood, or things connected therewith."
+   },
+   "upright": {
+    "id": "waite-pkt:card:33:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Departure, absence, flight, emigration. A dark young man, friendly. Change of residence."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:33:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Rupture, division, interruption, discord."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:33:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A bad card; according to some readings, alienation."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:33:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "For a woman, marriage, but probably frustrated."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 34,
+  "name": "Queen of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:34:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The Wands throughout this suit are always in leaf, as it is a suit of life and animation. Emotionally and otherwise, the Queen's personality corresponds to that of the King, but is more magnetic."
+   },
+   "upright": {
+    "id": "waite-pkt:card:34:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A dark woman, countrywoman, friendly, chaste, loving, honourable. If the card beside her signifies a man, she is well disposed towards him; if a woman, she is interested in the Querent. Also, love of money, or a certain success in business."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:34:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Good, economical, obliging, serviceable. Signifies also—but in certain positions and in the neighbourhood of other cards tending in such directions—opposition, jealousy, even deceit and infidelity."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:34:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A good harvest, which may be taken in several senses."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:34:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Good-will towards the Querent, but without the opportunity to exercise it."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 35,
+  "name": "King of Wands",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:35:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The physical and emotional nature to which this card is attributed is dark, ardent, lithe, animated, impassioned, noble. The King uplifts a flowering wand, and wears, like his three correspondences in the remaining suits, what is called a cap of maintenance beneath his crown. He connects with the symbol of the lion, which is emblazoned on the back of his throne."
+   },
+   "upright": {
+    "id": "waite-pkt:card:35:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Dark man, friendly, countryman, generally married, honest and conscientious. The card always signifies honesty, and may mean news concerning an unexpected heritage to fall in before very long."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:35:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Good, but severe; austere, yet tolerant."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:35:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Generally favourable; may signify a good marriage."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:35:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Advice that should be followed."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 36,
+  "name": "Ace of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:36:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The waters are beneath, and thereon are water-lilies; the hand issues from the cloud, holding in its palm the cup, from which four streams are pouring; a dove, bearing in its bill a cross-marked Host, descends to place the Wafer in the Cup; the dew of water is falling on all sides. It is an intimation of that which may lie behind the Lesser Arcana"
+   },
+   "upright": {
+    "id": "waite-pkt:card:36:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "House of the true heart, joy, content, abode, nourishment, abundance, fertility; Holy Table, felicity hereof."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:36:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "House of the false heart, mutation, instability, revolution."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:36:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Inflexible will, unalterable law."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:36:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Unexpected change of position."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 37,
+  "name": "Two of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:37:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A youth and maiden are pledging one another, and above their cups rises the Caduceus of Hermes, between the great wings of which there appears a lion's head. It is a variant of a sign which is found in a few old examples of this card. Some curious emblematical meanings are attached to it, but they do not concern us in this place."
+   },
+   "upright": {
+    "id": "waite-pkt:card:37:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Love, passion, friendship, affinity, union, concord, sympathy, the interrelation of the sexes, and—as a suggestion apart from all offices of divination—that desire which is not in Nature, but by which Nature is sanctified."
+   },
+   "reversed": null,
+   "extra_upright": {
+    "id": "waite-pkt:card:37:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Favourable in things of pleasure and business, as well as love; also wealth and honour."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:37:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Passion."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 38,
+  "name": "Three of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:38:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Maidens in a garden-ground with cups uplifted, as if pledging one another."
+   },
+   "upright": {
+    "id": "waite-pkt:card:38:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The conclusion of any matter in plenty, perfection and merriment; happy issue, victory, fulfilment, solace, healing."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:38:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Expedition, dispatch, achievement, end. It signifies also the side of excess in physical enjoyment, and the pleasures of the senses."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:38:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Unexpected advancement for military man."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:38:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Consolation, cure. end of the business.",
+    "note": "Reads \"cure. end of the business\"; the full stop may be a comma. Check the scan."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 39,
+  "name": "Four of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:39:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A young man is seated under a tree and contemplates three cups set on the grass before him; an arm issuing from a cloud offers him another cup. His expression notwithstanding is one of discontent with his environment."
+   },
+   "upright": {
+    "id": "waite-pkt:card:39:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Weariness, disgust, aversion, imaginary vexations, as if the wine of this world had caused satiety only; another wine, as if a fairy gift, is now offered the wastrel, but he sees no consolation therein. This is also a card of blended pleasure."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:39:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Novelty, presage, new instruction, new relations."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:39:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Contrarieties."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:39:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Presentiment."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 40,
+  "name": "Five of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:40:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A dark, cloaked figure, looking sideways at three prone cups; two others stand upright behind him; a bridge is in the background, leading to a small keep or holding."
+   },
+   "upright": {
+    "id": "waite-pkt:card:40:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "It is a card of loss, but something remains over; three have been taken, but two are left; it is a card of inheritance, patrimony, transmission, but not corresponding to expectations; with some interpreters it is a card of marriage, but not without bitterness or frustration."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:40:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "News, alliances, affinity, consanguinity, ancestry, return, false projects."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:40:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Generally favourable; a happy marriage; also patrimony, legacies, gifts, success in enterprise."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:40:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Return of some relative who has not been seen for long."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 41,
+  "name": "Six of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:41:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Children in an old garden, their cups filled with flowers."
+   },
+   "upright": {
+    "id": "waite-pkt:card:41:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A card of the past and of memories, looking back, as—for example—on childhood; happiness, enjoyment, but coming rather from the past; things that have vanished. Another reading reverses this, giving new relations, new knowledge, new environment, and then the children are disporting in an unfamiliar precinct."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:41:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The future, renewal, that which will come to pass presently."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:41:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Pleasant memories."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:41:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Inheritance to fall in quickly."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 42,
+  "name": "Seven of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:42:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Strange chalices of vision, but the images are more especially those of the fantastic spirit."
+   },
+   "upright": {
+    "id": "waite-pkt:card:42:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Fairy favours, images of reflection, sentiment, imagination, things seen in the glass of contemplation; some attainment in these degrees, but nothing permanent or substantial is suggested."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:42:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Desire, will, determination, project."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:42:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Fair child; idea, design, resolve, movement."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:42:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Success, if accompanied by the Three of Cups."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 43,
+  "name": "Eight of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:43:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A man of dejected aspect is deserting the cups of his felicity, enterprise, under-taking or previous concern."
+   },
+   "upright": {
+    "id": "waite-pkt:card:43:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The card speaks for itself on the surface, but other readings are entirely antithetical—giving joy, mildness, timidity, honour, modesty. In practice, it is usually found that the card shews the decline of a matter, or that a matter which has been thought to be important is really of slight consequence—either for good or evil."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:43:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Great joy, happiness, feasting."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:43:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Marriage with a fair woman."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:43:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Perfect satisfaction."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 44,
+  "name": "Nine of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:44:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A goodly personage has feasted to his heart's content, and abundant refreshment of wine is on the arched counter behind him, seeming to indicate that the future is also assured. The picture offers the material side only, but there are other aspects."
+   },
+   "upright": {
+    "id": "waite-pkt:card:44:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Concord, contentment, physical bien-être; also victory, success, advantage; satisfaction for the Querent or person for whom the consultation is made."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:44:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Truth, loyalty, liberty; but the readings vary and include mistakes, imperfections, etc."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:44:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Of good augury for military men."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:44:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Good business."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 45,
+  "name": "Ten of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:45:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Appearance of Cups in a rainbow; it is contemplated in wonder and ecstacy by a man and woman below, evidently husband and wife. His right arm is about her; his left is raised upward; she raises her right arm. The two children dancing near them have not observed the prodigy but are happy after their own manner. There is a home-scene beyond."
+   },
+   "upright": {
+    "id": "waite-pkt:card:45:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Contentment, repose of the entire heart; the perfection of that state; also perfection of human love and friendship; if with several picture-cards, a person who is taking charge of the Querent's interests; also the town, village or country inhabited by the Querent."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:45:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Repose of the false heart, indignation, violence."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:45:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "For a male Querent, a good marriage and one beyond his expectations."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:45:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Sorrow; also a serious quarrel."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 46,
+  "name": "Page of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:46:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A fair, pleasing, somewhat effeminate page, of studious and intent aspect, contemplates a fish rising from a cup to look at him. It is the pictures of the mind taking form."
+   },
+   "upright": {
+    "id": "waite-pkt:card:46:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Fair young man, one impelled to render service and with whom the Querent will be connected; a studious youth; news, message; application, reflection, meditation; also these things directed to business."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:46:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Taste, inclination, attachment, seduction, deception, artifice."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:46:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Good augury; also a young man who is unfortunate in love."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:46:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Obstacles of all kinds."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 47,
+  "name": "Knight of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:47:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Graceful, but not warlike; riding quietly, wearing a winged helmet, referring to those higher graces of the imagination which sometimes characterize this card. He too is a dreamer, but the images of the side of sense haunt him in his vision."
+   },
+   "upright": {
+    "id": "waite-pkt:card:47:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Arrival, approach—sometimes that of a messenger; advances, proposition, demeanour, invitation, incitement."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:47:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Trickery, artifice, subtlety, swindling, duplicity, fraud."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:47:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A visit from a friend, who will bring unexpected money to the Querent."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:47:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Irregularity."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 48,
+  "name": "Queen of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:48:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Beautiful, fair, dreamy—as one who sees visions in a cup. This is, however, only one of her aspects; she sees, but she also acts, and her activity feeds her dream."
+   },
+   "upright": {
+    "id": "waite-pkt:card:48:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Good, fair woman; honest, devoted woman, who will do service to the Querent; loving intelligence, and hence the gift of vision; success, happiness, pleasure; also wisdom, virtue; a perfect spouse and a good mother."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:48:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The accounts vary; good woman; otherwise, distinguished woman but one not to be trusted; perverse woman; vice, dishonour, depravity."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:48:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Sometimes denotes a woman of equivocal character."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:48:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A rich marriage for a man and a distinguished one for a woman."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 49,
+  "name": "King of Cups",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:49:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He holds a short sceptre in his left hand and a great cup in his right; his throne is set upon the sea; on one side a ship is riding and on the other a dolphin is leaping. The implicit is that the Sign of the Cup naturally refers to water, which appears in all the court cards."
+   },
+   "upright": {
+    "id": "waite-pkt:card:49:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Fair man, man of business, law, or divinity; responsible, disposed to oblige the Querent; also equity, art and science, including those who profess science, law and art; creative intelligence."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:49:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Dishonest, double-dealing man; roguery, exaction, injustice, vice, scandal, pillage, considerable loss."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:49:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Beware of ill-will on the part of a man of position, and of hypocrisy pretending to help."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:49:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Loss."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 50,
+  "name": "Ace of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:50:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A hand issues from a cloud, grasping a sword, the point of which is encircled by a crown."
+   },
+   "upright": {
+    "id": "waite-pkt:card:50:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Triumph, the excessive degree in everything, conquest, triumph of force. It is a card of great force, in love as well as in hatred. The crown may carry a much higher significance than comes usually within the sphere of fortune-telling."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:50:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The same, but the results are disastrous; another account says—conceрtion, childbirth, augmentation, multiplicity.",
+    "note": "\"conceрtion\" is typed with a Cyrillic letter р in place of the Latin p (\"conception\"). Fix in the transcription before verifying."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:50:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Great prosperity or great misery."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:50:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Marriage broken off, for a woman, through her own imprudence."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 51,
+  "name": "Two of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:51:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A hoodwinked female figure balances two swords upon her shoulders."
+   },
+   "upright": {
+    "id": "waite-pkt:card:51:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Conformity and the equipoise which it suggests, courage, friendship, concord in a state of arms; another reading gives tenderness, affection, intimacy. The suggestion of harmony and other favourable readings must be considered in a qualified manner, as Swords generally are not symbolical of beneficent forces in human affairs."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:51:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Imposture, falsehood, duplicity, disloyalty."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:51:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Gifts for a lady, influential protection for a man in search of help."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:51:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Dealings with rogues."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 52,
+  "name": "Three of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:52:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Three swords piercing a heart; cloud and rain behind."
+   },
+   "upright": {
+    "id": "waite-pkt:card:52:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Removal, absence, delay, division, rupture, dispersion, and all that the design signifies naturally, being too simple and obvious to call for specific enumeration."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:52:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Mental alienation, error, loss, distraction, disorder, confusion."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:52:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "For a woman, the flight of her lover."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:52:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A meeting with one whom the Querent has compromised; also a nun."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 53,
+  "name": "Four of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:53:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The effigy of a knight in the attitude of prayer, at full length upon his tomb."
+   },
+   "upright": {
+    "id": "waite-pkt:card:53:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Vigilance, retreat, solitude, hermit's repose, exile, tomb and coffin. It is these last that have suggested the design."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:53:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Wise administration, circumspection, economy, avarice, precaution, testament."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:53:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A bad card, but if reversed a qualified success may be expected by wise administration of affairs."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:53:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A certain success following wise administration."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 54,
+  "name": "Five of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:54:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A disdainful man looks after two retreating and dejected figures. Their swords lie upon the ground. He carries two others on his left shoulder, and a third sword is in his right hand, point to earth. He is the master in possession of the field."
+   },
+   "upright": {
+    "id": "waite-pkt:card:54:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Degradation, destruction, revocation, infamy, dishonour, loss, with the variants and analogues of these."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:54:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The same; burial and obsequies."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:54:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An attack on the fortune of the Querent."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:54:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A sign of sorrow and mourning."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 55,
+  "name": "Six of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:55:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A ferryman carrying passengers in his punt to the further shore. The course is smooth, and seeing that the freight is light, it may be noted that the work is not beyond his strength."
+   },
+   "upright": {
+    "id": "waite-pkt:card:55:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Journey by water, route, way, envoy, commissionary, expedient."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:55:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Declaration, confession, publicity; one account says that it is a proposal of love."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:55:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "The voyage will be pleasant."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:55:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Unfavourable issue of lawsuit."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 56,
+  "name": "Seven of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:56:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A man in the act of carrying away five swords rapidly; the two others of the card remain stuck in the ground. A camp is close at hand."
+   },
+   "upright": {
+    "id": "waite-pkt:card:56:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Design, attempt, wish, hope, confidence; also quarrelling, a plan that may fail, annoyance. The design is uncertain in its import, because the significations are widely at variance with each other."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:56:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Good advice, counsel, instruction, slander, babbling."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:56:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Dark girl; a good card; it promises a country life after a competence has been secured."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:56:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Good advice, probably neglected."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 57,
+  "name": "Eight of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:57:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A woman, bound and hoodwinked, with the swords of the card about her. Yet it is rather a card of temporary durance than of irretrievable bondage."
+   },
+   "upright": {
+    "id": "waite-pkt:card:57:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Bad news, violent chagrin, crisis, censure, power in trammels, conflict, calumny; also sickness."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:57:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Disquiet, difficulty, opposition, accident, treachery; what is unforeseen; fatality."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:57:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "For a woman, scandal spread in her respect."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:57:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Departure of a relative."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 58,
+  "name": "Nine of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:58:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "One seated on her couch in lamentation, with the swords over her. She is as one who knows no sorrow which is like unto hers. It is a card of utter desolation."
+   },
+   "upright": {
+    "id": "waite-pkt:card:58:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Death, failure, miscarriage, delay, deception, disappointment, despair."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:58:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Imprisonment, suspicion, doubt, reasonable fear, shame."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:58:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An ecclesiastic, a priest; generally, a card of bad omen."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:58:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Good ground for suspicion against a doubtful person."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 59,
+  "name": "Ten of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:59:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A prostrate figure, pierced by all the swords belonging to the card."
+   },
+   "upright": {
+    "id": "waite-pkt:card:59:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Whatsoever is intimated by the design; also pain, affliction, tears, sadness, desolation. It is not especially a card of violent death."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:59:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Advantage, profit, success, favour, but none of these are permanent; also power and authority."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:59:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Followed by Ace and King, imprisonment; for girl or wife, treason on the part of friends."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:59:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Victory and consequent fortune for a soldier in war."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 60,
+  "name": "Page of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:60:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A lithe, active figure holds a sword upright in both hands, while in the act of swift walking. He is passing over rugged land, and about his way the clouds are collocated wildly. He is alert and lithe, looking this way and that, as if an expected enemy might appear at any moment."
+   },
+   "upright": {
+    "id": "waite-pkt:card:60:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Authority, overseeing, secret service, vigilance, spying, examination, and the qualities thereto belonging."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:60:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "More evil side of these qualities; what is unforeseen, unprepared state; sickness is also intimated."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:60:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An indiscreet person will pry into the Querent's secrets."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:60:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Astonishing news."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 61,
+  "name": "Knight of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:61:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He is riding in full course, as if scattering his enemies. In the design he is really a prototypical hero of romantic chivalry. He might almost be Galahad, whose sword is swift and sure because he is clean of heart."
+   },
+   "upright": {
+    "id": "waite-pkt:card:61:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Skill, bravery, capacity, defence, address, enmity, wrath, war, destruction, opposition, resistance, ruin. There is therefore a sense in which the card signifies death, but it carries this meaning only in its proximity to other cards of fatality."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:61:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Imprudence, incapacity, extravagance."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:61:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A soldier, man of arms, satellite, stipendiary; heroic action predicted for soldier."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:61:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Dispute with an imbecile person; for a woman, struggle with a rival, who will be conquered."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 62,
+  "name": "Queen of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:62:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Her right hand raises the weapon vertically and the hilt rests on an arm of her royal chair; the left hand is extended, the arm raised; her countenance is severe but chastened; it suggests familiarity with sorrow. It does not represent mercy, and, her sword notwithstanding, she is scarcely a symbol of power."
+   },
+   "upright": {
+    "id": "waite-pkt:card:62:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Widowhood, female sadness and embarrassment, absence, sterility, mourning, privation, separation."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:62:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Malice, bigotry, artifice, prudery, bale, deceit."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:62:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A widow."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:62:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A bad woman, with ill-will towards the Querent."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 63,
+  "name": "King of Swords",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:63:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He sits in judgment, holding the unsheathed sign of his suit. He recalls, of course, the conventional Symbol of Justice in the Trumps Major, and he may represent this virtue, but he is rather the power of life and death, in virtue of his office."
+   },
+   "upright": {
+    "id": "waite-pkt:card:63:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Whatsoever arises out of the idea of judgment and all its connexions—power, command, authority, militant intelligence, law, offices of the crown, and so forth."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:63:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Cruelty, perversity, barbarity, perfidy, evil intention."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:63:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A lawyer, senator, doctor."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:63:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A bad man; also a caution to put an end to a ruinous lawsuit."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 64,
+  "name": "Ace of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:64:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A hand—issuing, as usual, from a cloud—holds up a pentacle."
+   },
+   "upright": {
+    "id": "waite-pkt:card:64:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Perfect contentment, felicity, ecstasy; also speedy intelligence; gold."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:64:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The evil side of wealth, bad intelligence; also great riches. In any case it shews prosperity, comfortable material conditions, but whether these are of advantage to the possessor will depend on whether the card is reversed or not."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:64:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "The most favourable of all cards."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:64:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A share in the finding of treasure."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 65,
+  "name": "Two of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:65:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A young man, in the act of dancing, has a pentacle in either hand, and they are joined by that endless cord which is like the number 8 reversed."
+   },
+   "upright": {
+    "id": "waite-pkt:card:65:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "On the one hand it is represented as a card of gaiety, recreation and its connexions, which is the subject of the design; but it is read also as news and messages in writing, as obstacles, agitation, trouble, embroilment."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:65:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Enforced gaiety, simulated enjoyment, literal sense, handwriting, composition, letters of exchange."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:65:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Troubles are more imaginary than real."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:65:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Bad omen, ignorance, injustice."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 66,
+  "name": "Three of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:66:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A sculptor at his work in a monastery. Compare the design which illustrates the Eight of Pentacles. The apprentice or amateur therein has received his reward and is now at work in earnest."
+   },
+   "upright": {
+    "id": "waite-pkt:card:66:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Métier, trade, skilled labour; usually, how-ever, regarded as a card of nobility, aristocracy, renown, glory."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:66:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Mediocrity, in work and otherwise, puerility, pettiness, weakness."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:66:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "If for a man, celebrity for his eldest son."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:66:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Depends on neighbouring cards."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 67,
+  "name": "Four of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:67:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A crowned figure, having a pentacle over his crown, clasps another with hands and arms; two pentacles are under his feet. He holds to that which he has."
+   },
+   "upright": {
+    "id": "waite-pkt:card:67:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The surety of possessions, cleaving to that which one has, gift, legacy, inheritance."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:67:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Suspense, delay, opposition.",
+    "note": "The source prints \"Reversed;\" with a semicolon."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:67:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "For a bachelor, pleasant news from a lady."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:67:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Observation, hindrances."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 68,
+  "name": "Five of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:68:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Two mendicants in a snow-storm pass a lighted casement."
+   },
+   "upright": {
+    "id": "waite-pkt:card:68:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The card foretells material trouble above all, whether in the form illustrated—that is, destitution—or otherwise. For some cartomancists, it is a card of love and lovers—wife, husband, friend, mistress; also concordance, affinities. These alternatives cannot be harmonized."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:68:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Disorder, chaos, ruin, discord, profligacy."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:68:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Conquest of fortune by reason."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:68:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Troubles in love."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 69,
+  "name": "Six of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:69:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A person in the guise of a merchant weighs money in a pair of scales and distributes it to the needy and distressed. It is a testimony to his own success in life, as well as to his goodness of heart."
+   },
+   "upright": {
+    "id": "waite-pkt:card:69:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Presents, gifts, gratification; another account says attention, vigilance; now is the accepted time, present prosperity, etc."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:69:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Desire, cupidity, envy, jealousy, illusion."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:69:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "The present must not be relied on."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:69:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A check on the Querent's ambition."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 70,
+  "name": "Seven of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:70:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A young man, leaning on his staff, looks intently at seven pentacles attached to a clump of greenery on his right; one would say that these were his treasures and that his heart was there."
+   },
+   "upright": {
+    "id": "waite-pkt:card:70:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "These are exceedingly contradictory; in the main, it is a card of money, business, barter; but one reading gives altercation, quarrel-and another innocence, ingenuity, purgation."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:70:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Cause for anxiety regarding money which it may be proposed to lend."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:70:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Improved position for a lady's future husband."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:70:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Impatience, apprehension, suspicion."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 71,
+  "name": "Eight of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:71:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "An artist in stone at his work, which he exhibits in the form of trophies."
+   },
+   "upright": {
+    "id": "waite-pkt:card:71:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Work, employment, commission, craftsmanship, skill in craft and business, perhaps in the preparatory stage."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:71:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Voided ambition, vanity, cupidity, exaction, usury. It may also signify the possession of skill, in the sense of the ingenious mind turned to cunning and intrigue."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:71:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A young man in business who has relations with the Querent; a dark girl."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:71:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "The Querent will be compromised in a matter of money-lending."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 72,
+  "name": "Nine of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:72:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A woman, with a bird upon her wrist, stands amidst a great abundance of grapevines in the garden of a manorial house. It is a wide domain, suggesting plenty in all things. Possibly it is her own possession and testifies to material well-being."
+   },
+   "upright": {
+    "id": "waite-pkt:card:72:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Prudence, safety, success, accomplishment, certitude, discernment."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:72:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Roguery, deception, voided project, bad faith."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:72:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Prompt fulfilment of what is presaged by neighbouring cards."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:72:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Vain hopes."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 73,
+  "name": "Ten of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:73:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A man and woman beneath an archway which gives entrance to a house and domain. They are accompanied by a child, who looks curiously at two dogs accosting an ancient personage seated in the foreground. The child's hand is on one of them."
+   },
+   "upright": {
+    "id": "waite-pkt:card:73:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Gain, riches; family matters, archives, extraction, the abode of a family."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:73:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Chance, fatality, loss, robbery, games of hazard; sometimes gift, dowry, pension."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:73:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Represents house or dwelling, and derives its value from other cards."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:73:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An occasion which may be fortunate or otherwise."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 74,
+  "name": "Page of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:74:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "A youthful figure, looking intently at the pentacle which hovers over his raised hands. He moves slowly, insensible of that which is about him."
+   },
+   "upright": {
+    "id": "waite-pkt:card:74:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Application, study, scholarship, reflection; another reading says news, messages and the bringer thereof; also rule, management."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:74:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Prodigality, dissipation, liberality. luxury; unfavourable news."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:74:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A dark youth; a young officer or soldier; a child."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:74:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Sometimes degradation and sometimes pillage."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 75,
+  "name": "Knight of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:75:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "He rides a slow, enduring, heavy horse, to which his own aspect corresponds. He exhibits his symbol, but does not look therein."
+   },
+   "upright": {
+    "id": "waite-pkt:card:75:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Utility, serviceableness, interest, responsibility, rectitude—all on the normal and external plane."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:75:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "inertia, idleness, repose of that kind, stagnation; also placidity, discouragement, carelessness."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:75:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An useful man; useful discoveries."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:75:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A brave man out of employment."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 76,
+  "name": "Queen of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:76:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The face suggests that of a dark woman, whose qualities might be summed up in the idea of greatness of soul; she has also the serious cast of intelligence; she contemplates her symbol and may see worlds therein."
+   },
+   "upright": {
+    "id": "waite-pkt:card:76:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Opulence, generosity, magnificence, security, liberty."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:76:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Evil, suspicion, suspense, fear, mistrust."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:76:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "Dark woman; presents from a rich relative; rich and happy marriage for a young man."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:76:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An illness."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ },
+ {
+  "id": 77,
+  "name": "King of Coins",
+  "waite": {
+   "picture": {
+    "id": "waite-pkt:card:77:picture",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "The figure calls for no special description; the face is rather dark, suggesting also courage, but somewhat lethargic in tendency. The bull's head should be noted as a recurrent symbol on the throne. The sign of this suit is represented throughout as engraved or blazoned with the pentagram, typifying the correspondence of the four elements in human nature and that by which they may be governed. In many old Tarot packs this suit stood for current coin, money, deniers. I have not invented the substitution of pentacles and I have no special cause to sustain in respect of the alternative. But the consensus of divinatory meanings is on the side of some change, because the cards do not happen to deal especially with questions of money."
+   },
+   "upright": {
+    "id": "waite-pkt:card:77:upright",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Valour, realizing intelligence, business and normal intellectual aptitude, sometimes mathematical gifts and attainments of this kind; success in these paths."
+   },
+   "reversed": {
+    "id": "waite-pkt:card:77:reversed",
+    "source": "waite-pkt",
+    "where": "Part III §2",
+    "text": "Vice, weakness, ugliness, perversity, corruption, peril."
+   },
+   "extra_upright": {
+    "id": "waite-pkt:card:77:extra-upright",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "A rather dark man, a merchant, master, professor."
+   },
+   "extra_reversed": {
+    "id": "waite-pkt:card:77:extra-reversed",
+    "source": "waite-pkt",
+    "where": "Part III §4",
+    "text": "An old and vicious man."
+   }
+  },
+  "owner": {
+   "upright": null,
+   "reversed": null,
+   "notes": null
+  }
+ }
+]

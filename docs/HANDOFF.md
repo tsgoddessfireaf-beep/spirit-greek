@@ -39,6 +39,19 @@ an iPhone.
    to replay the exact reading.
 7. Nothing leaves the phone: no server, no cookies, no tracking.
 
+## Reading back end (started 2026-10-12, PR #15)
+
+Dolores chose (2026-10-12): meanings from public-domain books (room for her own
+wording later), a server, and AI-written prose that she can "train".
+- Research: `docs/research/` (public-domain books, modern sources, server and AI).
+- Phase A built: `knowledge/` holds Waite's *Pictorial Key* meanings for all 78
+  cards, the Celtic Cross, and the rules for repeated cards, all word for word and
+  all **draft** until she approves them in `knowledge/verified.json`. See
+  `knowledge/README.md`.
+- Not decided yet (bring up one at a time, she asked not to be flooded): the
+  server account (Firebase recommended), the AI spending limit, whether readers'
+  questions are stored, and which extra sources to add.
+
 ## Decisions already made (do not reopen without Dolores)
 
 | Decision | Why |
