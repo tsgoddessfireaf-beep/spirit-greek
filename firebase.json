@@ -1,0 +1,13 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "predeploy": ["node functions/tools/copy-knowledge.js"],
+      "ignore": ["node_modules", "test", ".git", "*.log"]
+    }
+  ],
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}
