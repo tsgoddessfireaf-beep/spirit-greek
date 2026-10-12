@@ -52,6 +52,15 @@ wording later), a server, and AI-written prose that she can "train".
   server account (Firebase recommended), the AI spending limit, whether readers'
   questions are stored, and which extra sources to add.
 
+### Reading server and page button (2026-10-12)
+
+- **Live:** Firebase project `cogent-spirit-498920-j3` (Dolores's "Tarot App v01"), 2nd-gen functions in `us-central1`: `reading` and `deleteReading`. Code in `functions/` (PR #17). Model: `claude-sonnet-5-5`. Key: Secret Manager secret `ANTHROPIC_API_KEY`. Claude workspace "Tarot App" with a $10 monthly limit.
+- **Deployed from Cloud Shell**, not GitHub. PR #18 (a GitHub deploy button) needs a Google service account key that does not exist. It is optional; close it if unwanted.
+- **Deploy gotchas met:** the build service account needed `roles/cloudbuild.builds.builder`; a failed first deploy left empty function shells that had to be deleted (`functions:delete`) before a clean deploy.
+- **Dolores's decisions:** drafts of Waite's quotes may be used (each flagged approved or draft by the server); readers' questions are saved only on a ticked, default-unticked box; Claude limit $10 a month.
+- **Page:** "Get my reading" shows after the deal on One card, Three cards and Celtic Cross (not Yes / No). It shows the AI reading plus Waite's own words, and a delete button for a saved question.
+- **Not built yet:** App Check and a per-reader limit (the two server addresses are public); Claude citations; Yes / No reading; clearing leftover build images (small monthly cost: console.cloud.google.com/gcr/images/cogent-spirit-498920-j3/us/gcf); the approval page for Waite quotes; Dolores's own wording slot.
+
 ## Decisions already made (do not reopen without Dolores)
 
 | Decision | Why |

@@ -213,6 +213,17 @@
   .tag { display: inline-block; font-size: 0.66rem; padding: 1px 6px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-top: 6px; }
 
   .flyer { position: fixed; z-index: 10; pointer-events: none; border-radius: var(--radius); }
+  .reading-box { margin-top: 18px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); }
+  .reading-box[hidden], .rd-check[hidden] { display: none; }
+  .rd-note { color: var(--muted); font-size: 0.82rem; margin: 0 0 10px; }
+  .rd-check { display: flex; gap: 8px; align-items: flex-start; font-size: 0.85rem; color: var(--muted); margin: 0 0 10px; }
+  #readingOut { margin-top: 12px; line-height: 1.5; }
+  #readingOut:empty { display: none; }
+  #readingOut h3 { font-size: 1rem; margin: 14px 0 4px; color: var(--gold); }
+  #readingOut p { margin: 0 0 8px; }
+  #readingOut .rd-quiet { color: var(--muted); font-size: 0.9rem; }
+  #readingOut .rd-card { font-weight: 600; margin-top: 10px; color: var(--gold); }
+  #readingOut .rd-error { color: #ffd9df; background: #4a1f2a; border: 1px solid #a14a5c; padding: 8px 10px; border-radius: var(--radius); }
   .receipt { margin-top: 18px; font-size: 0.8rem; color: var(--muted); word-break: break-all; }
   .after { display: none; margin-top: 14px; gap: 8px; flex-wrap: wrap; }
   .after.show { display: flex; }
@@ -228,7 +239,7 @@
   <h1>Intuitive Shuffle</h1>
   <p class="sub">Shuffle while you hold your question. Stop when you feel the <em>ding</em>.</p>
 
-  <label class="q" for="question">Your question (optional, never leaves this phone)</label>
+  <label class="q" for="question">Your question (optional). It stays on this phone unless you ask for a written reading.</label>
   <textarea id="question" maxlength="500" placeholder="What do I most need to understand about…"></textarea>
 
   <div class="row seg" id="spreadPicker" role="group" aria-label="Spread">
@@ -272,6 +283,12 @@
     <button type="button" class="btn" id="turnAll" hidden>Turn all piles</button>
     <button type="button" class="btn" id="copy">Copy full receipt</button>
   </div>
+  <section class="reading-box" id="readingBox" hidden aria-label="Written reading">
+    <p class="rd-note">A written reading sends your cards, and your question if you typed one, to the Aeonic Arts server and to Claude, an AI service, which writes it from Waite's own words. Nothing is sent unless you tap the button.</p>
+    <label class="rd-check" id="saveQRow" hidden><input type="checkbox" id="saveQ"> <span>Also save my question so my readings can be reviewed. I can delete it right after.</span></label>
+    <button type="button" class="btn primary" id="getReading">Get my reading</button>
+    <div id="readingOut" aria-live="polite"></div>
+  </section>
   <p class="receipt" id="receipt"></p>
 
   <div class="zoom" id="zoom" hidden role="dialog" aria-label="Card close-up">
@@ -279,7 +296,7 @@
     <p class="zpos" id="zoomPos"></p>
   </div>
 
-  <footer>Prototype. Nothing is stored or sent anywhere: no account, no cookies, no tracking.</footer>
+  <footer>Prototype. The shuffle and your cards stay on this phone. Only if you tap “Get my reading” are your cards (and your question) sent to the Aeonic Arts server and to Claude, an AI service. Your question is saved only if you tick the box. No account, no cookies, no tracking.</footer>
 </main>
 
 <script src="deck.js"></script>
@@ -355,6 +372,7 @@
     els.spread.innerHTML = '';
     $('verdict').hidden = true;
     $('turnAll').hidden = true;
+    resetReading();
     if (isPiles(spreadKey)) {
       SPREADS[spreadKey].pileNames.forEach((name, p) => {
         const col = document.createElement('div');
@@ -616,6 +634,9 @@
       answer: s.score ? s.score.answer : undefined,
       dealSeed: E.toHex(dealSeed),
     };
+    // Position order, as the reading server expects.
+    s.dealt = spread.slice().sort((a, b) => a.position - b.position).map((p) => ({ card: p.card, reversed: Boolean(p.reversed) }));
+    if (!piles) { $('saveQRow').hidden = !s.question; readingBox.hidden = false; }
     els.after.classList.add('show');
     state = 'done';
   }
@@ -878,6 +899,104 @@
       $('copy').textContent = 'Copied';
       setTimeout(() => { $('copy').textContent = 'Copy full receipt'; }, 1500);
     } catch (err) { $('copy').textContent = 'Copy not allowed here'; }
+  });
+
+  // ---- Written reading (optional): sends the cards to the reading server ---------
+  const READING_URL = 'https://us-central1-cogent-spirit-498920-j3.cloudfunctions.net';
+  const readingBox = $('readingBox');
+  const readingOut = $('readingOut');
+  let readingToken = 0; // a newer reading or shuffle cancels an older answer
+  let readingBusy = false;
+  const node = (tag, text, cls) => {
+    const n = document.createElement(tag);
+    if (text != null) n.textContent = text; // text only, never markup
+    if (cls) n.className = cls;
+    return n;
+  };
+  function resetReading() {
+    readingToken += 1;
+    readingBusy = false;
+    readingBox.hidden = true;
+    readingOut.textContent = '';
+    $('saveQ').checked = false;
+    $('getReading').disabled = false;
+  }
+  const cardTitle = (p) => `${p.position}. ${p.positionName}: ${p.card}${p.orientation === 'reversed' ? ' (reversed)' : ''}`;
+  function renderReading(r) {
+    readingOut.textContent = '';
+    if (r.notice) readingOut.appendChild(node('p', r.notice, 'rd-quiet'));
+    if (r.reading) {
+      readingOut.appendChild(node('p', r.reading.intro));
+      r.reading.cards.forEach((c, i) => {
+        readingOut.appendChild(node('h3', cardTitle(r.passages[i])));
+        readingOut.appendChild(node('p', c.text));
+      });
+      readingOut.appendChild(node('h3', 'Together'));
+      readingOut.appendChild(node('p', r.reading.summary));
+    }
+    const d = document.createElement('details');
+    d.open = !r.reading;
+    d.appendChild(node('summary', "Waite's own words for these cards (The Pictorial Key to the Tarot, 1910)"));
+    r.passages.forEach((p) => {
+      d.appendChild(node('p', cardTitle(p), 'rd-card'));
+      d.appendChild(node('p', p.text || (p.noReversedMeaning ? 'Waite gives no reversed meaning for this card.' : 'No text.')));
+    });
+    (r.recurrences || []).forEach((x) => {
+      d.appendChild(node('p', `${x.count} ${x.rank}s ${x.orientation}`, 'rd-card'));
+      d.appendChild(node('p', x.meaning ? x.meaning.text : ''));
+    });
+    readingOut.appendChild(d);
+    if (r.saved) {
+      const row = node('p', 'Your question was saved for review. ', 'rd-quiet');
+      const del = node('button', 'Delete my saved question', 'btn');
+      del.type = 'button';
+      del.addEventListener('click', async () => {
+        del.disabled = true;
+        try {
+          const res = await fetch(`${READING_URL}/deleteReading`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: r.saved.id, token: r.saved.deleteToken }),
+          });
+          const out = await res.json();
+          row.textContent = out.deleted ? 'Your saved question was deleted.' : 'It could not be deleted. Please try again.';
+          if (!out.deleted) { del.disabled = false; row.appendChild(del); }
+        } catch (err) { del.disabled = false; row.textContent = 'Could not reach the service. Please try again. '; row.appendChild(del); }
+      });
+      row.appendChild(del);
+      readingOut.appendChild(row);
+    }
+  }
+  $('getReading').addEventListener('click', async () => {
+    if (!s || !s.dealt || readingBusy) return;
+    const mine = ++readingToken;
+    readingBusy = true;
+    $('getReading').disabled = true;
+    readingOut.textContent = '';
+    readingOut.appendChild(node('p', 'Writing your reading. This can take up to a minute.', 'rd-quiet'));
+    const body = {
+      spread: s.spreadKey,
+      cards: s.dealt,
+      question: s.question,
+      consent: $('saveQ').checked && Boolean(s.question),
+    };
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 70000);
+    try {
+      const res = await fetch(`${READING_URL}/reading`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal,
+      });
+      const data = await res.json().catch(() => null);
+      if (mine !== readingToken) return;
+      if (!res.ok || !data) throw new Error((data && data.error) || 'The reading service had a problem. Please try again.');
+      renderReading(data);
+    } catch (err) {
+      if (mine !== readingToken) return;
+      readingOut.textContent = '';
+      readingOut.appendChild(node('p', err.name === 'AbortError' ? 'The reading took too long. Please try again.' : (err.message || 'Could not reach the reading service.'), 'rd-error'));
+    } finally {
+      clearTimeout(timer);
+      if (mine === readingToken) { readingBusy = false; $('getReading').disabled = false; }
+    }
   });
 
   renderEmptySpread();
