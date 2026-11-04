@@ -28,6 +28,11 @@ you hold your question, and you let go when you feel the "ding" (Dusty White,
 - **Receipt.** Each reading shows a short fingerprint. "Copy full receipt" copies
   everything needed to replay the exact same reading.
 - **Private by default.** The shuffle and your cards stay on the phone: no account, no cookies, no tracking.
+- **Survives a refresh.** Once the cards are dealt, the reading (cards, positions, reversals,
+  which cards are turned over, the question and the receipt) is kept in the browser's own storage
+  on the phone. A refresh, or a sign-in page that reloads this one, brings the same reading back
+  with unturned cards still face down. *New reading*, a new shuffle or another spread throws it
+  away. A refresh during the shuffle itself, before the ding, still starts over.
 - **Written reading (optional).** After the cards are dealt, "Get my reading" sends the cards, and the question if one was typed, to the Aeonic Arts server and to Claude (an AI service), which writes a reading from Waite's own words. Nothing is sent unless the button is tapped. The question is saved only if the reader ticks a box that starts unticked, and a saved question can be deleted right away. The Yes / No spread has no written reading.
 - **Colors.** Settings → Colors: *Match my phone* (the default; follows the phone's
   dark or light mode), *Dark* (teal night) or *Light* (parchment). Both use the teal,

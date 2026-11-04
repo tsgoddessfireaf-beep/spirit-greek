@@ -507,6 +507,7 @@
     if (!secureOk) return;
     state = 'starting';
     releaseQueued = false;
+    clearSaved(); // a new shuffle replaces the saved reading
     renderEmptySpread();
     els.after.classList.remove('show');
     els.receipt.textContent = '';
@@ -639,6 +640,8 @@
     if (!piles) { $('saveQRow').hidden = !s.question; readingBox.hidden = false; }
     els.after.classList.add('show');
     state = 'done';
+    s.receiptText = els.receipt.textContent;
+    saveReading();
   }
 
   // ---- Input wiring --------------------------------------------------------
@@ -810,7 +813,7 @@
     if (card.classList.contains('face-down')) {
       if (state !== 'done') setStatus('Cards turn over after the ding.', true);
       else if (isPiles(key)) turnPile(s.reading.positions[i].pile);
-      else turnOver(card);
+      else { turnOver(card); saveReading(); }
       return;
     }
     const clone = card.cloneNode(true);
@@ -826,6 +829,7 @@
   function turnPile(p) {
     if (!s || !s.turned || s.turned.has(p)) return;
     s.turned.add(p);
+    saveReading();
     const cards = s.reading.piles()[p];
     cards.forEach((placed, k) => setTimeout(() => {
       const c = holder(placed.position) && holder(placed.position).querySelector('.card');
@@ -872,9 +876,8 @@
   $('spreadPicker').addEventListener('click', (e) => {
     const b = e.target.closest('button[data-spread]');
     if (!b || state === 'shuffling' || state === 'starting' || state === 'finishing') return;
-    spreadKey = b.dataset.spread;
-    $('spreadHint').hidden = !isPiles(spreadKey);
-    document.querySelectorAll('#spreadPicker button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    clearSaved();
+    selectSpread(b.dataset.spread);
     state = 'idle';
     renderEmptySpread();
     els.after.classList.remove('show');
@@ -886,6 +889,7 @@
     if (state === 'idle' || state === 'done') setStatus(idleText(), true);
   });
   $('again').addEventListener('click', () => {
+    clearSaved(); // the reader asked for a fresh start
     state = 'idle';
     renderEmptySpread();
     els.after.classList.remove('show');
@@ -999,8 +1003,100 @@
     }
   });
 
+  // ---- Keep the reading through a refresh -----------------------------------
+  // After the deal, the cards, their positions, reversals and which ones are turned
+  // over are kept in this browser's own storage (localStorage). Nothing is sent
+  // anywhere. A refresh, or a sign-in page that reloads this one, brings the same
+  // reading back with the same cards still face down. "New reading", a new shuffle
+  // or another spread throws the saved reading away.
+  const SAVE_KEY = 'intuitiveShuffle.reading.v1';
+  function selectSpread(key) {
+    spreadKey = key;
+    $('spreadHint').hidden = !isPiles(key);
+    document.querySelectorAll('#spreadPicker button').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.spread === key)));
+  }
+  function clearSaved() {
+    try { localStorage.removeItem(SAVE_KEY); } catch (err) { /* storage blocked: nothing to clear */ }
+  }
+  function saveReading() {
+    if (!s || state !== 'done' || !s.reading) return;
+    const revealed = Array.from(els.spread.querySelectorAll('.holder .card:not(.face-down)'))
+      .map((c) => Number(c.closest('.holder').dataset.slot));
+    const data = {
+      version: 1, savedAt: Date.now(), spreadKey: s.spreadKey, question: s.question,
+      positions: s.reading.positions.map((p) => Object.assign({ card: p.card, reversed: Boolean(p.reversed), position: p.position, source: p.source },
+        p.pile != null ? { pile: p.pile, index: p.index } : {})),
+      revealed, turnedPiles: s.turned ? Array.from(s.turned) : [],
+      score: s.score || null, receiptText: s.receiptText || '', fullReceipt: s.fullReceipt, dealt: s.dealt,
+    };
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch (err) { /* storage full or blocked: the reading still works */ }
+  }
+  function loadSaved() {
+    try {
+      const d = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+      if (!d || d.version !== 1 || !SPREADS[d.spreadKey] || !Array.isArray(d.positions) || !d.positions.length) return null;
+      const ok = d.positions.every((p, i) => p && p.position === i && Number.isInteger(p.card) && p.card >= 0 && p.card < CARDS.length &&
+        (!isPiles(d.spreadKey) || (Number.isInteger(p.pile) && Number.isInteger(p.index))));
+      if (!ok) return null;
+      if (!isPiles(d.spreadKey) && d.positions.length !== SPREADS[d.spreadKey].positions.length) return null;
+      return d;
+    } catch (err) { return null; }
+  }
+  function restoreReading(d) {
+    selectSpread(d.spreadKey);
+    renderEmptySpread();
+    const piles = isPiles(d.spreadKey);
+    const positions = d.positions;
+    const reading = {
+      positions,
+      jumpers: positions.filter((p) => p.source === 'jumper'),
+      piles() {
+        const out = Array.from({ length: SPREADS[d.spreadKey].piles.count }, () => []);
+        positions.forEach((p) => out[p.pile].push(p));
+        return out;
+      },
+    };
+    s = {
+      spreadKey: d.spreadKey, question: d.question || '', reading, score: d.score || undefined,
+      fullReceipt: d.fullReceipt, dealt: d.dealt, receiptText: d.receiptText || '',
+    };
+    els.question.value = s.question;
+    positions.forEach(place);
+    if (piles) {
+      s.turned = new Set();
+      s.shown = 0;
+      (d.turnedPiles || []).forEach((p) => {
+        if (!reading.piles()[p]) return;
+        s.turned.add(p);
+        reading.piles()[p].forEach((placed) => {
+          const c = holder(placed.position) && holder(placed.position).querySelector('.card');
+          if (c) { turnOver(c); s.shown += 1; }
+        });
+      });
+      if (s.shown === positions.length && s.score) showVerdict();
+      else $('turnAll').hidden = false;
+    } else {
+      (d.revealed || []).forEach((i) => {
+        const c = holder(i) && holder(i).querySelector('.card');
+        if (c) turnOver(c);
+      });
+      $('saveQRow').hidden = !s.question;
+      readingBox.hidden = false;
+    }
+    els.receipt.textContent = s.receiptText;
+    els.after.classList.add('show');
+    state = 'done';
+    setStatus('Your reading is back where you left it.' +
+      (piles ? ' Tap a pile to turn its cards over.' : ' Tap each card to turn it over.') +
+      ' Tap New reading to start fresh.');
+  }
+
   renderEmptySpread();
   setStatus(secureOk ? idleText() : '', true);
+  const saved = loadSaved();
+  if (saved) {
+    try { restoreReading(saved); } catch (err) { clearSaved(); state = 'idle'; s = null; renderEmptySpread(); setStatus(idleText(), true); }
+  }
 })();
 </script>
 </body>
